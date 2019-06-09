@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Hackathon Talento - Reto 1 - SUNLAB</title>
+  <meta name="description" content="Hackathon Talento - Reto 1 - SUNLAB" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Hackathon Talento - Reto 1 - SUNLAB" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hackathon Talento - Reto 1 - SUNLAB" />
+  
+  
+  
+
+<meta name="author" content="Sergio Berdiales, Javier Campos y Manuel Antonio García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="planteamiento-del-reto-sunlab-.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="1" data-path="planteamiento-del-reto-sunlab-.html"><a href="planteamiento-del-reto-sunlab-.html"><i class="fa fa-check"></i><b>1</b> Planteamiento del reto SUNLAB.</a></li>
+<li class="chapter" data-level="2" data-path="desarrollo-del-reto-sunlab-.html"><a href="desarrollo-del-reto-sunlab-.html"><i class="fa fa-check"></i><b>2</b> Desarrollo del reto SUNLAB.</a><ul>
+<li class="chapter" data-level="2.1" data-path="desarrollo-del-reto-sunlab-.html"><a href="desarrollo-del-reto-sunlab-.html#carga-de-las-librerias-necesarias."><i class="fa fa-check"></i><b>2.1</b> Carga de las librerias necesarias.</a></li>
+<li class="chapter" data-level="2.2" data-path="desarrollo-del-reto-sunlab-.html"><a href="desarrollo-del-reto-sunlab-.html#importacion-de-los-datos."><i class="fa fa-check"></i><b>2.2</b> Importación de los datos.</a></li>
+<li class="chapter" data-level="2.3" data-path="desarrollo-del-reto-sunlab-.html"><a href="desarrollo-del-reto-sunlab-.html#tratamiento-de-los-datos."><i class="fa fa-check"></i><b>2.3</b> Tratamiento de los datos.</a></li>
+<li class="chapter" data-level="2.4" data-path="desarrollo-del-reto-sunlab-.html"><a href="desarrollo-del-reto-sunlab-.html#generacion-de-modelos-base-con-r."><i class="fa fa-check"></i><b>2.4</b> Generación de modelos base con R.</a></li>
+<li class="chapter" data-level="2.5" data-path="desarrollo-del-reto-sunlab-.html"><a href="desarrollo-del-reto-sunlab-.html#descripcion-de-la-generacion-de-los-modelos-con-bigml."><i class="fa fa-check"></i><b>2.5</b> Descripción de la generación de los modelos con BIGml.</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hackathon Talento - Reto 1 - SUNLAB</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Hackathon Talento - Reto 1 - SUNLAB</h1>
+<p class="author"><em>Sergio Berdiales, Javier Campos y Manuel Antonio García</em></p>
+</div>
+<div id="introduccion" class="section level1 unnumbered">
+<h1>Introducción</h1>
+<p>Este notebook nace de nuestra participación el 4 de junio de 2019 como equipo en el <a href="https://hackathontalento.com/">Hackathon de Machine Learning</a> organizado por <a href="https://www.talentocorporativo.com/">Talento Corporativo</a> y patrocinado por <a href="https://www.edpenergia.es/es/">EDP</a> y <a href="https://bigml.com/">BIGml</a>.</p>
+<p><img src="imgs/hackathon_talento.png" /></p>
+<p>La competición consistió en el planteamiento de un par de retos de Machine Learning basados en datos de EDP y en los que había que utilizar la herramienta BIGml para ejecutar los modelos.</p>
+<p>El contenido de este notebook corresponde a la realización del primer reto, aunque no corresponde exactamente a lo realizado durante el hackathon. Hemos ampliado el análisis para que se aproxime un poco más a lo que nos hubiese gustado desarrollar durante la competición pero que debido al escaso tiempo disponible y a dificultades con el formato de los datos no nos fue posible desarrollar.</p>
+<p>Pese a todo tuvimos la suerte de poder pasar a la final y finalmente ganar la competición.</p>
+<p>Para cualquier consulta o sugerencia nos puedes contactar vía Linkedin:<br />
+- <a href="https://www.linkedin.com/in/sergioberdiales/">Linkedin - Sergio Berdiales</a>.<br />
+- <a href="https://www.linkedin.com/in/francisco-javier-campos-peque%C3%B1o-66058348/">Linkedin - Javier Campos</a>.<br />
+- <a href="https://www.linkedin.com/in/manuel-antonio-g-13a01a7/">Linkedin - Manuel Antonio García</a>.</p>
+<p>Un artículo en el periódico “El Comercio” haciéndose eco del resultado de la competición: <a href="https://www.elcomercio.es/tecnologia/calcular-vatios-premio-20190605000623-ntvo.html">“Calcular vatios tiene premio en el Hackathon”</a>.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="planteamiento-del-reto-sunlab-.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

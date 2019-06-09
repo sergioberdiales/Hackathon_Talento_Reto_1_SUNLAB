@@ -1,0 +1,12 @@
+# Desarrollo del reto SUNLAB.
+
+## Carga de las librerias necesarias.
+
+## Importación de los datos.
+
+## Tratamiento de los datos.
+
+## Generación de modelos base con R.
+
+## Descripción de la generación de los modelos con BIGml.
+
