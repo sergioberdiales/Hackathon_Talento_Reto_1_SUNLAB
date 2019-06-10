@@ -2,11 +2,403 @@
 
 ## Carga de las librerias necesarias.
 
+Cargamos los paquetes que vamos a necesitar para el análisis
+```{r , warning= FALSE, message= FALSE}
+library(tidyverse)
+library(lubridate)
+library(readxl)
+library(VIM)
+library(GGally)
+library(caret)
+```
+
 ## Importación de los datos.
 
-## Tratamiento de los datos.
+### Datos "train".
+
+Los cuatro archivos de "train" facilitados en formato xls parecían tener algún tipo de problema. No fuimos capaces de importarlo en R en ese formato. Así que los convertimos previamente en formato csv. En este ocasión lo que hemos hecho es ir a la [página de EDP de Open Data](https://opendata.edp.com/explore/?refine.keyword=visible&sort=modified) y descargar los archivos directamente en formato csv.
+
+Estos archivos csv utilizan como separador el punto y coma, en vez de la coma. Así que en este caso tendremos que utilizar la función read_delim() con el argumento delim = ";".
+
+```{r , warning= FALSE, message= FALSE}
+meteo_2015 <- read_delim(file = "./data/train/sunlab-faro_meteo_2015.csv", delim = ";")
+meteo_2016 <- read_delim(file = "./data/train/sunlab-faro-meteo-2016.csv", delim = ";")
+prod_2015 <- read_delim(file = "./data/train/sunlab-faro-pv-2015.csv", delim = ";")
+prod_2016 <- read_delim(file = "./data/train/sunlab-faro-pv-2016.csv", delim = ";")
+```
+
+
+### Datos "test".
+
+En este caso las tablas a importar estaban en formato xlsx y no tuvimos ningún problema a la hora de importarlas. Así que esta vez utilizaremos los archivos facilitados durante el Hackathon.
+
+```{r , warning= FALSE, message= FALSE}
+test_meteo_2017 <- read_xlsx(path = "./data/test/test-sunlab-meteo-2017.xlsx")
+test_prod_2017 <- read_xlsx(path = "./data/test/test-sunlab-pv-2017.xlsx")
+```
+
+## Exploración y tratamiento de los datos.
+
+
+Unimos las tablas de distintos años de meteo y producción y nos quedamos con dos únicas tablas de train.
+```{r , warning= FALSE, message= FALSE}
+
+meteo_2015_2016 <- bind_rows(meteo_2015, meteo_2016)
+prod_2015_2016 <- bind_rows(prod_2015, prod_2016)
+```
+
+Borramos las tablas anteriores de train para que no nos ocupen espacio en memoria
+```{r , warning= FALSE, message= FALSE}
+rm(meteo_2015)
+rm(meteo_2016)
+rm(prod_2015)
+rm(prod_2016)
+```
+
+Echamos un vistazo a las variables y observaciones de la tabla de producción. 
+
+```{r , warning= FALSE, message= FALSE}
+glimpse(prod_2015_2016)
+```
+
+Vemos también los primeros 10 registros.
+```{r , warning= FALSE, message= FALSE}
+head(prod_2015_2016, 10)
+```
+
+
+¿Cada cuánto tiempo está registrada una medición en la tabla? 
+```{r , warning= FALSE, message= FALSE}
+# Si fuese una medición cada minuto el número de mediciones entre 2015 y 2016 sería 1.051.200, y en la tabla solo hay 420.507 registros:
+
+2*365*24*60
+```
+Si vemos el conteo de registros por año vemos que en 2016 hay sensiblemente menos registros que en 2015.
+```{r , warning= FALSE, message= FALSE}
+
+
+registers_by_year <- prod_2015_2016 %>% 
+                      select(Datetime) %>%
+                      group_by(year = year(prod_2015_2016$Datetime)) %>%
+                      summarise(registers = n())
+
+registers_by_year
+
+
+
+```
+Vemos la distribución por año-mes
+```{r , warning= FALSE, message= FALSE}
+
+
+registers_by_year_month <- prod_2015_2016 %>% 
+                      select(Datetime) %>%
+                      group_by(year = year(prod_2015_2016$Datetime),
+                               month = month(prod_2015_2016$Datetime)) %>%
+                      summarise(registers = n())
+
+registers_by_year_month
+
+```
+
+Hay bastantes variaciones en el número de registros de cada mes. Esto podría introducir sesgos a la hora de modelar, ya que en principio no sabemos a qué se deben estas variaciones. A destacar que en diciembre de 2015 no hay ningún registro y el bajísimo número de registros del mes de marzo de 2016.
+
+```{r , warning= FALSE, message= FALSE}
+
+registers_by_year_month_1 <- registers_by_year_month %>% 
+                              mutate(day = "01") %>%
+                              unite(year_month, year, month, day, sep = '-') %>%
+                              mutate(year_month = ymd(year_month))
+
+ggplot(data = registers_by_year_month_1, aes(x = as.factor(year_month), y = registers, group = 1)) +
+          geom_line() +
+          theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5, size = 10))
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+summary(registers_by_year_month_1) 
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+summary(registers_by_year_month_1) 
+```
+
+```{r , warning= FALSE, message= FALSE}
+ggplot(data = registers_by_year_month_1, aes(x = registers)) +
+          geom_histogram(bins = 23) 
+```
+
+Todos los meses, excepto 2, se encuentran entre los 18.000 y 27.000 registros. Lo que parece significar que más o menos hay un registro cada aproximadamente 2 minutos.
+
+Vamos a estimar la frecuencia de los registros. Para ello restaremos a cada Datetime de cada registro su correspondiente Datetime anterior (Datetime_lagged) creando la variable time_diff, que nos dirá los minutos trascurridos entre cada registro. 
+Una vez hecho esto hacemos un simple conteo de todas las diferencias entre registros.
+```{r , warning= FALSE, message= FALSE}
+register_frequency <- prod_2015_2016 %>%
+                      select(Datetime) %>%
+                      arrange(Datetime) %>%
+                      mutate(Datetime_lagged = lag(Datetime)) %>%
+                      mutate(time_diff = Datetime - Datetime_lagged) %>%
+                      na.omit()
+
+intervals_count <- register_frequency %>%
+                   select(time_diff) %>% 
+                   group_by(time_diff) %>%
+                   summarise(n = n()) %>%
+                   arrange(desc(n))
+
+head(intervals_count, 20)
+
+```
+
+Lo que vemos es que en principio parece que el registro de mediciones está programado para realizarse cada minuto, porque este es con diferencia el intervalo entre registros más frecuente.  
+
+
+### Tablas en formato largo
+
+Respecto al formato de las variables parecen todas tener el formato adecuado. Lo único que llama la atención es cómo distingue qué valores corresponden a los paneles de tipo A de los de tipo B, con una "A" o una "B" al principio de cada nombre de variable, y cómo incluye también la información de la orientación, también en el nombre de la variable, con los términos "Horizontal", "Vertical" y "Optimal". Quizás una forma mejor de ordenar los datos sería creando otras dos variables de formato factor, una para distinguir los paneles y otra la configuración.
+
+Para ello lo primero que haremos será transformar a formato "largo" la tabla, reduciendo las 25 variables actuales a únicamente 2: 'Datetime' y 'Measure'. Y justo después de esta transformación creamos tres nuevas variables que se referirán al tipo de panel (panel_type), la configuración del mismo (set_type) y finalmente el tipo de medición en cuestión (measure). 
+
+A continuación simplemente mostramos cómo quedará la tabla en formato "largo".
+```{r , warning= FALSE, message= FALSE}
+prod_2015_2016_long_example <- prod_2015_2016 %>%
+                                 gather('panel_set_measure', 'value', 2:25) 
+
+                        
+head(prod_2015_2016_long_example, 10)                           
+```
+
+Y aquí el código completo para esta transformación.
+```{r , warning= FALSE, message= FALSE}
+prod_2015_2016_long <- prod_2015_2016 %>%
+                                 gather('panel_set_measure', 'value', 2:25) %>%
+                                 rename(datetime = Datetime) %>%
+                                 mutate(panel_type = as.factor(str_sub(panel_set_measure, start = 1, end = 1)),
+                                        set_type = as.factor(ifelse(grepl('Vertical', panel_set_measure), 'Vertical', 
+                                                                    ifelse(grepl('Horizontal', panel_set_measure), 'Horizontal', 'Optimal'))),
+                                        measure = as.factor(ifelse(grepl('Temperature', panel_set_measure), 'Temperature_DC_C',
+                                                                   ifelse(grepl('Voltage', panel_set_measure), 'Voltage_DC_V', 
+                                                                          ifelse(grepl('Power', panel_set_measure), 'Power_DC_W', 'Current_DC_A'))))) %>% 
+                                select(-panel_set_measure)
+
+
+                          
+
+                                 
+```
+
+Así ya nos queda una tabla con un formato más ordenado. 
+```{r , warning= FALSE, message= FALSE}
+
+head(prod_2015_2016_long, 10)                           
+```
+
+Echamos un vistazo con un summary()
+```{r , warning= FALSE, message= FALSE}
+summary(prod_2015_2016_long)
+```
+
+Y aplicamos la misma transformación al dataset de test
+
+
+```{r , warning= FALSE, message= FALSE}
+test_prod_2017_long <- test_prod_2017 %>%
+                                 gather('panel_set_measure', 'value', 2:25) %>%
+                                 rename(datetime = Datetime) %>%
+                                 mutate(panel_type = as.factor(str_sub(panel_set_measure, start = 1, end = 1)),
+                                        set_type = as.factor(ifelse(grepl('Vertical', panel_set_measure), 'Vertical', 
+                                                                    ifelse(grepl('Horizontal', panel_set_measure), 'Horizontal', 'Optimal'))),
+                                        measure = as.factor(ifelse(grepl('Temperature', panel_set_measure), 'Temperature_DC_C',
+                                                                   ifelse(grepl('Voltage', panel_set_measure), 'Voltage_DC_V', 
+                                                                          ifelse(grepl('Power', panel_set_measure), 'Power_DC_W', 'Current_DC_A'))))) %>% 
+                                select(-panel_set_measure)
+```
+
+
+Este formato largo nos ayudará sobre todo a la hora de realizar visualizaciones con ggplot2, que requiere este tipo de estructura.
+
+### Formato semi-largo
+
+También puede que necesitamos una estructura a medio camino entre las dos que tenemos hasta ahora. Que sería básicamente coger las tablas en formato largo y "extender" la variable "value" por tipo de "measure".
+
+Lo hacemos con los datos de train.
+```{r , warning= FALSE, message= FALSE}
+prod_2015_2016_semi_long <- prod_2015_2016_long %>%
+                                 spread(measure, value) 
+
+head(prod_2015_2016_semi_long)
+```
+
+Y con los de test.
+```{r , warning= FALSE, message= FALSE}
+test_prod_2017_semi_long <- test_prod_2017_long %>%
+                                  spread(measure, value)
+
+head(test_prod_2017_semi_long)
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
 
 ## Generación de modelos base con R.
 
+El problema a resolver es predecir la producción eléctrica en Watios que pueden generar los paneles A y B en su orientación óptima durante los siete primeros días del año 2017.
+
+Antes de ver la influencia que puede tener los datos meteorológicos en la producción vamos a intentar ver si simplemente con los datos que tenemos en la tabla de producción podemos hacer ya alguna aproximación.
+
+Para ello vamos a dividir la tabla de producción que tenemos en formato semilargo en dos datasets, uno para realizar el training y otro para ir realizando validaciones de los modelos y poder detectar problemas de overfitting. 
+
+Train period: 01-01-2015 - 30-09-2016
+Validation period: 01-10-2016 - 31-12-2016
+
+### Modelos base para paneles A
+```{r , warning= FALSE, message= FALSE}
+
+train_period_A <- prod_2015_2016_semi_long %>% 
+                  filter(datetime <= '2016-09-30 23:59:59',
+                         panel_type == "A",
+                         set_type == "Optimal") %>%
+                  select(-panel_type,
+                         -set_type) %>%
+                  na.omit()
+
+validation_period_A <- prod_2015_2016_semi_long %>% 
+                  filter(datetime > '2016-09-30 23:59:59',
+                         panel_type == "A",
+                         set_type == "Optimal") %>%
+                  select(-panel_type,
+                         -set_type) %>%
+                  na.omit()
+                  
+```
+
+Vemos la tabla
+
+```{r , warning= FALSE, message= FALSE}
+
+head(train_period_A)
+                  
+```
+
+#### Linear regression
+
+En el primer modelo intentamos explicar Power_DC_W en función de las otras tres variables
+```{r , warning= FALSE, message= FALSE}
+model_lr_1 <- lm(data = train_period_A, Power_DC_W ~ Current_DC_A + Temperature_DC_C + Voltage_DC_V)
+print(model_lr_1)
+```
+
+```{r , warning= FALSE, message= FALSE}
+summary(model_lr_1)
+```
+Pues el modelo resultante en principio es muy bueno, ya que estamos hablando de un R cuadrado de casi 1. Y el p-value es pequeñísimo. Aparecen las tres variables como significativas.
+
+Vamos a calcular el MAE, que forzosamente tendrá que ser muy bajo.
+
+
+``````{r , warning= FALSE, message= FALSE}
+# Extraemos los fitted_values (las predicciones) del modelo para compararlos con los valores reales
+
+predicted_values <- as.data.frame(model_lr_1$fitted.values)
+real_values <- as.data.frame(train_period_A$Power_DC_W)
+
+mae_train <- bind_cols(predicted_values,
+                         real_values) %>% 
+                         rename(predicted_values = 'model_lr_1$fitted.values',
+                                real_values = 'train_period_A$Power_DC_W') %>%
+                         mutate(abs_error = abs(real_values - predicted_values)) %>%
+                         summarise(mae = mean(abs_error))
+mae_train
+```
+
+
+Utilizamos este modelo inicial para hacer las predicciones con el periodo de validación
+
+```{r , warning= FALSE, message= FALSE}
+validation_predicted_values <- as.data.frame(predict(model_lr_1, validation_period_A))
+validation_real_values <- as.data.frame(validation_period_A$Power_DC_W)
+
+mae_validation <- bind_cols(validation_predicted_values,
+                         validation_real_values) %>% 
+                         rename(predicted_values = 'predict(model_lr_1, validation_period_A)',
+                                real_values = 'validation_period_A$Power_DC_W') %>%
+                         mutate(abs_error = abs(real_values - predicted_values)) %>%
+                         summarise(mae = mean(abs_error))
+mae_validation
+
+```
+```{r , warning= FALSE, message= FALSE}
+rss <- sum((validation_predicted_values - validation_real_values) ^ 2)  ## residual sum of squares
+tss <- sum((validation_real_values - mean(validation_real_values$`validation_period_A$Power_DC_W`)) ^ 2)  ## total sum of squares
+R_Squared <- 1 - rss/tss
+R_Squared
+```
+
+Al validar el modelo con el último trimestre de 2016 obtenemos resultados muy parecidos. El modelo es casi perfecto. Y no hemos necesitado utilizar la tabla con datos meteorológicos. ¿Qué está pasando?
+
+```{r , warning= FALSE, message= FALSE}
+model_lr_2 <- lm(data = train_period_A, Power_DC_W ~ Current_DC_A)
+print(model_lr_2)
+```
+
+```{r , warning= FALSE, message= FALSE}
+summary(model_lr_2)
+```
+
+```{r , warning= FALSE, message= FALSE}
+model_lr_3 <- lm(data = train_period_A, Power_DC_W ~ Temperature_DC_C)
+print(model_lr_3)
+```
+
+```{r , warning= FALSE, message= FALSE}
+summary(model_lr_3)
+```
+```{r , warning= FALSE, message= FALSE}
+model_lr_4 <- lm(data = train_period_A, Power_DC_W ~ Voltage_DC_V)
+print(model_lr_4)
+```
+
+```{r , warning= FALSE, message= FALSE}
+summary(model_lr_4)
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
 ## Descripción de la generación de los modelos con BIGml.
 
+```{r , warning= FALSE, message= FALSE}
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+```
