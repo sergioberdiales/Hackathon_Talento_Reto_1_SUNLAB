@@ -2,8 +2,6 @@
 
 En esta sección simplemente trasladamos el reto SUNLAB tal y como fue planteado durante el Hackathon. 
 
-"SUNLAB es un laboratorio...
-
-PEDIR A TALENTO QUE NOS ENVÍEN EL PDF PARA COPIAR Y PEGAR EL TEXTO AQUÍ"
+"SUNLAB es un laboratorio..."
 
 

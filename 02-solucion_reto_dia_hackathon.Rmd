@@ -1,0 +1,168 @@
+# Solución reto día del hackathon.
+
+
+
+## Carga de las librerias necesarias.
+
+```{r , warning= FALSE, message= FALSE}
+library(tidyverse)
+library(readxl)
+library(VIM)
+library(GGally)
+```
+
+
+## Preparación datos "train".
+
+Los datasets originales de train estaban en formato 'xls' y al abrirlos daban un error de formato. No pudimos importarlos en R directamente, ya que nos daba un error con la importación también. Así que los guardamos como 'csv' para posteriormente importarlos en R. En este proceso también tuvimos algún problema, así que la importación de los datos nos llevó mucho más tiempo de lo esperado. 
+
+Archivos orginales "train": 
+
+
+'sunlab-faro_meteo_2015.xls'
+'sunlab-faro_meteo_2016.xls'
+'sunlab-faro-pv-2015.xls'
+'sunlab-faro-pv-2016.xls'
+
+Importamos los archivos ya convertidos a formato 'csv'. 
+```{r , warning= FALSE, message= FALSE}
+meteo_2015 <- read_csv("./data/hackathon_data/train/sunlab-faro_meteo_2015.csv")
+meteo_2016 <- read_csv("./data/hackathon_data/train/sunlab-faro_meteo_2016.csv")
+prod_2015 <- read_csv("./data/hackathon_data/train/sunlab-faro-pv-2015.csv")
+prod_2016 <- read_csv("./data/hackathon_data/train/sunlab-faro-pv-2016.csv")
+```
+
+
+Unimos las parejas de archivos de datos de producción y meteorológicos. 
+```{r , warning= FALSE, message= FALSE}
+meteo_2015_2016 <- bind_rows(meteo_2015, meteo_2016)
+prod_2015_2016 <- bind_rows(prod_2015, prod_2016)
+
+# Borramos los archivos originales
+
+rm(meteo_2015)
+rm(meteo_2016)
+rm(prod_2015)
+rm(prod_2016)
+```
+Echamos un vistazo a los datos de producción con las funciones 'summary' y 'glimpse'.
+```{r , warning= FALSE, message= FALSE}
+summary(prod_2015_2016)
+```
+
+
+```{r , warning= FALSE, message= FALSE}
+glimpse(prod_2015_2016)
+```
+Y aquí directamente ya decidimos quedarnos directamente con las variables target a predecir 'A_Optimal - Power DC [W]' y                                'B_Optimal - Power DC [W]') más la variable 'Datetime' que nos servirá para cruzar esta tabla con la tabla de datos meteorológicos.
+```{r , warning= FALSE, message= FALSE}
+prod_2015_2016_final <- prod_2015_2016 %>%
+                        select(Datetime, 
+                               'A_Optimal - Power DC [W]',
+                               'B_Optimal - Power DC [W]')
+```
+
+Vemos los principales estadísticos de las variables de la tabla de datos meteorológicos.
+```{r , warning= FALSE, message= FALSE}
+summary(meteo_2015_2016)
+```
+
+Y decidimos quedarnos únicamente con 4 variables más la variable 'Datetime', que nos servirá de referencia para el cruce con la tabla anterior.
+```{r , warning= FALSE, message= FALSE}
+meteo_2015_2016_final <- meteo_2015_2016 %>%
+                        select(Datetime, 
+                               'Ambient Temperature [ºC]',
+                               'Diffuse Radiation [W/m2]',
+                               'Ultraviolet [W/m2]',
+                               'Global Radiation [W/m2]')
+```
+
+
+Cruzamos las tablas por Datetime y comprobamos que no se duplican registros, ya que la tabla final tiene el mismo número de registros que la tabla de producción: 420.507.
+```{r , warning= FALSE, message= FALSE}
+tabla_final <- meteo_2015_2016_final %>%
+  left_join(prod_2015_2016_final, by = 'Datetime')
+```
+
+Inspeccionamos las variables.
+```{r , warning= FALSE, message= FALSE}
+summary(tabla_final) 
+```
+
+Aquí vemos que 
+filter(`Ambient Temperature [ºC]` <1000)
+
+
+```{r , warning= FALSE, message= FALSE}
+tabla_final <- tabla_final %>% 
+                filter(`Ambient Temperature [ºC]` > -100)
+```
+
+```{r , warning= FALSE, message= FALSE}
+summary(tabla_final)
+```
+
+```{r , warning= FALSE, message= FALSE}
+write_csv(tabla_final, "meteo_prod_2015_2016.csv")
+```
+
+
+## Preparación datos "test".
+
+Importaciones
+```{r , warning= FALSE, message= FALSE}
+test_meteo_2017 <- read_csv("./data/hackathon_data/test/test-sunlab-meteo-2017.csv")
+test_prod_2017 <- read_csv("./data/hackathon_data/test/test-sunlab-pv-2017.csv")
+
+```
+Cruzamos las tablas por Datetime
+```{r , warning= FALSE, message= FALSE}
+tabla_final_test <- test_meteo_2017 %>%
+              left_join(test_prod_2017, by = "Datetime") %>%
+                        select(`A_Optimal - Power DC [W]`, 
+                               `Global Radiation [W/m2]`,
+                               `Ultraviolet [W/m2]`)
+```
+
+```{r , warning= FALSE, message= FALSE}          
+write_csv(tabla_final_test, "test_meteo_prod_2017.csv")
+```
+
+
+## Modelización en BIGml
+
+Aquí se ven las fuente de datos creadas para este reto. "meteo_prod_2015_2016.csv" es la fuente a partir de los datos procesados en R para el 
+entrenamiento del modelo. Y "test_meteo_prod_2017.csv" es la fuente, también procesada en R, con los datos para hacer la predicción.
+
+![](imgs/IMG_0441.jpg)
+
+Detalle de la fuente con las columnas que dejamos despues de procesar en R.
+![](imgs/IMG_0442.jpg)
+
+Aquí se ven los datasets que creamos a partir de las dos fuentes. Se puede ver que creamos un dataset a partir de los datos originales de 
+la fuente "meteo_prod_2015_2016" y sobre él fuimos iterando. Primero lo dividimos en dos datasets, uno para los paneles de tipo A 
+("meteo_prod_2015_2016_CONDATOS_A") y otro para los paneles de tipo B ("meteo_prod_2015_2016_CONDATOS_B"). Y luego eliminamos un valor de 
+temperatura que era erroneo y nos descuadraba el resultado.
+También está el dataset "test_meteo_prod_2017" que creamos a partir de los datos de test para hacer luego la predicción con el modelo.
+![](imgs/IMG_0443.jpg)
+
+
+
+Detalle de uno de los datasets con los campos que eliminamos para que no influyesen en la predicción.
+![](imgs/IMG_0444.jpg)
+Detalle de uno de los datasets con los campos que eliminamos para que no influyesen en la predicción.
+![](imgs/IMG_0445.jpg)
+
+Regresiones lineales creadas a partir de los datasets, una para cada modelo de panel solar.
+![](imgs/IMG_0446.jpg)
+
+Detalle de la grafica de predicción de una de las regresiones en función de la radiación.
+![](imgs/IMG_0447.jpg)
+
+Detalle de regresiones para uno de los paneles.
+![](imgs/IMG_0448.jpg)
+Predicciones batch para cada modelo creadas con el dataset de prueba.
+![](imgs/IMG_0449.jpg)
+Detalle de una de las predicciones.
+![](imgs/IMG_0450.jpg)
+

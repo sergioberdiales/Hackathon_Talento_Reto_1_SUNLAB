@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Solución reto día del hackathon. | Hackathon Talento - Reto 1 - SUNLAB</title>
+  <meta name="description" content="2 Solución reto día del hackathon. | Hackathon Talento - Reto 1 - SUNLAB" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Solución reto día del hackathon. | Hackathon Talento - Reto 1 - SUNLAB" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Solución reto día del hackathon. | Hackathon Talento - Reto 1 - SUNLAB" />
+  
+  
+  
+
+<meta name="author" content="Sergio Berdiales, Javier Campos y Manuel Antonio García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="planteamiento-del-reto-sunlab-.html">
+<link rel="next" href="solucion-reto-ampliada-.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="1" data-path="planteamiento-del-reto-sunlab-.html"><a href="planteamiento-del-reto-sunlab-.html"><i class="fa fa-check"></i><b>1</b> Planteamiento del reto SUNLAB.</a></li>
+<li class="chapter" data-level="2" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html"><i class="fa fa-check"></i><b>2</b> Solución reto día del hackathon.</a><ul>
+<li class="chapter" data-level="2.1" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#carga-de-las-librerias-necesarias."><i class="fa fa-check"></i><b>2.1</b> Carga de las librerias necesarias.</a></li>
+<li class="chapter" data-level="2.2" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-train."><i class="fa fa-check"></i><b>2.2</b> Preparación datos “train”.</a></li>
+<li class="chapter" data-level="2.3" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-test."><i class="fa fa-check"></i><b>2.3</b> Preparación datos “test”.</a></li>
+<li class="chapter" data-level="2.4" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelizacion-en-bigml"><i class="fa fa-check"></i><b>2.4</b> Modelización en BIGml</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html"><i class="fa fa-check"></i><b>3</b> Solución reto ampliada.</a><ul>
+<li class="chapter" data-level="3.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#carga-de-las-librerias-necesarias.-1"><i class="fa fa-check"></i><b>3.1</b> Carga de las librerias necesarias.</a></li>
+<li class="chapter" data-level="3.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#importacion-de-los-datos."><i class="fa fa-check"></i><b>3.2</b> Importación de los datos.</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#datos-train."><i class="fa fa-check"></i><b>3.2.1</b> Datos “train”.</a></li>
+<li class="chapter" data-level="3.2.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#datos-test."><i class="fa fa-check"></i><b>3.2.2</b> Datos “test”.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#exploracion-y-tratamiento-de-los-datos."><i class="fa fa-check"></i><b>3.3</b> Exploración y tratamiento de los datos.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#exploracion-inicial-de-las-tablas."><i class="fa fa-check"></i><b>3.3.1</b> Exploración inicial de las tablas.</a></li>
+<li class="chapter" data-level="3.3.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#calidad-de-los-datos."><i class="fa fa-check"></i><b>3.3.2</b> Calidad de los datos.</a></li>
+<li class="chapter" data-level="3.3.3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#exploracion-y-visualizaciones."><i class="fa fa-check"></i><b>3.3.3</b> Exploración y visualizaciones.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#generacion-de-modelos-base."><i class="fa fa-check"></i><b>3.4</b> Generación de modelos base.</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#modelos-base-para-paneles-a"><i class="fa fa-check"></i><b>3.4.1</b> Modelos base para paneles A</a></li>
+<li class="chapter" data-level="3.4.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#modelos-base-para-paneles-b"><i class="fa fa-check"></i><b>3.4.2</b> Modelos base para paneles B</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#descripcion-de-la-generacion-de-los-modelos-con-bigml."><i class="fa fa-check"></i><b>3.5</b> Descripción de la generación de los modelos con BIGml.</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hackathon Talento - Reto 1 - SUNLAB</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solucion-reto-dia-del-hackathon." class="section level1">
+<h1><span class="header-section-number">2</span> Solución reto día del hackathon.</h1>
+<div id="carga-de-las-librerias-necesarias." class="section level2">
+<h2><span class="header-section-number">2.1</span> Carga de las librerias necesarias.</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readxl)
+<span class="kw">library</span>(VIM)
+<span class="kw">library</span>(GGally)</code></pre>
+</div>
+<div id="preparacion-datos-train." class="section level2">
+<h2><span class="header-section-number">2.2</span> Preparación datos “train”.</h2>
+<p>Los datasets originales de train estaban en formato ‘xls’ y al abrirlos daban un error de formato. No pudimos importarlos en R directamente, ya que nos daba un error con la importación también. Así que los guardamos como ‘csv’ para posteriormente importarlos en R. En este proceso también tuvimos algún problema, así que la importación de los datos nos llevó mucho más tiempo de lo esperado.</p>
+<p>Archivos orginales “train”:</p>
+<p>‘sunlab-faro_meteo_2015.xls’
+‘sunlab-faro_meteo_2016.xls’
+‘sunlab-faro-pv-2015.xls’
+‘sunlab-faro-pv-2016.xls’</p>
+<p>Importamos los archivos ya convertidos a formato ‘csv’.</p>
+<pre class="sourceCode r"><code class="sourceCode r">meteo_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/train/sunlab-faro_meteo_2015.csv&quot;</span>)
+meteo_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/train/sunlab-faro_meteo_2016.csv&quot;</span>)
+prod_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/train/sunlab-faro-pv-2015.csv&quot;</span>)
+prod_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/train/sunlab-faro-pv-2016.csv&quot;</span>)</code></pre>
+<p>Unimos las parejas de archivos de datos de producción y meteorológicos.</p>
+<pre class="sourceCode r"><code class="sourceCode r">meteo_<span class="dv">2015</span>_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(meteo_<span class="dv">2015</span>, meteo_<span class="dv">2016</span>)
+prod_<span class="dv">2015</span>_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(prod_<span class="dv">2015</span>, prod_<span class="dv">2016</span>)
+
+<span class="co"># Borramos los archivos originales</span>
+
+<span class="kw">rm</span>(meteo_<span class="dv">2015</span>)
+<span class="kw">rm</span>(meteo_<span class="dv">2016</span>)
+<span class="kw">rm</span>(prod_<span class="dv">2015</span>)
+<span class="kw">rm</span>(prod_<span class="dv">2016</span>)</code></pre>
+<p>Echamos un vistazo a los datos de producción con las funciones ‘summary’ y ‘glimpse’.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>##     Datetime                   A_Vertical - Voltage DC [V]
+##  Min.   :2015-01-01 07:40:00   Min.   :10.20              
+##  1st Qu.:2015-05-28 18:54:30   1st Qu.:26.65              
+##  Median :2015-10-08 17:39:00   Median :27.95              
+##  Mean   :2015-12-04 18:29:34   Mean   :26.28              
+##  3rd Qu.:2016-07-19 14:47:30   3rd Qu.:29.10              
+##  Max.   :2016-12-29 17:31:00   Max.   :35.05              
+##                                NA&#39;s   :13979              
+##  A_Vertical - Current DC [A] A_Vertical - Power DC [W]
+##  Min.   :0.000               Min.   :  0.00           
+##  1st Qu.:0.710               1st Qu.: 15.90           
+##  Median :1.822               Median : 50.94           
+##  Mean   :2.252               Mean   : 63.56           
+##  3rd Qu.:3.460               3rd Qu.:100.67           
+##  Max.   :8.105               Max.   :245.18           
+##  NA&#39;s   :13979               NA&#39;s   :13979            
+##  A_Optimal - Voltage DC [V] A_Optimal - Current DC [A]
+##  Min.   :10.10              Min.   : 0.000            
+##  1st Qu.:27.05              1st Qu.: 1.097            
+##  Median :27.90              Median : 3.482            
+##  Mean   :27.53              Mean   : 3.574            
+##  3rd Qu.:28.95              3rd Qu.: 5.860            
+##  Max.   :35.30              Max.   :10.238            
+##  NA&#39;s   :8342               NA&#39;s   :8342              
+##  A_Optimal - Power DC [W] A_Horizontal - Voltage DC [V]
+##  Min.   :  0.00           Min.   :10.10                
+##  1st Qu.: 30.74           1st Qu.:26.90                
+##  Median : 99.79           Median :27.70                
+##  Mean   :100.48           Mean   :26.53                
+##  3rd Qu.:165.06           3rd Qu.:28.90                
+##  Max.   :307.64           Max.   :35.35                
+##  NA&#39;s   :8342             NA&#39;s   :9039                 
+##  A_Horizontal - Current DC [A] A_Horizontal - Power DC [W]
+##  Min.   : 0.000                Min.   :  0.00             
+##  1st Qu.: 1.095                1st Qu.: 27.55             
+##  Median : 2.930                Median : 83.44             
+##  Mean   : 3.163                Mean   : 87.10             
+##  3rd Qu.: 5.055                3rd Qu.:140.21             
+##  Max.   :10.238                Max.   :304.63             
+##  NA&#39;s   :9039                  NA&#39;s   :9039               
+##  A_Vertical - Temperature [ºC] A_Optimal - Temperature [ºC]
+##  Min.   : 1.80                 Min.   : 2.0                
+##  1st Qu.:22.60                 1st Qu.:21.5                
+##  Median :30.20                 Median :29.0                
+##  Mean   :29.21                 Mean   :28.8                
+##  3rd Qu.:35.80                 3rd Qu.:36.0                
+##  Max.   :52.80                 Max.   :58.6                
+##                                                            
+##  A_Horizontal - Temperature [ºC] B_Vertical - Voltage DC [V]
+##  Min.   : 1.40                   Min.   :10.30              
+##  1st Qu.:20.70                   1st Qu.:26.45              
+##  Median :28.30                   Median :27.00              
+##  Mean   :28.59                   Mean   :25.48              
+##  3rd Qu.:36.30                   3rd Qu.:27.60              
+##  Max.   :64.80                   Max.   :34.65              
+##                                  NA&#39;s   :11201              
+##  B_Vertical - Current DC [A] B_Vertical - Power DC [W]
+##  Min.   :0.000               Min.   :  0.00           
+##  1st Qu.:0.678               1st Qu.: 14.95           
+##  Median :1.847               Median : 49.89           
+##  Mean   :2.382               Mean   : 64.48           
+##  3rd Qu.:3.695               3rd Qu.:102.69           
+##  Max.   :9.078               Max.   :255.99           
+##  NA&#39;s   :11201               NA&#39;s   :11201            
+##  B_Optimal - Voltage DC [V] B_Optimal - Current DC [A]
+##  Min.   :10.35              Min.   : 0.000            
+##  1st Qu.:26.70              1st Qu.: 1.083            
+##  Median :27.35              Median : 3.438            
+##  Mean   :26.31              Mean   : 3.654            
+##  3rd Qu.:28.00              3rd Qu.: 6.250            
+##  Max.   :35.15              Max.   :10.238            
+##  NA&#39;s   :6730               NA&#39;s   :6730              
+##  B_Optimal - Power DC [W] B_Horizontal - Voltage DC [V]
+##  Min.   :  0.00           Min.   :10.65                
+##  1st Qu.: 27.08           1st Qu.:26.70                
+##  Median : 96.81           Median :27.35                
+##  Mean   : 99.69           Mean   :26.26                
+##  3rd Qu.:170.25           3rd Qu.:28.35                
+##  Max.   :302.01           Max.   :35.10                
+##  NA&#39;s   :6730             NA&#39;s   :11902                
+##  B_Horizontal - Current DC [A] B_Horizontal - Power DC [W]
+##  Min.   : 0.000                Min.   :  0.00             
+##  1st Qu.: 1.077                1st Qu.: 25.83             
+##  Median : 2.857                Median : 81.42             
+##  Mean   : 3.120                Mean   : 85.54             
+##  3rd Qu.: 4.980                3rd Qu.:139.04             
+##  Max.   :10.238                Max.   :300.98             
+##  NA&#39;s   :11902                 NA&#39;s   :11902              
+##  B_Vertical - Temperature [ºC] B_Optimal - Temperature [ºC]
+##  Min.   : 3.20                 Min.   : 2.30               
+##  1st Qu.:23.50                 1st Qu.:22.50               
+##  Median :30.50                 Median :30.90               
+##  Mean   :29.53                 Mean   :30.67               
+##  3rd Qu.:35.70                 3rd Qu.:38.70               
+##  Max.   :51.10                 Max.   :62.00               
+##                                                            
+##  B_Horizontal - Temperature [ºC]
+##  Min.   : 1.60                  
+##  1st Qu.:21.10                  
+##  Median :28.30                  
+##  Mean   :28.59                  
+##  3rd Qu.:36.10                  
+##  Max.   :62.10                  
+## </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>## Observations: 420,507
+## Variables: 25
+## $ Datetime                          &lt;dttm&gt; 2015-01-09 12:52:00, 2015-0...
+## $ `A_Vertical - Voltage DC [V]`     &lt;dbl&gt; 29.35, 29.10, 29.10, 29.35, ...
+## $ `A_Vertical - Current DC [A]`     &lt;dbl&gt; 6.4125, 6.3975, 6.3325, 6.41...
+## $ `A_Vertical - Power DC [W]`       &lt;dbl&gt; 188.206875, 186.167250, 184....
+## $ `A_Optimal - Voltage DC [V]`      &lt;dbl&gt; 28.75, 28.45, 28.45, 28.75, ...
+## $ `A_Optimal - Current DC [A]`      &lt;dbl&gt; 7.1700, 7.1925, 7.0925, 7.21...
+## $ `A_Optimal - Power DC [W]`        &lt;dbl&gt; 206.13750, 204.62662, 201.78...
+## $ `A_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 29.25, 29.50, 29.45, 29.50, ...
+## $ `A_Horizontal - Current DC [A]`   &lt;dbl&gt; 4.3225, 4.2525, 4.1825, 4.30...
+## $ `A_Horizontal - Power DC [W]`     &lt;dbl&gt; 126.43313, 125.44875, 123.17...
+## $ `A_Vertical - Temperature [ºC]`   &lt;dbl&gt; 32.6, 32.4, 33.2, 32.2, 32.8...
+## $ `A_Optimal - Temperature [ºC]`    &lt;dbl&gt; 28.8, 28.6, 29.4, 28.2, 27.8...
+## $ `A_Horizontal - Temperature [ºC]` &lt;dbl&gt; 26.5, 26.1, 26.8, 26.4, 26.1...
+## $ `B_Vertical - Voltage DC [V]`     &lt;dbl&gt; 27.55, 27.60, 27.40, 27.40, ...
+## $ `B_Vertical - Current DC [A]`     &lt;dbl&gt; 7.0925, 7.0475, 7.0100, 7.14...
+## $ `B_Vertical - Power DC [W]`       &lt;dbl&gt; 195.39837, 194.51100, 192.07...
+## $ `B_Optimal - Voltage DC [V]`      &lt;dbl&gt; 27.85, 28.05, 27.85, 28.05, ...
+## $ `B_Optimal - Current DC [A]`      &lt;dbl&gt; 7.2225, 7.1125, 7.0450, 7.17...
+## $ `B_Optimal - Power DC [W]`        &lt;dbl&gt; 201.14663, 199.50563, 196.20...
+## $ `B_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 29.05, 29.05, 28.75, 28.95, ...
+## $ `B_Horizontal - Current DC [A]`   &lt;dbl&gt; 4.1775, 4.1275, 4.1125, 4.19...
+## $ `B_Horizontal - Power DC [W]`     &lt;dbl&gt; 121.356375, 119.903875, 118....
+## $ `B_Vertical - Temperature [ºC]`   &lt;dbl&gt; 31.2, 31.5, 31.9, 31.7, 32.2...
+## $ `B_Optimal - Temperature [ºC]`    &lt;dbl&gt; 30.2, 30.0, 30.9, 29.9, 30.7...
+## $ `B_Horizontal - Temperature [ºC]` &lt;dbl&gt; 25.3, 24.9, 25.7, 25.1, 25.6...</code></pre>
+<p>Y aquí directamente ya decidimos quedarnos directamente con las variables target a predecir ‘A_Optimal - Power DC [W]’ y ‘B_Optimal - Power DC [W]’) más la variable ‘Datetime’ que nos servirá para cruzar esta tabla con la tabla de datos meteorológicos.</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_<span class="dv">2015</span>_<span class="dv">2016</span>_final &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span>
+<span class="st">                        </span><span class="kw">select</span>(Datetime, 
+                               <span class="st">&#39;A_Optimal - Power DC [W]&#39;</span>,
+                               <span class="st">&#39;B_Optimal - Power DC [W]&#39;</span>)</code></pre>
+<p>Vemos los principales estadísticos de las variables de la tabla de datos meteorológicos.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(meteo_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>##     Datetime                   Ambient Temperature [ºC]
+##  Min.   :2015-01-01 00:00:00   Min.   :-1.500e+09      
+##  1st Qu.:2015-05-26 11:06:30   1st Qu.: 1.400e+01      
+##  Median :2015-10-18 23:12:00   Median : 1.800e+01      
+##  Mean   :2015-11-27 03:00:27   Mean   :-5.358e+03      
+##  3rd Qu.:2016-05-17 18:32:30   3rd Qu.: 2.300e+01      
+##  Max.   :2016-12-31 23:00:00   Max.   : 3.800e+01      
+##                                                        
+##  Global Radiation [W/m2] Diffuse Radiation [W/m2] Ultraviolet [W/m2]
+##  Min.   :   0.7285       Min.   :  1.6            Min.   : 0.4954   
+##  1st Qu.:   1.5693       1st Qu.:  1.7            1st Qu.: 0.5106   
+##  Median :  13.0063       Median : 16.5            Median : 1.5008   
+##  Mean   : 237.1203       Mean   : 68.2            Mean   :14.5440   
+##  3rd Qu.: 452.7272       3rd Qu.:103.7            3rd Qu.:26.0017   
+##  Max.   :1421.3282       Max.   :720.4            Max.   :84.2660   
+##                          NA&#39;s   :399744                             
+##  Wind Velocity [m/s]  Wind Direction [º] Precipitation [mm]
+##  Min.   :-1.500e+09   Min.   :  0.0      Min.   :0         
+##  1st Qu.: 1.000e+00   1st Qu.:123.6      1st Qu.:0         
+##  Median : 2.000e+00   Median :235.8      Median :0         
+##  Mean   :-5.375e+03   Mean   :212.8      Mean   :0         
+##  3rd Qu.: 3.000e+00   3rd Qu.:296.7      3rd Qu.:0         
+##  Max.   : 1.200e+01   Max.   :360.0      Max.   :2         
+##                                          NA&#39;s   :776160    
+##  Atmospheric pressure [hPa] Direct Radiation [W/m2]
+##  Min.   : 999.1             Min.   :  1.6          
+##  1st Qu.:1014.3             1st Qu.:  1.7          
+##  Median :1020.4             Median :  8.6          
+##  Mean   :1019.9             Mean   : 63.9          
+##  3rd Qu.:1025.7             3rd Qu.: 91.9          
+##  Max.   :1033.8             Max.   :790.1          
+##  NA&#39;s   :776160             NA&#39;s   :437159</code></pre>
+<p>Y decidimos quedarnos únicamente con 4 variables más la variable ‘Datetime’, que nos servirá de referencia para el cruce con la tabla anterior.</p>
+<pre class="sourceCode r"><code class="sourceCode r">meteo_<span class="dv">2015</span>_<span class="dv">2016</span>_final &lt;-<span class="st"> </span>meteo_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span>
+<span class="st">                        </span><span class="kw">select</span>(Datetime, 
+                               <span class="st">&#39;Ambient Temperature [ºC]&#39;</span>,
+                               <span class="st">&#39;Diffuse Radiation [W/m2]&#39;</span>,
+                               <span class="st">&#39;Ultraviolet [W/m2]&#39;</span>,
+                               <span class="st">&#39;Global Radiation [W/m2]&#39;</span>)</code></pre>
+<p>Cruzamos las tablas por Datetime y comprobamos que no se duplican registros, ya que la tabla final tiene el mismo número de registros que la tabla de producción: 420.507.</p>
+<pre class="sourceCode r"><code class="sourceCode r">tabla_final &lt;-<span class="st"> </span>meteo_<span class="dv">2015</span>_<span class="dv">2016</span>_final <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">left_join</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_final, <span class="dt">by =</span> <span class="st">&#39;Datetime&#39;</span>)</code></pre>
+<p>Inspeccionamos las variables.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(tabla_final) </code></pre>
+<pre><code>##     Datetime                   Ambient Temperature [ºC]
+##  Min.   :2015-01-01 00:00:00   Min.   :-1.500e+09      
+##  1st Qu.:2015-05-26 11:06:30   1st Qu.: 1.400e+01      
+##  Median :2015-10-18 23:12:00   Median : 1.800e+01      
+##  Mean   :2015-11-27 03:00:27   Mean   :-5.358e+03      
+##  3rd Qu.:2016-05-17 18:32:30   3rd Qu.: 2.300e+01      
+##  Max.   :2016-12-31 23:00:00   Max.   : 3.800e+01      
+##                                                        
+##  Diffuse Radiation [W/m2] Ultraviolet [W/m2] Global Radiation [W/m2]
+##  Min.   :  1.6            Min.   : 0.4954    Min.   :   0.7285      
+##  1st Qu.:  1.7            1st Qu.: 0.5106    1st Qu.:   1.5693      
+##  Median : 16.5            Median : 1.5008    Median :  13.0063      
+##  Mean   : 68.2            Mean   :14.5440    Mean   : 237.1203      
+##  3rd Qu.:103.7            3rd Qu.:26.0017    3rd Qu.: 452.7272      
+##  Max.   :720.4            Max.   :84.2660    Max.   :1421.3282      
+##  NA&#39;s   :399744                                                     
+##  A_Optimal - Power DC [W] B_Optimal - Power DC [W]
+##  Min.   :  0.0            Min.   :  0.0           
+##  1st Qu.: 29.8            1st Qu.: 26.1           
+##  Median : 97.8            Median : 94.9           
+##  Mean   : 99.4            Mean   : 98.7           
+##  3rd Qu.:163.1            3rd Qu.:169.3           
+##  Max.   :307.6            Max.   :302.0           
+##  NA&#39;s   :479354           NA&#39;s   :477901</code></pre>
+<p>Aquí vemos que
+filter(<code>Ambient Temperature [ºC]</code> &lt;1000)</p>
+<pre class="sourceCode r"><code class="sourceCode r">tabla_final &lt;-<span class="st"> </span>tabla_final <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Ambient Temperature [ºC]</span><span class="st">`</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">-100</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(tabla_final)</code></pre>
+<pre><code>##     Datetime                   Ambient Temperature [ºC]
+##  Min.   :2015-01-01 00:00:00   Min.   : 2.90           
+##  1st Qu.:2015-05-26 11:07:45   1st Qu.:14.40           
+##  Median :2015-10-18 23:12:30   Median :18.30           
+##  Mean   :2015-11-27 03:01:13   Mean   :18.81           
+##  3rd Qu.:2016-05-17 18:33:15   3rd Qu.:23.30           
+##  Max.   :2016-12-31 23:00:00   Max.   :38.30           
+##                                                        
+##  Diffuse Radiation [W/m2] Ultraviolet [W/m2] Global Radiation [W/m2]
+##  Min.   :  1.6            Min.   : 0.4954    Min.   :   0.7285      
+##  1st Qu.:  1.7            1st Qu.: 0.5106    1st Qu.:   1.5693      
+##  Median : 16.5            Median : 1.5007    Median :  13.0062      
+##  Mean   : 68.2            Mean   :14.5441    Mean   : 237.1209      
+##  3rd Qu.:103.7            3rd Qu.:26.0018    3rd Qu.: 452.7310      
+##  Max.   :720.4            Max.   :84.2660    Max.   :1421.3282      
+##  NA&#39;s   :399743                                                     
+##  A_Optimal - Power DC [W] B_Optimal - Power DC [W]
+##  Min.   :  0.0            Min.   :  0.0           
+##  1st Qu.: 29.8            1st Qu.: 26.1           
+##  Median : 97.8            Median : 94.9           
+##  Mean   : 99.4            Mean   : 98.7           
+##  3rd Qu.:163.1            3rd Qu.:169.3           
+##  Max.   :307.6            Max.   :302.0           
+##  NA&#39;s   :479352           NA&#39;s   :477899</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(tabla_final, <span class="st">&quot;meteo_prod_2015_2016.csv&quot;</span>)</code></pre>
+</div>
+<div id="preparacion-datos-test." class="section level2">
+<h2><span class="header-section-number">2.3</span> Preparación datos “test”.</h2>
+<p>Importaciones</p>
+<pre class="sourceCode r"><code class="sourceCode r">test_meteo_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/test/test-sunlab-meteo-2017.csv&quot;</span>)
+test_prod_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/test/test-sunlab-pv-2017.csv&quot;</span>)</code></pre>
+<p>Cruzamos las tablas por Datetime</p>
+<pre class="sourceCode r"><code class="sourceCode r">tabla_final_test &lt;-<span class="st"> </span>test_meteo_<span class="dv">2017</span> <span class="op">%&gt;%</span>
+<span class="st">              </span><span class="kw">left_join</span>(test_prod_<span class="dv">2017</span>, <span class="dt">by =</span> <span class="st">&quot;Datetime&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                        </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">A_Optimal - Power DC [W]</span><span class="st">`</span>, 
+                               <span class="st">`</span><span class="dt">Global Radiation [W/m2]</span><span class="st">`</span>,
+                               <span class="st">`</span><span class="dt">Ultraviolet [W/m2]</span><span class="st">`</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(tabla_final_test, <span class="st">&quot;test_meteo_prod_2017.csv&quot;</span>)</code></pre>
+</div>
+<div id="modelizacion-en-bigml" class="section level2">
+<h2><span class="header-section-number">2.4</span> Modelización en BIGml</h2>
+<p>Aquí se ven las fuente de datos creadas para este reto. “meteo_prod_2015_2016.csv” es la fuente a partir de los datos procesados en R para el
+entrenamiento del modelo. Y “test_meteo_prod_2017.csv” es la fuente, también procesada en R, con los datos para hacer la predicción.</p>
+<p><img src="imgs/IMG_0441.jpg" /></p>
+<p>Detalle de la fuente con las columnas que dejamos despues de procesar en R.
+<img src="imgs/IMG_0442.jpg" /></p>
+<p>Aquí se ven los datasets que creamos a partir de las dos fuentes. Se puede ver que creamos un dataset a partir de los datos originales de
+la fuente “meteo_prod_2015_2016” y sobre él fuimos iterando. Primero lo dividimos en dos datasets, uno para los paneles de tipo A
+(“meteo_prod_2015_2016_CONDATOS_A”) y otro para los paneles de tipo B (“meteo_prod_2015_2016_CONDATOS_B”). Y luego eliminamos un valor de
+temperatura que era erroneo y nos descuadraba el resultado.
+También está el dataset “test_meteo_prod_2017” que creamos a partir de los datos de test para hacer luego la predicción con el modelo.
+<img src="imgs/IMG_0443.jpg" /></p>
+<p>Detalle de uno de los datasets con los campos que eliminamos para que no influyesen en la predicción.
+<img src="imgs/IMG_0444.jpg" />
+Detalle de uno de los datasets con los campos que eliminamos para que no influyesen en la predicción.
+<img src="imgs/IMG_0445.jpg" /></p>
+<p>Regresiones lineales creadas a partir de los datasets, una para cada modelo de panel solar.
+<img src="imgs/IMG_0446.jpg" /></p>
+<p>Detalle de la grafica de predicción de una de las regresiones en función de la radiación.
+<img src="imgs/IMG_0447.jpg" /></p>
+<p>Detalle de regresiones para uno de los paneles.
+<img src="imgs/IMG_0448.jpg" />
+Predicciones batch para cada modelo creadas con el dataset de prueba.
+<img src="imgs/IMG_0449.jpg" />
+Detalle de una de las predicciones.
+<img src="imgs/IMG_0450.jpg" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="planteamiento-del-reto-sunlab-.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="solucion-reto-ampliada-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

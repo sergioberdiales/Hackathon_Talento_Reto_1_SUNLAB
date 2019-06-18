@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Solución reto ampliada. | Hackathon Talento - Reto 1 - SUNLAB</title>
+  <meta name="description" content="3 Solución reto ampliada. | Hackathon Talento - Reto 1 - SUNLAB" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Solución reto ampliada. | Hackathon Talento - Reto 1 - SUNLAB" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Solución reto ampliada. | Hackathon Talento - Reto 1 - SUNLAB" />
+  
+  
+  
+
+<meta name="author" content="Sergio Berdiales, Javier Campos y Manuel Antonio García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="solucion-reto-dia-del-hackathon-.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="1" data-path="planteamiento-del-reto-sunlab-.html"><a href="planteamiento-del-reto-sunlab-.html"><i class="fa fa-check"></i><b>1</b> Planteamiento del reto SUNLAB.</a></li>
+<li class="chapter" data-level="2" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html"><i class="fa fa-check"></i><b>2</b> Solución reto día del hackathon.</a><ul>
+<li class="chapter" data-level="2.1" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#carga-de-las-librerias-necesarias."><i class="fa fa-check"></i><b>2.1</b> Carga de las librerias necesarias.</a></li>
+<li class="chapter" data-level="2.2" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-train."><i class="fa fa-check"></i><b>2.2</b> Preparación datos “train”.</a></li>
+<li class="chapter" data-level="2.3" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-test."><i class="fa fa-check"></i><b>2.3</b> Preparación datos “test”.</a></li>
+<li class="chapter" data-level="2.4" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelizacion-en-bigml"><i class="fa fa-check"></i><b>2.4</b> Modelización en BIGml</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html"><i class="fa fa-check"></i><b>3</b> Solución reto ampliada.</a><ul>
+<li class="chapter" data-level="3.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#carga-de-las-librerias-necesarias.-1"><i class="fa fa-check"></i><b>3.1</b> Carga de las librerias necesarias.</a></li>
+<li class="chapter" data-level="3.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#importacion-de-los-datos."><i class="fa fa-check"></i><b>3.2</b> Importación de los datos.</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#datos-train."><i class="fa fa-check"></i><b>3.2.1</b> Datos “train”.</a></li>
+<li class="chapter" data-level="3.2.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#datos-test."><i class="fa fa-check"></i><b>3.2.2</b> Datos “test”.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#exploracion-y-tratamiento-de-los-datos."><i class="fa fa-check"></i><b>3.3</b> Exploración y tratamiento de los datos.</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#exploracion-inicial-de-las-tablas."><i class="fa fa-check"></i><b>3.3.1</b> Exploración inicial de las tablas.</a></li>
+<li class="chapter" data-level="3.3.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#calidad-de-los-datos."><i class="fa fa-check"></i><b>3.3.2</b> Calidad de los datos.</a></li>
+<li class="chapter" data-level="3.3.3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#exploracion-y-visualizaciones."><i class="fa fa-check"></i><b>3.3.3</b> Exploración y visualizaciones.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#generacion-de-modelos-base."><i class="fa fa-check"></i><b>3.4</b> Generación de modelos base.</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#modelos-base-para-paneles-a"><i class="fa fa-check"></i><b>3.4.1</b> Modelos base para paneles A</a></li>
+<li class="chapter" data-level="3.4.2" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#modelos-base-para-paneles-b"><i class="fa fa-check"></i><b>3.4.2</b> Modelos base para paneles B</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#descripcion-de-la-generacion-de-los-modelos-con-bigml."><i class="fa fa-check"></i><b>3.5</b> Descripción de la generación de los modelos con BIGml.</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hackathon Talento - Reto 1 - SUNLAB</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solucion-reto-ampliada." class="section level1">
+<h1><span class="header-section-number">3</span> Solución reto ampliada.</h1>
+<p>Para comenzar recordemos el objetivo final de este reto: “Vuestro reto consiste en predecir la producción eléctrica en Watios que pueden generar los paneles A y B en su orientación óptima durante los siete primeros días del año 2017”. Es decir, se trata claramente de un ejercicio de regresión, y aunque inicialmente por el enunciado podría parecer un problema de “forecasting” (predicción a futuro) no lo es, ya que para predecir la producción eléctrica en cada momento disponemos de otras variables explicativas de ese mismo momento que podemos utilizar sin ningún tipo de restricción.</p>
+<p>Así que como productos finales tenemos que tener dos predicciones de producción eléctrica en Watios para los 7 primeros días de 2017, una para cada tipo de panel.</p>
+<p>Para generar y entrenar los modelos se nos proporcionaron los siguientes datasets:</p>
+<p>sunlab-faro-pv-2015.csv<br />
+sunlab-faro-pv-2016.csv<br />
+sunlab-faro_meteo_2015.csv<br />
+sunlab-faro-meteo-2016.csv</p>
+<p>Y para realizar nuestra predicción final estos otros:</p>
+<p>test-sunlab-meteo-2017.xlsx<br />
+test-sunlab-pv-2017.xlsx</p>
+<p>Todo el proceso previo a la generación de los modelos lo podíamos hacer con las herramientas que quisiésemos. Nosotros utilizamos R. Para la parte de modelado se nos dio acceso a una cuenta boost de BIGml.</p>
+<div id="carga-de-las-librerias-necesarias.-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Carga de las librerias necesarias.</h2>
+<p>Cargamos los paquetes que vamos a necesitar para el análisis</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(lubridate)
+<span class="kw">library</span>(readxl)
+<span class="kw">library</span>(GGally)
+<span class="kw">library</span>(caret)
+<span class="kw">library</span>(knitr)
+<span class="kw">library</span>(gridExtra)</code></pre>
+</div>
+<div id="importacion-de-los-datos." class="section level2">
+<h2><span class="header-section-number">3.2</span> Importación de los datos.</h2>
+<div id="datos-train." class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Datos “train”.</h3>
+<p>Los cuatro archivos de “train” facilitados en formato xls parecían tener algún tipo de problema. En el Hackathon no fuimos capaces de importarlo en R en ese formato. Así que los convertimos previamente en formato csv. En este ocasión lo que hemos hecho es ir a la <a href="https://opendata.edp.com/explore/?refine.keyword=visible&amp;sort=modified">página de EDP de Open Data</a> y descargar los archivos directamente en formato csv.</p>
+<p>Estos archivos csv utilizan como separador el punto y coma. Así que en este caso tendremos que utilizar la función read_delim() con el argumento delim = “;”.</p>
+<pre class="sourceCode r"><code class="sourceCode r">meteo_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;./data/original_data/train/sunlab-faro_meteo_2015.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>)
+meteo_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;./data/original_data/train/sunlab-faro-meteo-2016.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>)
+prod_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;./data/original_data/train/sunlab-faro-pv-2015.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>)
+prod_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="st">&quot;./data/original_data/train/sunlab-faro-pv-2016.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>)</code></pre>
+<p>Unimos las tablas de distintos años de meteo y producción y nos quedamos con dos únicas tablas de train.</p>
+<pre class="sourceCode r"><code class="sourceCode r">meteo_<span class="dv">2015</span>_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(meteo_<span class="dv">2015</span>, meteo_<span class="dv">2016</span>)
+prod_<span class="dv">2015</span>_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(prod_<span class="dv">2015</span>, prod_<span class="dv">2016</span>)</code></pre>
+<p>Borramos las tablas anteriores de train para que no nos ocupen espacio en memoria</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(meteo_<span class="dv">2015</span>)
+<span class="kw">rm</span>(meteo_<span class="dv">2016</span>)
+<span class="kw">rm</span>(prod_<span class="dv">2015</span>)
+<span class="kw">rm</span>(prod_<span class="dv">2016</span>)</code></pre>
+</div>
+<div id="datos-test." class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Datos “test”.</h3>
+<p>En este caso las tablas a importar estaban en formato xlsx y no tuvimos ningún problema a la hora de importarlas. Así que esta vez utilizaremos los archivos facilitados durante el Hackathon.</p>
+<pre class="sourceCode r"><code class="sourceCode r">test_meteo_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="dt">path =</span> <span class="st">&quot;./data/original_data/test/test-sunlab-meteo-2017.xlsx&quot;</span>)
+test_prod_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="dt">path =</span> <span class="st">&quot;./data/original_data/test/test-sunlab-pv-2017.xlsx&quot;</span>)</code></pre>
+</div>
+</div>
+<div id="exploracion-y-tratamiento-de-los-datos." class="section level2">
+<h2><span class="header-section-number">3.3</span> Exploración y tratamiento de los datos.</h2>
+<div id="exploracion-inicial-de-las-tablas." class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Exploración inicial de las tablas.</h3>
+<p>En este apartado simplemente vamos a ver las variables que contiene cada tabla, el número de observaciones, formato, etc. También comprobaremos si las variables que tenemos en los datasets de train efectivamente están en las de test.</p>
+<p>Echamos un vistazo a las variables y observaciones de la tabla de train de producción.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>## Observations: 420,507
+## Variables: 25
+## $ Datetime                          &lt;dttm&gt; 2015-01-09 12:52:00, 2015-0...
+## $ `A_Vertical - Voltage DC [V]`     &lt;dbl&gt; 29.35, 29.10, 29.10, 29.35, ...
+## $ `A_Vertical - Current DC [A]`     &lt;dbl&gt; 6.4125, 6.3975, 6.3325, 6.41...
+## $ `A_Vertical - Power DC [W]`       &lt;dbl&gt; 188.206875, 186.167250, 184....
+## $ `A_Optimal - Voltage DC [V]`      &lt;dbl&gt; 28.75, 28.45, 28.45, 28.75, ...
+## $ `A_Optimal - Current DC [A]`      &lt;dbl&gt; 7.1700, 7.1925, 7.0925, 7.21...
+## $ `A_Optimal - Power DC [W]`        &lt;dbl&gt; 206.13750, 204.62662, 201.78...
+## $ `A_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 29.25, 29.50, 29.45, 29.50, ...
+## $ `A_Horizontal - Current DC [A]`   &lt;dbl&gt; 4.3225, 4.2525, 4.1825, 4.30...
+## $ `A_Horizontal - Power DC [W]`     &lt;dbl&gt; 126.43313, 125.44875, 123.17...
+## $ `A_Vertical - Temperature [ºC]`   &lt;dbl&gt; 32.6, 32.4, 33.2, 32.2, 32.8...
+## $ `A_Optimal - Temperature [ºC]`    &lt;dbl&gt; 28.8, 28.6, 29.4, 28.2, 27.8...
+## $ `A_Horizontal - Temperature [ºC]` &lt;dbl&gt; 26.5, 26.1, 26.8, 26.4, 26.1...
+## $ `B_Vertical - Voltage DC [V]`     &lt;dbl&gt; 27.55, 27.60, 27.40, 27.40, ...
+## $ `B_Vertical - Current DC [A]`     &lt;dbl&gt; 7.0925, 7.0475, 7.0100, 7.14...
+## $ `B_Vertical - Power DC [W]`       &lt;dbl&gt; 195.39837, 194.51100, 192.07...
+## $ `B_Optimal - Voltage DC [V]`      &lt;dbl&gt; 27.85, 28.05, 27.85, 28.05, ...
+## $ `B_Optimal - Current DC [A]`      &lt;dbl&gt; 7.2225, 7.1125, 7.0450, 7.17...
+## $ `B_Optimal - Power DC [W]`        &lt;dbl&gt; 201.14663, 199.50563, 196.20...
+## $ `B_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 29.05, 29.05, 28.75, 28.95, ...
+## $ `B_Horizontal - Current DC [A]`   &lt;dbl&gt; 4.1775, 4.1275, 4.1125, 4.19...
+## $ `B_Horizontal - Power DC [W]`     &lt;dbl&gt; 121.356375, 119.903875, 118....
+## $ `B_Vertical - Temperature [ºC]`   &lt;dbl&gt; 31.2, 31.5, 31.9, 31.7, 32.2...
+## $ `B_Optimal - Temperature [ºC]`    &lt;dbl&gt; 30.2, 30.0, 30.9, 29.9, 30.7...
+## $ `B_Horizontal - Temperature [ºC]` &lt;dbl&gt; 25.3, 24.9, 25.7, 25.1, 25.6...</code></pre>
+<p>Vemos también los primeros 10 registros.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>, <span class="dv">10</span>)</code></pre>
+<pre><code>## # A tibble: 10 x 25
+##    Datetime            `A_Vertical - V~ `A_Vertical - C~ `A_Vertical - P~
+##    &lt;dttm&gt;                         &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 2015-01-09 12:52:00             29.4             6.41             188.
+##  2 2015-01-09 12:14:00             29.1             6.40             186.
+##  3 2015-01-09 13:19:00             29.1             6.33             184.
+##  4 2015-01-09 12:41:00             29.4             6.41             188.
+##  5 2015-01-09 13:07:00             29.1             6.40             186.
+##  6 2015-01-09 12:57:00             29               6.46             187.
+##  7 2015-01-09 13:04:00             29.3             6.40             187.
+##  8 2015-01-09 13:20:00             29.1             6.32             184.
+##  9 2015-01-09 13:16:00             29.1             6.38             186.
+## 10 2015-01-09 12:48:00             29.3             6.44             189.
+## # ... with 21 more variables: `A_Optimal - Voltage DC [V]` &lt;dbl&gt;,
+## #   `A_Optimal - Current DC [A]` &lt;dbl&gt;, `A_Optimal - Power DC [W]` &lt;dbl&gt;,
+## #   `A_Horizontal - Voltage DC [V]` &lt;dbl&gt;, `A_Horizontal - Current DC
+## #   [A]` &lt;dbl&gt;, `A_Horizontal - Power DC [W]` &lt;dbl&gt;, `A_Vertical -
+## #   Temperature [ºC]` &lt;dbl&gt;, `A_Optimal - Temperature [ºC]` &lt;dbl&gt;,
+## #   `A_Horizontal - Temperature [ºC]` &lt;dbl&gt;, `B_Vertical - Voltage DC
+## #   [V]` &lt;dbl&gt;, `B_Vertical - Current DC [A]` &lt;dbl&gt;, `B_Vertical - Power
+## #   DC [W]` &lt;dbl&gt;, `B_Optimal - Voltage DC [V]` &lt;dbl&gt;, `B_Optimal -
+## #   Current DC [A]` &lt;dbl&gt;, `B_Optimal - Power DC [W]` &lt;dbl&gt;, `B_Horizontal
+## #   - Voltage DC [V]` &lt;dbl&gt;, `B_Horizontal - Current DC [A]` &lt;dbl&gt;,
+## #   `B_Horizontal - Power DC [W]` &lt;dbl&gt;, `B_Vertical - Temperature
+## #   [ºC]` &lt;dbl&gt;, `B_Optimal - Temperature [ºC]` &lt;dbl&gt;, `B_Horizontal -
+## #   Temperature [ºC]` &lt;dbl&gt;</code></pre>
+<p>Ejecutamos un summary() para observar los principales estadísticos de cada variable, NAs, etc.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>##     Datetime                   A_Vertical - Voltage DC [V]
+##  Min.   :2015-01-01 07:40:00   Min.   :10.20              
+##  1st Qu.:2015-05-28 18:54:30   1st Qu.:26.65              
+##  Median :2015-10-08 17:39:00   Median :27.95              
+##  Mean   :2015-12-04 18:29:34   Mean   :26.28              
+##  3rd Qu.:2016-07-19 14:47:30   3rd Qu.:29.10              
+##  Max.   :2016-12-29 17:31:00   Max.   :35.05              
+##                                NA&#39;s   :13979              
+##  A_Vertical - Current DC [A] A_Vertical - Power DC [W]
+##  Min.   :0.000               Min.   :  0.00           
+##  1st Qu.:0.710               1st Qu.: 15.90           
+##  Median :1.822               Median : 50.94           
+##  Mean   :2.252               Mean   : 63.56           
+##  3rd Qu.:3.460               3rd Qu.:100.67           
+##  Max.   :8.105               Max.   :245.18           
+##  NA&#39;s   :13979               NA&#39;s   :13979            
+##  A_Optimal - Voltage DC [V] A_Optimal - Current DC [A]
+##  Min.   :10.10              Min.   : 0.000            
+##  1st Qu.:27.05              1st Qu.: 1.097            
+##  Median :27.90              Median : 3.482            
+##  Mean   :27.53              Mean   : 3.574            
+##  3rd Qu.:28.95              3rd Qu.: 5.860            
+##  Max.   :35.30              Max.   :10.238            
+##  NA&#39;s   :8342               NA&#39;s   :8342              
+##  A_Optimal - Power DC [W] A_Horizontal - Voltage DC [V]
+##  Min.   :  0.00           Min.   :10.10                
+##  1st Qu.: 30.74           1st Qu.:26.90                
+##  Median : 99.79           Median :27.70                
+##  Mean   :100.48           Mean   :26.53                
+##  3rd Qu.:165.06           3rd Qu.:28.90                
+##  Max.   :307.64           Max.   :35.35                
+##  NA&#39;s   :8342             NA&#39;s   :9039                 
+##  A_Horizontal - Current DC [A] A_Horizontal - Power DC [W]
+##  Min.   : 0.000                Min.   :  0.00             
+##  1st Qu.: 1.095                1st Qu.: 27.55             
+##  Median : 2.930                Median : 83.44             
+##  Mean   : 3.163                Mean   : 87.10             
+##  3rd Qu.: 5.055                3rd Qu.:140.21             
+##  Max.   :10.238                Max.   :304.63             
+##  NA&#39;s   :9039                  NA&#39;s   :9039               
+##  A_Vertical - Temperature [ºC] A_Optimal - Temperature [ºC]
+##  Min.   : 1.80                 Min.   : 2.0                
+##  1st Qu.:22.60                 1st Qu.:21.5                
+##  Median :30.20                 Median :29.0                
+##  Mean   :29.21                 Mean   :28.8                
+##  3rd Qu.:35.80                 3rd Qu.:36.0                
+##  Max.   :52.80                 Max.   :58.6                
+##                                                            
+##  A_Horizontal - Temperature [ºC] B_Vertical - Voltage DC [V]
+##  Min.   : 1.40                   Min.   :10.30              
+##  1st Qu.:20.70                   1st Qu.:26.45              
+##  Median :28.30                   Median :27.00              
+##  Mean   :28.59                   Mean   :25.48              
+##  3rd Qu.:36.30                   3rd Qu.:27.60              
+##  Max.   :64.80                   Max.   :34.65              
+##                                  NA&#39;s   :11201              
+##  B_Vertical - Current DC [A] B_Vertical - Power DC [W]
+##  Min.   :0.000               Min.   :  0.00           
+##  1st Qu.:0.678               1st Qu.: 14.95           
+##  Median :1.847               Median : 49.89           
+##  Mean   :2.382               Mean   : 64.48           
+##  3rd Qu.:3.695               3rd Qu.:102.69           
+##  Max.   :9.078               Max.   :255.99           
+##  NA&#39;s   :11201               NA&#39;s   :11201            
+##  B_Optimal - Voltage DC [V] B_Optimal - Current DC [A]
+##  Min.   :10.35              Min.   : 0.000            
+##  1st Qu.:26.70              1st Qu.: 1.083            
+##  Median :27.35              Median : 3.438            
+##  Mean   :26.31              Mean   : 3.654            
+##  3rd Qu.:28.00              3rd Qu.: 6.250            
+##  Max.   :35.15              Max.   :10.238            
+##  NA&#39;s   :6730               NA&#39;s   :6730              
+##  B_Optimal - Power DC [W] B_Horizontal - Voltage DC [V]
+##  Min.   :  0.00           Min.   :10.65                
+##  1st Qu.: 27.08           1st Qu.:26.70                
+##  Median : 96.81           Median :27.35                
+##  Mean   : 99.69           Mean   :26.26                
+##  3rd Qu.:170.25           3rd Qu.:28.35                
+##  Max.   :302.01           Max.   :35.10                
+##  NA&#39;s   :6730             NA&#39;s   :11902                
+##  B_Horizontal - Current DC [A] B_Horizontal - Power DC [W]
+##  Min.   : 0.000                Min.   :  0.00             
+##  1st Qu.: 1.077                1st Qu.: 25.83             
+##  Median : 2.857                Median : 81.42             
+##  Mean   : 3.120                Mean   : 85.54             
+##  3rd Qu.: 4.980                3rd Qu.:139.04             
+##  Max.   :10.238                Max.   :300.98             
+##  NA&#39;s   :11902                 NA&#39;s   :11902              
+##  B_Vertical - Temperature [ºC] B_Optimal - Temperature [ºC]
+##  Min.   : 3.20                 Min.   : 2.30               
+##  1st Qu.:23.50                 1st Qu.:22.50               
+##  Median :30.50                 Median :30.90               
+##  Mean   :29.53                 Mean   :30.67               
+##  3rd Qu.:35.70                 3rd Qu.:38.70               
+##  Max.   :51.10                 Max.   :62.00               
+##                                                            
+##  B_Horizontal - Temperature [ºC]
+##  Min.   : 1.60                  
+##  1st Qu.:21.10                  
+##  Median :28.30                  
+##  Mean   :28.59                  
+##  3rd Qu.:36.10                  
+##  Max.   :62.10                  
+## </code></pre>
+<p>En principio, a excepción de los NAs de alguna variable, no vemos a problemas evidentes con este dataset. Sí que la estructura de la tabla no nos parece la ideal, pero esto lo trataremos más tarde.</p>
+<p>Echamos un vistazo también a los datos de test de producción.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(test_prod_<span class="dv">2017</span>)</code></pre>
+<pre><code>## Observations: 4,243
+## Variables: 25
+## $ Datetime                          &lt;chr&gt; &quot;2017-01-01T07:52:00+00:00&quot;,...
+## $ `A_Vertical - Voltage DC [V]`     &lt;dbl&gt; 19.25, 19.25, 19.20, 19.30, ...
+## $ `A_Vertical - Current DC [A]`     &lt;dbl&gt; 0.0750, 0.0850, 0.1175, 0.27...
+## $ `A_Vertical - Power DC [W]`       &lt;dbl&gt; 1.44375, 1.63625, 2.25600, 5...
+## $ `A_Optimal - Voltage DC [V]`      &lt;dbl&gt; 21.60, 32.15, 32.75, 32.95, ...
+## $ `A_Optimal - Current DC [A]`      &lt;dbl&gt; 0.1075, 0.0450, 0.0450, 0.16...
+## $ `A_Optimal - Power DC [W]`        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, ...
+## $ `A_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 18.80, 18.80, 18.75, 18.75, ...
+## $ `A_Horizontal - Current DC [A]`   &lt;dbl&gt; 0.0650, 0.0725, 0.0800, 0.10...
+## $ `A_Horizontal - Power DC [W]`     &lt;dbl&gt; 1.22200, 1.36300, 1.50000, 1...
+## $ `A_Vertical - Temperature [ºC]`   &lt;dbl&gt; 4.5, 4.7, 4.8, 5.0, 5.1, 5.3...
+## $ `A_Optimal - Temperature [ºC]`    &lt;dbl&gt; 4.0, 4.2, 4.5, 4.6, 4.8, 5.0...
+## $ `A_Horizontal - Temperature [ºC]` &lt;dbl&gt; 3.3, 3.5, 3.7, 3.9, 4.1, 4.2...
+## $ `B_Vertical - Voltage DC [V]`     &lt;dbl&gt; 18.90, 18.90, 18.90, 18.90, ...
+## $ `B_Vertical - Current DC [A]`     &lt;dbl&gt; 0.0700, 0.0800, 0.0925, 0.10...
+## $ `B_Vertical - Power DC [W]`       &lt;dbl&gt; 1.323000, 1.512000, 1.748250...
+## $ `B_Optimal - Voltage DC [V]`      &lt;dbl&gt; 21.50, 20.95, 31.65, 33.30, ...
+## $ `B_Optimal - Current DC [A]`      &lt;dbl&gt; 0.0825, 0.0925, 0.0250, 0.02...
+## $ `B_Optimal - Power DC [W]`        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, ...
+## $ `B_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 21.45, 19.70, 19.75, 31.25, ...
+## $ `B_Horizontal - Current DC [A]`   &lt;dbl&gt; 0.10753, 0.07750, 0.08500, 0...
+## $ `B_Horizontal - Power DC [W]`     &lt;dbl&gt; 2.306519, 1.526750, 1.678750...
+## $ `B_Vertical - Temperature [ºC]`   &lt;dbl&gt; 4.8, 4.9, 5.1, 5.3, 5.4, 5.6...
+## $ `B_Optimal - Temperature [ºC]`    &lt;dbl&gt; 4.1, 4.3, 4.5, 4.7, 4.9, 5.0...
+## $ `B_Horizontal - Temperature [ºC]` &lt;dbl&gt; 3.2, 3.4, 3.6, 3.8, 3.9, 4.1...</code></pre>
+<p>El formato de alguna de las variables no es el correcto. ‘Datetime’ aparece como caracter y hay un par de variables numéricas que no han sido debidamente identificadas. Y como el dataset de train la estructura de la tabla no es la mejor. Todo esto lo corregiremos más adelante también.</p>
+<p>Con el siguiente código comprobamos que las variables que tenemos en train también las tenemos en test.</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_train_var &lt;-<span class="st"> </span><span class="kw">names</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>)
+prod_test_var &lt;-<span class="st"> </span><span class="kw">names</span>(test_prod_<span class="dv">2017</span>)
+
+<span class="kw">all.equal.character</span>(prod_train_var, prod_test_var)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(prod_train_var)
+<span class="kw">rm</span>(prod_test_var)</code></pre>
+<p>Echamos también un vistazo a los datos meteorológicos.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(meteo_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>## Observations: 836,903
+## Variables: 10
+## $ Datetime                     &lt;dttm&gt; 2015-10-29 01:43:00, 2015-10-29 ...
+## $ `Ambient Temperature [ºC]`   &lt;dbl&gt; 14.60000, 14.10000, 14.00000, 13....
+## $ `Global Radiation [W/m2]`    &lt;dbl&gt; 1.415117, 1.693405, 1.728471, 1.4...
+## $ `Diffuse Radiation [W/m2]`   &lt;dbl&gt; 1.644703, 1.639023, 1.653051, 1.6...
+## $ `Ultraviolet [W/m2]`         &lt;dbl&gt; 0.510503, 0.504588, 0.513537, 0.5...
+## $ `Wind Velocity [m/s]`        &lt;dbl&gt; 0.966667, 0.233333, 0.383333, 0.3...
+## $ `Wind Direction [º]`         &lt;dbl&gt; 52.81666, 14.49223, 62.99665, 246...
+## $ `Precipitation [mm]`         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ `Atmospheric pressure [hPa]` &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ `Direct Radiation [W/m2]`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, N...</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(meteo_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   Datetime            `Ambient Temper~ `Global Radiati~ `Diffuse Radiat~
+##   &lt;dttm&gt;                         &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 2015-10-29 01:43:00             14.6             1.42             1.64
+## 2 2015-10-29 01:56:00             14.1             1.69             1.64
+## 3 2015-10-29 02:00:00             14               1.73             1.65
+## 4 2015-10-29 02:09:00             13.9             1.48             1.65
+## 5 2015-10-29 02:13:00             14.0             1.42             1.64
+## 6 2015-10-29 02:15:00             14               1.51             1.65
+## # ... with 6 more variables: `Ultraviolet [W/m2]` &lt;dbl&gt;, `Wind Velocity
+## #   [m/s]` &lt;dbl&gt;, `Wind Direction [º]` &lt;dbl&gt;, `Precipitation [mm]` &lt;dbl&gt;,
+## #   `Atmospheric pressure [hPa]` &lt;dbl&gt;, `Direct Radiation [W/m2]` &lt;dbl&gt;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(meteo_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>##     Datetime                   Ambient Temperature [ºC]
+##  Min.   :2015-01-01 00:00:00   Min.   :-1.500e+09      
+##  1st Qu.:2015-05-26 11:06:30   1st Qu.: 1.400e+01      
+##  Median :2015-10-18 23:12:00   Median : 1.800e+01      
+##  Mean   :2015-11-27 03:00:27   Mean   :-5.358e+03      
+##  3rd Qu.:2016-05-17 18:32:30   3rd Qu.: 2.300e+01      
+##  Max.   :2016-12-31 23:00:00   Max.   : 3.800e+01      
+##                                                        
+##  Global Radiation [W/m2] Diffuse Radiation [W/m2] Ultraviolet [W/m2]
+##  Min.   :   0.7285       Min.   :  1.6            Min.   : 0.4954   
+##  1st Qu.:   1.5693       1st Qu.:  1.7            1st Qu.: 0.5106   
+##  Median :  13.0063       Median : 16.5            Median : 1.5008   
+##  Mean   : 237.1203       Mean   : 68.2            Mean   :14.5440   
+##  3rd Qu.: 452.7272       3rd Qu.:103.7            3rd Qu.:26.0017   
+##  Max.   :1421.3282       Max.   :720.4            Max.   :84.2660   
+##                          NA&#39;s   :399744                             
+##  Wind Velocity [m/s]  Wind Direction [º] Precipitation [mm]
+##  Min.   :-1.500e+09   Min.   :  0.0      Min.   :0         
+##  1st Qu.: 1.000e+00   1st Qu.:123.6      1st Qu.:0         
+##  Median : 2.000e+00   Median :235.8      Median :0         
+##  Mean   :-5.375e+03   Mean   :212.8      Mean   :0         
+##  3rd Qu.: 3.000e+00   3rd Qu.:296.7      3rd Qu.:0         
+##  Max.   : 1.200e+01   Max.   :360.0      Max.   :2         
+##                                          NA&#39;s   :776160    
+##  Atmospheric pressure [hPa] Direct Radiation [W/m2]
+##  Min.   : 999.1             Min.   :  1.6          
+##  1st Qu.:1014.3             1st Qu.:  1.7          
+##  Median :1020.4             Median :  8.6          
+##  Mean   :1019.9             Mean   : 63.9          
+##  3rd Qu.:1025.7             3rd Qu.: 91.9          
+##  Max.   :1033.8             Max.   :790.1          
+##  NA&#39;s   :776160             NA&#39;s   :437159</code></pre>
+<p>En este dataset vemos a primera vista más problemas. Hay 4 variables con un gran número de NAs: Diffuse Radiation [W/m2], Precipitation [mm], Atmospheric pressure [hPa] y Direct Radiation [W/m2]. Y aparte de esto también parece haber un problema con los valores mínimos de Ambient Temperature [ºC] y Wind Velocity [m/s].</p>
+<p>Vemos también los datos meteorológicos de test.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(test_meteo_<span class="dv">2017</span>)</code></pre>
+<pre><code>## Observations: 10,080
+## Variables: 9
+## $ Datetime                     &lt;chr&gt; &quot;2017-01-01T00:00:00+01:00&quot;, &quot;201...
+## $ `Ambient Temperature [ºC]`   &lt;dbl&gt; 6.333334, 6.300000, 6.216667, 6.2...
+## $ `Global Radiation [W/m2]`    &lt;dbl&gt; 1.684853, 1.761459, 1.854881, 2.1...
+## $ `Diffuse Radiation [W/m2]`   &lt;dbl&gt; 1.668379, 1.654411, 1.762080, 1.8...
+## $ `Ultraviolet [W/m2]`         &lt;dbl&gt; 0.503180, 0.501983, 0.501479, 0.5...
+## $ `Wind Velocity [m/s]`        &lt;dbl&gt; 4.033333, 4.583334, 4.750000, 4.9...
+## $ `Wind Direction [º]`         &lt;dbl&gt; 313.3343, 307.6674, 307.4994, 307...
+## $ `Precipitation [mm]`         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
+## $ `Atmospheric pressure [hPa]` &lt;dbl&gt; 1014.433, 1014.400, 1014.383, 101...</code></pre>
+<p>Y comprobamos que las variables que tenemos en train también las tenemos en test.</p>
+<pre class="sourceCode r"><code class="sourceCode r">meteo_train_var &lt;-<span class="st"> </span><span class="kw">names</span>(meteo_<span class="dv">2015</span>_<span class="dv">2016</span>)
+meteo_test_var &lt;-<span class="st"> </span><span class="kw">names</span>(test_meteo_<span class="dv">2017</span>)
+
+<span class="kw">all.equal.character</span>(meteo_train_var, meteo_test_var)</code></pre>
+<pre><code>## [1] &quot;Lengths (10, 9) differ (string compare on first 9)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(meteo_train_var)
+<span class="kw">rm</span>(meteo_test_var)</code></pre>
+<p>El dataset de test de meteo tiene solo 9 variables, una menos que la de train. En el dataset de test no aparece el campo ‘Direct Radiation [W/m2]’. Tenemos que tener en cuenta este detalle si finalmente utilizamos este dataset para nuestros modelos.</p>
+</div>
+<div id="calidad-de-los-datos." class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Calidad de los datos.</h3>
+<p>En el Hackathon fuimos directamente a cruzar las tablas de producción e información meteorológica para tener lo antes posible un dataset de train para subir a la herramienta BIGml (además del dataset de producción nos quedamos sólo con la variable target: ‘Power_DC’). Por diversos problemas con el formato de los datos esta parte nos consumió muchísimo tiempo y la parte de exploración de datos fue reducida a la mínima expresión. En este caso vamos a dedicar más tiempo a este parte del análisis.</p>
+<div id="dataset-de-produccion-prod_2015_2016." class="section level4">
+<h4><span class="header-section-number">3.3.2.1</span> Dataset de producción “prod_2015_2016”.</h4>
+<div id="completitud-de-los-datos." class="section level5">
+<h5><span class="header-section-number">3.3.2.1.1</span> Completitud de los datos.</h5>
+<p>En este apartado vamos a revisar el número de registros que tenemos, si varían con el tiempo y vamos a determinar la frecuencia de registros de los datos.</p>
+</div>
+<div id="numero-y-frecuencia-de-registros." class="section level5">
+<h5><span class="header-section-number">3.3.2.1.2</span> Número y frecuencia de registros.</h5>
+<p>Comparamos el número de registros de 2016 contra 2015. En 2016 hay sensiblemente menos registros que en 2015.</p>
+<pre class="sourceCode r"><code class="sourceCode r">registers_by_year &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                      </span><span class="kw">select</span>(Datetime) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">group_by</span>(<span class="dt">year =</span> <span class="kw">year</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span><span class="op">$</span>Datetime)) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">summarise</span>(<span class="dt">registers =</span> <span class="kw">n</span>())
+
+registers_by_year</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##    year registers
+##   &lt;dbl&gt;     &lt;int&gt;
+## 1  2015    242735
+## 2  2016    177772</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(registers_by_year)</code></pre>
+<p>Para tratar de ver con más detalle la naturaleza de estas diferencias echamos un vistazo a la la distribución por año-mes.</p>
+<pre class="sourceCode r"><code class="sourceCode r">registers_by_year_month &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                      </span><span class="kw">select</span>(Datetime) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">group_by</span>(<span class="dt">year =</span> <span class="kw">year</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span><span class="op">$</span>Datetime),
+                               <span class="dt">month =</span> <span class="kw">month</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span><span class="op">$</span>Datetime)) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">summarise</span>(<span class="dt">registers =</span> <span class="kw">n</span>())
+
+<span class="kw">kable</span>(registers_by_year_month)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="right">month</th>
+<th align="right">registers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">1</td>
+<td align="right">18730</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">2</td>
+<td align="right">18297</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">3</td>
+<td align="right">21094</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">4</td>
+<td align="right">23460</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">5</td>
+<td align="right">26183</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">6</td>
+<td align="right">25146</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">7</td>
+<td align="right">25908</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">8</td>
+<td align="right">25252</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">9</td>
+<td align="right">22380</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">10</td>
+<td align="right">19067</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">11</td>
+<td align="right">17218</td>
+</tr>
+<tr class="even">
+<td align="right">2016</td>
+<td align="right">1</td>
+<td align="right">18492</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">2</td>
+<td align="right">18250</td>
+</tr>
+<tr class="even">
+<td align="right">2016</td>
+<td align="right">3</td>
+<td align="right">342</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">6</td>
+<td align="right">19413</td>
+</tr>
+<tr class="even">
+<td align="right">2016</td>
+<td align="right">7</td>
+<td align="right">26682</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">8</td>
+<td align="right">25243</td>
+</tr>
+<tr class="even">
+<td align="right">2016</td>
+<td align="right">9</td>
+<td align="right">17067</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">10</td>
+<td align="right">17133</td>
+</tr>
+<tr class="even">
+<td align="right">2016</td>
+<td align="right">11</td>
+<td align="right">18313</td>
+</tr>
+<tr class="odd">
+<td align="right">2016</td>
+<td align="right">12</td>
+<td align="right">16837</td>
+</tr>
+<tr class="even">
+<td align="right">A desta</td>
+<td align="right">car que</td>
+<td align="right">en diciembre de 2015 y en abril y mayo de 2016 no hay ni un solo dato. Además en marzo de 2016 apenas hay registros. El resto de variaciones entre meses parecen estar simplemente relacionadas con las horas de sol, menos en invierno, más en verano.</td>
+</tr>
+</tbody>
+</table>
+<p>Visualizamos los datos de la tabla en un gráfico. Pero antes añadimos los registros de año-meses que no aparecen con el valor ‘0’.</p>
+<pre class="sourceCode r"><code class="sourceCode r">registers_by_year_month &lt;-<span class="st"> </span>registers_by_year_month <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                                  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
+<span class="st">                                  </span><span class="kw">add_row</span>(<span class="dt">year =</span> <span class="kw">c</span>(<span class="st">&#39;2015&#39;</span>, <span class="st">&#39;2016&#39;</span>, <span class="st">&#39;2016&#39;</span>),
+                                          <span class="dt">month =</span> <span class="kw">c</span>(<span class="st">&#39;12&#39;</span>, <span class="st">&#39;4&#39;</span>, <span class="st">&#39;5&#39;</span>), 
+                                          <span class="dt">registers =</span> <span class="st">&#39;0&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                                  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.factor</span>(year),
+                                         <span class="dt">month =</span> <span class="kw">as.factor</span>(month),
+                                         <span class="dt">registers =</span> <span class="kw">as.numeric</span>(registers)) 
+  
+
+registers_by_year_month_<span class="dv">1</span> &lt;-<span class="st"> </span>registers_by_year_month <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                              </span><span class="kw">mutate</span>(<span class="dt">day =</span> <span class="st">&quot;01&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                              </span><span class="kw">unite</span>(year_month, year, month, day, <span class="dt">sep =</span> <span class="st">&#39;-&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">                              </span><span class="kw">mutate</span>(<span class="dt">year_month =</span> <span class="kw">ymd</span>(year_month))
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> registers_by_year_month_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(year_month), <span class="dt">y =</span> registers, <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">          </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">          </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="dv">1</span>,<span class="dt">vjust=</span><span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">10</span>)) <span class="op">+</span>
+<span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year-Month&#39;</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(registers_by_year_month)</code></pre>
+<p>Ejecutamos la función summary() para observar mejor la distribución de los datos.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(registers_by_year_month_<span class="dv">1</span>) </code></pre>
+<pre><code>##    year_month           registers    
+##  Min.   :2015-01-01   Min.   :    0  
+##  1st Qu.:2015-06-23   1st Qu.:17117  
+##  Median :2015-12-16   Median :18611  
+##  Mean   :2015-12-16   Mean   :17521  
+##  3rd Qu.:2016-06-08   3rd Qu.:23882  
+##  Max.   :2016-12-01   Max.   :26682</code></pre>
+<p>Y lo representamos en un histograma.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> registers_by_year_month_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> registers)) <span class="op">+</span>
+<span class="st">          </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">23</span>) </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(registers_by_year_month_<span class="dv">1</span>)</code></pre>
+<p>Todos los meses, excepto 4 (los mencionados anteriormente), se encuentran entre los 18.000 y 27.000 registros.</p>
+<p>Vamos a estimar la frecuencia de generación de los registros. Para ello restaremos a cada Datetime de cada registro su correspondiente Datetime anterior (Datetime_lagged) creando la variable time_diff, que nos dirá los minutos trascurridos entre cada registro.
+Una vez hecho esto hacemos un simple conteo de todas las diferencias entre registros.</p>
+<pre class="sourceCode r"><code class="sourceCode r">register_frequency &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">select</span>(Datetime) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">arrange</span>(Datetime) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Importante. Antes hay que ordenar los registros por Datetime.</span>
+<span class="st">                      </span><span class="kw">mutate</span>(<span class="dt">Datetime_lagged =</span> <span class="kw">lag</span>(Datetime)) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">mutate</span>(<span class="dt">time_diff =</span> Datetime <span class="op">-</span><span class="st"> </span>Datetime_lagged) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">na.omit</span>()
+
+intervals_count &lt;-<span class="st"> </span>register_frequency <span class="op">%&gt;%</span>
+<span class="st">                   </span><span class="kw">select</span>(time_diff) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                   </span><span class="kw">group_by</span>(time_diff) <span class="op">%&gt;%</span>
+<span class="st">                   </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">                   </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))
+
+<span class="kw">kable</span>(<span class="kw">head</span>(intervals_count, <span class="dv">20</span>))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">time_diff</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1 mins</td>
+<td align="right">419840</td>
+</tr>
+<tr class="even">
+<td align="left">2 mins</td>
+<td align="right">29</td>
+</tr>
+<tr class="odd">
+<td align="left">6 mins</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">7 mins</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">579 mins</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">8 mins</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">566 mins</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">565 mins</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">572 mins</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">855 mins</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">569 mins</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">854 mins</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">570 mins</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">587 mins</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">777 mins</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">809 mins</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">833 mins</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">563 mins</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">568 mins</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">577 mins</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+<p>Lo que vemos es que en principio el registro de mediciones estaría programado para realizarse cada minuto, porque este es con diferencia el intervalo entre registros más frecuente.</p>
+<p>Si efectivamente se registrase una medición cada minuto el número de mediciones entre 2015 y 2016 sería de 1.051.200. En la tabla hay 420.507 registros. Pero en principio si tenemos en cuenta las horas sin luz, en los que lógicamente no hay producción de electricidad, más los tres meses sin datos y los pocos datos de marzo de 2016 el número de registros en las tablas cuadran (en un caso real habría que hablar con los responsables de los datos para conocer las causas de la falta de datos; en un ejercicio como este no podemos ir más allá).</p>
+<pre class="sourceCode r"><code class="sourceCode r">(two_year_minutes &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="dv">365</span><span class="op">*</span><span class="dv">24</span><span class="op">*</span><span class="dv">60</span>)</code></pre>
+<pre><code>## [1] 1051200</code></pre>
+<p>Echamos un vistazo a las distribuciones de la duración de las paradas (excluyendo las de 1 minuto y las mayores de 15 horas).</p>
+<pre class="sourceCode r"><code class="sourceCode r">stops &lt;-<span class="st"> </span>intervals_count <span class="op">%&gt;%</span>
+<span class="st">               </span><span class="kw">mutate</span>(<span class="dt">time_diff =</span> <span class="kw">as.numeric</span>(time_diff)) <span class="op">%&gt;%</span>
+<span class="st">               </span><span class="kw">filter</span>(time_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, 
+                      time_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">900</span>) <span class="co"># En 2019 el día más largo del año en Faro será el 21 de junio con 14 horas y 42 minutos (asi que filtramos por debajo de 15 horas)</span>
+
+<span class="kw">summary</span>(stops<span class="op">$</span>time_diff)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     2.0   613.5   709.0   665.3   799.5   894.0</code></pre>
+<p>Lo vemos también en un histograma.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> stops, <span class="kw">aes</span>(<span class="dt">x =</span> time_diff)) <span class="op">+</span>
+<span class="st">          </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">23</span>) </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+El número total de paradas con duración compatible con paradas por falta de luz cuadra con los datos vistos hasta ahora.</p>
+<pre class="sourceCode r"><code class="sourceCode r">night_stops &lt;-<span class="st"> </span>intervals_count <span class="op">%&gt;%</span>
+<span class="st">               </span><span class="kw">mutate</span>(<span class="dt">time_diff =</span> <span class="kw">as.numeric</span>(time_diff)) <span class="op">%&gt;%</span>
+<span class="st">               </span><span class="kw">filter</span>(time_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">500</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">               </span><span class="kw">summarise</span>(<span class="dt">stops =</span> <span class="kw">sum</span>(n))
+
+night_stops</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   stops
+##   &lt;int&gt;
+## 1   580</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(stops, night_stops, intervals_count)</code></pre>
+</div>
+<div id="analisis-de-nas-valores-faltantes." class="section level5">
+<h5><span class="header-section-number">3.3.2.1.3</span> Análisis de NAs (valores faltantes).</h5>
+<p>Generamos una tabla donde vemos hasta que punto cada variable del dataset está “completo” (un valor de 0.97 significa que la variable en cuestión tiene un 3% de NAs). Vemos que en general los registros presentes en la tabla tienen una alta completitud de datos.</p>
+<pre class="sourceCode r"><code class="sourceCode r">data_nas &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="dt">year =</span> <span class="kw">year</span>(Datetime), <span class="kw">month</span>(Datetime)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise_all</span>(<span class="kw">funs</span>(<span class="kw">round</span>(<span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(.))<span class="op">/</span><span class="kw">n</span>(), <span class="dv">2</span>))) <span class="co"># We obtain the proportion of &#39;not NAs&#39;</span></code></pre>
+</div>
+<div id="transformaciones-de-la-tabla." class="section level5">
+<h5><span class="header-section-number">3.3.2.1.4</span> Transformaciones de la tabla.</h5>
+<p>Recordamos las variables del dataset de producción.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
+<pre><code>## Observations: 420,507
+## Variables: 25
+## $ Datetime                          &lt;dttm&gt; 2015-01-09 12:52:00, 2015-0...
+## $ `A_Vertical - Voltage DC [V]`     &lt;dbl&gt; 29.35, 29.10, 29.10, 29.35, ...
+## $ `A_Vertical - Current DC [A]`     &lt;dbl&gt; 6.4125, 6.3975, 6.3325, 6.41...
+## $ `A_Vertical - Power DC [W]`       &lt;dbl&gt; 188.206875, 186.167250, 184....
+## $ `A_Optimal - Voltage DC [V]`      &lt;dbl&gt; 28.75, 28.45, 28.45, 28.75, ...
+## $ `A_Optimal - Current DC [A]`      &lt;dbl&gt; 7.1700, 7.1925, 7.0925, 7.21...
+## $ `A_Optimal - Power DC [W]`        &lt;dbl&gt; 206.13750, 204.62662, 201.78...
+## $ `A_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 29.25, 29.50, 29.45, 29.50, ...
+## $ `A_Horizontal - Current DC [A]`   &lt;dbl&gt; 4.3225, 4.2525, 4.1825, 4.30...
+## $ `A_Horizontal - Power DC [W]`     &lt;dbl&gt; 126.43313, 125.44875, 123.17...
+## $ `A_Vertical - Temperature [ºC]`   &lt;dbl&gt; 32.6, 32.4, 33.2, 32.2, 32.8...
+## $ `A_Optimal - Temperature [ºC]`    &lt;dbl&gt; 28.8, 28.6, 29.4, 28.2, 27.8...
+## $ `A_Horizontal - Temperature [ºC]` &lt;dbl&gt; 26.5, 26.1, 26.8, 26.4, 26.1...
+## $ `B_Vertical - Voltage DC [V]`     &lt;dbl&gt; 27.55, 27.60, 27.40, 27.40, ...
+## $ `B_Vertical - Current DC [A]`     &lt;dbl&gt; 7.0925, 7.0475, 7.0100, 7.14...
+## $ `B_Vertical - Power DC [W]`       &lt;dbl&gt; 195.39837, 194.51100, 192.07...
+## $ `B_Optimal - Voltage DC [V]`      &lt;dbl&gt; 27.85, 28.05, 27.85, 28.05, ...
+## $ `B_Optimal - Current DC [A]`      &lt;dbl&gt; 7.2225, 7.1125, 7.0450, 7.17...
+## $ `B_Optimal - Power DC [W]`        &lt;dbl&gt; 201.14663, 199.50563, 196.20...
+## $ `B_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 29.05, 29.05, 28.75, 28.95, ...
+## $ `B_Horizontal - Current DC [A]`   &lt;dbl&gt; 4.1775, 4.1275, 4.1125, 4.19...
+## $ `B_Horizontal - Power DC [W]`     &lt;dbl&gt; 121.356375, 119.903875, 118....
+## $ `B_Vertical - Temperature [ºC]`   &lt;dbl&gt; 31.2, 31.5, 31.9, 31.7, 32.2...
+## $ `B_Optimal - Temperature [ºC]`    &lt;dbl&gt; 30.2, 30.0, 30.9, 29.9, 30.7...
+## $ `B_Horizontal - Temperature [ºC]` &lt;dbl&gt; 25.3, 24.9, 25.7, 25.1, 25.6...</code></pre>
+<p>Las variables parecen todas tener el formato adecuado. Lo único que llama la atención es cómo distingue qué valores corresponden a los paneles de tipo A de los de tipo B, con una “A” o una “B” al principio de cada nombre de variable, y cómo incluye también la información de la orientación, también en el nombre de la variable, con los términos “Horizontal”, “Vertical” y “Optimal”. Quizás una forma mejor de ordenar los datos sería creando otras dos variables de formato factor, una para distinguir los paneles y otra la configuración.</p>
+<p>Para ello lo primero que haremos será transformar a formato “largo” la tabla, reduciendo las 25 variables actuales a únicamente 2: ‘Datetime’ y ‘Measure’. Y justo después de esta transformación creamos tres nuevas variables que se referirán al tipo de panel (panel_type), la configuración del mismo (set_type) y finalmente el tipo de medición en cuestión (measure):</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">gather</span>(<span class="st">&#39;panel_set_measure&#39;</span>, <span class="st">&#39;value&#39;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">25</span>) <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">rename</span>(<span class="dt">datetime =</span> Datetime) <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">mutate</span>(<span class="dt">panel_type =</span> <span class="kw">as.factor</span>(<span class="kw">str_sub</span>(panel_set_measure, <span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">1</span>)),
+                                        <span class="dt">set_type =</span> <span class="kw">as.factor</span>(<span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Vertical&#39;</span>, panel_set_measure), <span class="st">&#39;Vertical&#39;</span>, 
+                                                                    <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Horizontal&#39;</span>, panel_set_measure), <span class="st">&#39;Horizontal&#39;</span>, <span class="st">&#39;Optimal&#39;</span>))),
+                                        <span class="dt">measure =</span> <span class="kw">as.factor</span>(<span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Temperature&#39;</span>, panel_set_measure), <span class="st">&#39;Temperature_DC_C&#39;</span>,
+                                                                   <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Voltage&#39;</span>, panel_set_measure), <span class="st">&#39;Voltage_DC_V&#39;</span>, 
+                                                                          <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Power&#39;</span>, panel_set_measure), <span class="st">&#39;Power_DC_W&#39;</span>, <span class="st">&#39;Current_DC_A&#39;</span>))))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                                </span><span class="kw">select</span>(<span class="op">-</span>panel_set_measure)</code></pre>
+<p>Así ya nos queda una tabla con un formato más ordenado.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">head</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long, <span class="dv">10</span>))                           </code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">datetime</th>
+<th align="right">value</th>
+<th align="left">panel_type</th>
+<th align="left">set_type</th>
+<th align="left">measure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2015-01-09 12:52:00</td>
+<td align="right">29.35</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-09 12:14:00</td>
+<td align="right">29.10</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-01-09 13:19:00</td>
+<td align="right">29.10</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-09 12:41:00</td>
+<td align="right">29.35</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-01-09 13:07:00</td>
+<td align="right">29.10</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-09 12:57:00</td>
+<td align="right">29.00</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-01-09 13:04:00</td>
+<td align="right">29.30</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-09 13:20:00</td>
+<td align="right">29.10</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-01-09 13:16:00</td>
+<td align="right">29.10</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-09 12:48:00</td>
+<td align="right">29.30</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="left">Voltage_DC_V</td>
+</tr>
+</tbody>
+</table>
+<p>Echamos un vistazo con un summary()</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long)</code></pre>
+<pre><code>##     datetime                       value        panel_type 
+##  Min.   :2015-01-01 07:40:00   Min.   :  0.00   A:5046084  
+##  1st Qu.:2015-05-28 18:54:00   1st Qu.:  6.50   B:5046084  
+##  Median :2015-10-08 17:39:00   Median : 26.90              
+##  Mean   :2015-12-04 18:29:34   Mean   : 35.51              
+##  3rd Qu.:2016-07-19 14:48:00   3rd Qu.: 34.40              
+##  Max.   :2016-12-29 17:31:00   Max.   :307.64              
+##                                NA&#39;s   :183579              
+##        set_type                   measure       
+##  Horizontal:3364056   Current_DC_A    :2523042  
+##  Optimal   :3364056   Power_DC_W      :2523042  
+##  Vertical  :3364056   Temperature_DC_C:2523042  
+##                       Voltage_DC_V    :2523042  
+##                                                 
+##                                                 
+## </code></pre>
+<p>Aunque mejor sería que los valores de la medición de cada variable tenga cada una su propia columna. Así que hacemos una última transformación.</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">spread</span>(measure, value) 
+
+<span class="kw">kable</span>(<span class="kw">head</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">datetime</th>
+<th align="left">panel_type</th>
+<th align="left">set_type</th>
+<th align="right">Current_DC_A</th>
+<th align="right">Power_DC_W</th>
+<th align="right">Temperature_DC_C</th>
+<th align="right">Voltage_DC_V</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2015-01-01 07:40:00</td>
+<td align="left">A</td>
+<td align="left">Horizontal</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">5.4</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-01 07:40:00</td>
+<td align="left">A</td>
+<td align="left">Optimal</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-01-01 07:40:00</td>
+<td align="left">A</td>
+<td align="left">Vertical</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">5.8</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-01 07:40:00</td>
+<td align="left">B</td>
+<td align="left">Horizontal</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">5.2</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-01-01 07:40:00</td>
+<td align="left">B</td>
+<td align="left">Optimal</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">6.2</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">2015-01-01 07:40:00</td>
+<td align="left">B</td>
+<td align="left">Vertical</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p>Aplicamos las mismas transformaciones al dataset de test.</p>
+<pre class="sourceCode r"><code class="sourceCode r">test_prod_<span class="dv">2017</span>_long &lt;-<span class="st"> </span>test_prod_<span class="dv">2017</span> <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">gather</span>(<span class="st">&#39;panel_set_measure&#39;</span>, <span class="st">&#39;value&#39;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">25</span>) <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">rename</span>(<span class="dt">datetime =</span> Datetime) <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">mutate</span>(<span class="dt">panel_type =</span> <span class="kw">as.factor</span>(<span class="kw">str_sub</span>(panel_set_measure, <span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">1</span>)),
+                                        <span class="dt">set_type =</span> <span class="kw">as.factor</span>(<span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Vertical&#39;</span>, panel_set_measure), <span class="st">&#39;Vertical&#39;</span>, 
+                                                                    <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Horizontal&#39;</span>, panel_set_measure), <span class="st">&#39;Horizontal&#39;</span>, <span class="st">&#39;Optimal&#39;</span>))),
+                                        <span class="dt">measure =</span> <span class="kw">as.factor</span>(<span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Temperature&#39;</span>, panel_set_measure), <span class="st">&#39;Temperature_DC_C&#39;</span>,
+                                                                   <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Voltage&#39;</span>, panel_set_measure), <span class="st">&#39;Voltage_DC_V&#39;</span>, 
+                                                                          <span class="kw">ifelse</span>(<span class="kw">grepl</span>(<span class="st">&#39;Power&#39;</span>, panel_set_measure), <span class="st">&#39;Power_DC_W&#39;</span>, <span class="st">&#39;Current_DC_A&#39;</span>))))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                                </span><span class="kw">select</span>(<span class="op">-</span>panel_set_measure) <span class="op">%&gt;%</span>
+<span class="st">                                 </span><span class="kw">spread</span>(measure, value) </code></pre>
+</div>
+</div>
+<div id="dataset-de-datos-meteorologicos-meteo_2015_2016." class="section level4">
+<h4><span class="header-section-number">3.3.2.2</span> Dataset de datos meteorológicos “meteo_2015_2016”.</h4>
+<p><strong>PENDIENTE</strong></p>
+</div>
+</div>
+<div id="exploracion-y-visualizaciones." class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Exploración y visualizaciones.</h3>
+<div id="dataset-de-produccion-prod_2015_2016.-1" class="section level4">
+<h4><span class="header-section-number">3.3.3.1</span> Dataset de producción “prod_2015_2016”.</h4>
+<p>Para echar un vistazo gráficamente a las relaciones entre variables vamos a tomar una muestra al azar más manejable del conjunto total de datos para poder “dibujar” de forma más rápida y ágil.</p>
+<pre class="sourceCode r"><code class="sourceCode r">set.seed =<span class="st"> </span><span class="dv">42</span>
+sample_prod &lt;-<span class="st"> </span><span class="kw">sample_n</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long, <span class="dv">10000</span>)</code></pre>
+<p>Generamos primero un cuadro donde podemos observar las distribuciones de cada variable (diagonal principal) y las relaciones entre pares de variables con gráficos de dispersión y sus correspondientes coeficientes de correlación lineal.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggpairs</span>(<span class="dt">data =</span> sample_prod, <span class="dt">columns =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Lo que más salta a la vista es la fortísima correlación lineal entre la variable Power_DC_W y Current_DC_A, 0.997, que también se observa muy claramente en el gráfico de dispersión correspondiente (también se ve lo que parece una pequeña anomalía de la tendencia general, la nube de puntos con una pendiente menor que se aparta un poquito del grupo general) y en sus correspondientes histogramas, que aunque en muy diferentes escalas son practicamente iguales.</p>
+<p>El resto de pares de variables también presentan evidentes relaciones entre sí.</p>
+<p>Vemos también en los siguientes gráficos cómo se comportan las cuatros variables a lo largo del tiempo. En este caso sólo utilizamos datos procedentes del tipo de panel A y orientación Optimal. Como los datos están limitados a un periodo muy corto (10 días) no es necesario muestrear.</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_optimal_A &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw">filter</span>(set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>, 
+                         panel_type <span class="op">==</span><span class="st"> &quot;A&quot;</span>)
+
+minute_evolution_W_A &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> prod_optimal_A <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(datetime <span class="op">&gt;</span><span class="st"> &#39;2016-09-30 23:59:59&#39;</span>,
+                                                                datetime <span class="op">&lt;=</span><span class="st"> &#39;2016-10-10 23:59:59&#39;</span>), <span class="kw">aes</span>(<span class="dt">x =</span> datetime, <span class="dt">y =</span> Power_DC_W)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
+
+minute_evolution_A_A &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> prod_optimal_A <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(datetime <span class="op">&gt;</span><span class="st"> &#39;2016-09-30 23:59:59&#39;</span>,
+                                                                datetime <span class="op">&lt;=</span><span class="st"> &#39;2016-10-10 23:59:59&#39;</span>), <span class="kw">aes</span>(<span class="dt">x =</span> datetime, <span class="dt">y =</span> Current_DC_A)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
+                  
+minute_evolution_V_A &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> prod_optimal_A <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(datetime <span class="op">&gt;</span><span class="st"> &#39;2016-09-30 23:59:59&#39;</span>,
+                                                                datetime <span class="op">&lt;=</span><span class="st"> &#39;2016-10-10 23:59:59&#39;</span>), <span class="kw">aes</span>(<span class="dt">x =</span> datetime, <span class="dt">y =</span> Voltage_DC_V)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
+
+minute_evolution_C_A &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> prod_optimal_A <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(datetime <span class="op">&gt;</span><span class="st"> &#39;2016-09-30 23:59:59&#39;</span>,
+                                                                datetime <span class="op">&lt;=</span><span class="st"> &#39;2016-10-10 23:59:59&#39;</span>), <span class="kw">aes</span>(<span class="dt">x =</span> datetime, <span class="dt">y =</span> Temperature_DC_C)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()
+
+
+<span class="kw">grid.arrange</span>(minute_evolution_W_A, 
+             minute_evolution_A_A, 
+             minute_evolution_V_A,
+             minute_evolution_C_A,
+             <span class="dt">ncol =</span> <span class="dv">1</span>) </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p>En esta otra visualización también es evidente la similitud del comportamiento de las variables Current_DC_A y Power_DC_W. Así que antes de seguir explorando los datos, lo que tendríamos que hacer es pararnos a hacer algo que tendríamos que haber hecho nada más empezar el análisis: Definir las variables y consultar las posibles relaciones que pudiesen existir entre ellas.</p>
+<p>Temperature_DC_C: Temperatura en grados centígrados del panel solar.<br />
+Current_DC_A: Corriente continua. Medida en amperios. Nos indica la intensidad de la corriente eléctrica.<br />
+Voltage_DC_V: Voltaje, también denominado como tensión eléctrica o diferencia de potencial, cuantifica la diferencia de potencial eléctrico entre dos puntos.<br />
+Power_DC_W: La potencia eléctrica. Medida en vatios. Es la proporción por unidad de tiempo, o ritmo, con la cual la energía eléctrica es transferida por un circuito eléctrico.</p>
+<p>La potencia eléctrica, o los vatios, es la variable target de este problema. Es decir, la variable que tenemos que predecir. Ya hemos visto que se relaciona de forma directa con la variable Current_DC_A (amperios).
+Y con una sencilla búsqueda en Google podemos ver, por ejemplo <a href="https://www.endesaclientes.com/blog/voltios-vatios-amperios">aquí</a>, cuál es la naturaleza de esa relación: Voltios (V) x Amperios (A) = Vatios (W)</p>
+<p>Es decir, que ya tendríamos nuestro modelo. Y en este caso perfecto.</p>
+<p>Realizamos a continuación una sencilla comprobación.</p>
+<p>Primero hacemos la predicción de la potencia para el panel de tipo A y orientación Optimal y obtenemos su MAE (Mean Absolute Error).</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_optimal_A &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw">filter</span>(set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>, 
+                         panel_type <span class="op">==</span><span class="st"> &quot;A&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">na.omit</span>()
+
+pred_prod_optimal_A &lt;-<span class="st"> </span>prod_optimal_A <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                      </span><span class="kw">select</span>(Current_DC_A, Voltage_DC_V, Power_DC_W) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                      </span><span class="kw">mutate</span>(<span class="dt">W_prediction =</span> Current_DC_A <span class="op">*</span><span class="st"> </span>Voltage_DC_V, <span class="co"># Nuestro modelo</span>
+                            <span class="dt">abs_error =</span> <span class="kw">trunc</span>(<span class="kw">abs</span>(W_prediction <span class="op">-</span><span class="st"> </span>Power_DC_W),<span class="dv">6</span>))  <span class="co"># Los errores</span>
+  
+<span class="co"># Y para calcular el MAE  de nuestro modelo lo único que nos queda por hacer </span>
+<span class="co"># es obtener la media de la columna abs_error</span>
+
+MAE &lt;-<span class="st"> </span><span class="kw">mean</span>(pred_prod_optimal_A<span class="op">$</span>abs_error)
+MAE</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>Como es normal tenemos obtenemos un MAE igual a cero.</p>
+<p>Repetimos la misma operación para el panel de tipo B</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_optimal_B&lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw">filter</span>(set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>, 
+                         panel_type <span class="op">==</span><span class="st"> &quot;B&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">na.omit</span>()
+
+pred_prod_optimal_B &lt;-<span class="st"> </span>prod_optimal_B <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                      </span><span class="kw">select</span>(Current_DC_A, Voltage_DC_V, Power_DC_W) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                      </span><span class="kw">mutate</span>(<span class="dt">W_prediction =</span> Current_DC_A <span class="op">*</span><span class="st"> </span>Voltage_DC_V, <span class="co"># Nuestro modelo</span>
+                            <span class="dt">abs_error =</span> <span class="kw">trunc</span>(<span class="kw">abs</span>(W_prediction <span class="op">-</span><span class="st"> </span>Power_DC_W),<span class="dv">6</span>))  <span class="co"># Los errores</span>
+  
+<span class="co"># Y para calcular el MAE  de nuestro modelo lo único que nos queda por hacer </span>
+<span class="co"># es obtener la media de la columna abs_error</span>
+
+MAE &lt;-<span class="st"> </span><span class="kw">mean</span>(pred_prod_optimal_A<span class="op">$</span>abs_error)
+MAE</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>Y obtenemos un MAE de cero también.</p>
+<p>Ahora simplemente restaría hacer la predicción para los 7 primeros días de 2017.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pendiente</span></code></pre>
+<p>Resuelto el problema exploramos los datos un poco más. Y generamos tres conjuntos de gráficos donde enfrentamos a la variable target a cada una de las otras tres, pero introduciendo además las variables panel_type y set_type. Las imágenes obtenidas son muy similares a las vistas anteriormente. Como elemento destacable vemos que esa “irregularidad” que veíamos entre la variable Power_DC_W y Current_DC_A proviene principalmente de la configuración horizontal del panel tipo A.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_prod, <span class="kw">aes</span>(<span class="dt">x =</span> Current_DC_A, <span class="dt">y =</span> Power_DC_W, <span class="dt">color =</span> set_type)) <span class="op">+</span>
+<span class="st">         </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">         </span><span class="kw">facet_grid</span>(panel_type <span class="op">~</span><span class="st"> </span>set_type)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_prod, <span class="kw">aes</span>(<span class="dt">x =</span> Voltage_DC_V, <span class="dt">y =</span> Power_DC_W, <span class="dt">color =</span> set_type)) <span class="op">+</span>
+<span class="st">         </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">         </span><span class="kw">facet_grid</span>(panel_type <span class="op">~</span><span class="st"> </span>set_type)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_prod, <span class="kw">aes</span>(<span class="dt">x =</span> Temperature_DC_C, <span class="dt">y =</span> Power_DC_W, <span class="dt">color =</span> set_type)) <span class="op">+</span>
+<span class="st">         </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">         </span><span class="kw">facet_grid</span>(panel_type <span class="op">~</span><span class="st"> </span>set_type)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p>Y generamos de nuevo la tabla de correlaciones y distribuciones, pero en esta ocasión únicamente para los dos conjuntos a predecir Configuración ‘Optimal’ y tipo de panel ‘A’ y ‘B’.</p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_optimal_A &lt;-<span class="st"> </span>sample_prod <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw">filter</span>(set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>, 
+                         panel_type <span class="op">==</span><span class="st"> &quot;A&quot;</span>)
+
+<span class="kw">ggpairs</span>(<span class="dt">data =</span> prod_optimal_A, <span class="dt">columns =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">prod_optimal_B &lt;-<span class="st"> </span>sample_prod <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw">filter</span>(set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>, 
+                         panel_type <span class="op">==</span><span class="st"> &quot;B&quot;</span>)
+                         
+<span class="kw">ggpairs</span>(<span class="dt">data =</span> prod_optimal_B, <span class="dt">columns =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="generacion-de-modelos-base." class="section level2">
+<h2><span class="header-section-number">3.4</span> Generación de modelos base.</h2>
+<p>El problema ya estaría resuelto. Pero de todas formas vamos a comprobar hasta que punto un modelo sencillo de regresión final se aproximaría a la solución.</p>
+<p>Para ello vamos a dividir la tabla de producción que tenemos en formato semilargo en dos datasets, uno para realizar el training y otro para ir realizando validaciones de los modelos y poder detectar problemas de overfitting.</p>
+<p>Train period: 01-01-2015 - 30-09-2016
+Validation period: 01-10-2016 - 31-12-2016</p>
+<div id="modelos-base-para-paneles-a" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Modelos base para paneles A</h3>
+<pre class="sourceCode r"><code class="sourceCode r">train_period_A &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw">filter</span>(datetime <span class="op">&lt;=</span><span class="st"> &#39;2016-09-30 23:59:59&#39;</span>,
+                         panel_type <span class="op">==</span><span class="st"> &quot;A&quot;</span>,
+                         set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">select</span>(<span class="op">-</span>panel_type,
+                         <span class="op">-</span>set_type) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">na.omit</span>()
+
+validation_period_A &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                  </span><span class="kw">filter</span>(datetime <span class="op">&gt;</span><span class="st"> &#39;2016-09-30 23:59:59&#39;</span>,
+                         panel_type <span class="op">==</span><span class="st"> &quot;A&quot;</span>,
+                         set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">select</span>(<span class="op">-</span>panel_type,
+                         <span class="op">-</span>set_type) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">na.omit</span>()</code></pre>
+<p>Vemos la tabla de training.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(train_period_A)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   datetime            Current_DC_A Power_DC_W Temperature_DC_C Voltage_DC_V
+##   &lt;dttm&gt;                     &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;
+## 1 2015-01-01 07:47:00       0.0725       1.70              6           23.4
+## 2 2015-01-01 07:48:00       0.0775       1.81              5.9         23.3
+## 3 2015-01-01 07:49:00       0.0825       1.93              5.9         23.4
+## 4 2015-01-01 07:50:00       0.0875       2.05              5.8         23.4
+## 5 2015-01-01 07:51:00       0.095        2.22              5.7         23.4
+## 6 2015-01-01 07:52:00       0.1          2.34              5.7         23.4</code></pre>
+<div id="linear-regression" class="section level4">
+<h4><span class="header-section-number">3.4.1.1</span> Linear regression</h4>
+<p>Siguiendo la teoría vamos a intentar explicar la variable Power_DC_W en función de las variables Current_DC_A y Voltage_DC_V</p>
+<pre class="sourceCode r"><code class="sourceCode r">model_lr_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> train_period_A, Power_DC_W <span class="op">~</span><span class="st"> </span>Current_DC_A <span class="op">+</span><span class="st"> </span>Voltage_DC_V)
+<span class="kw">print</span>(model_lr_<span class="dv">1</span>)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Power_DC_W ~ Current_DC_A + Voltage_DC_V, data = train_period_A)
+## 
+## Coefficients:
+##  (Intercept)  Current_DC_A  Voltage_DC_V  
+##       -30.77         27.44          1.20</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(model_lr_<span class="dv">1</span>)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Power_DC_W ~ Current_DC_A + Voltage_DC_V, data = train_period_A)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -46.297  -2.101  -0.899   1.777  27.308 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -30.769038   0.073713  -417.4   &lt;2e-16 ***
+## Current_DC_A  27.444885   0.002733 10042.1   &lt;2e-16 ***
+## Voltage_DC_V   1.200082   0.002770   433.3   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.93 on 361002 degrees of freedom
+## Multiple R-squared:  0.9969, Adjusted R-squared:  0.9969 
+## F-statistic: 5.836e+07 on 2 and 361002 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Obtenemos un p-value claramente por debajo de 0,05. Las relaciones que establece el modelo se consideran significativas Y el R cuadrado es casi igual a 1, es decir, el modelo está explicando prácticamente toda la variabilidad de la variable target Power_DC_W.</p>
+<p>Vamos a calcular el MAE, que forzosamente tendrá que ser muy bajo.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extraemos los fitted_values (las predicciones) del modelo para compararlos con los valores reales</span>
+
+predicted_values &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(model_lr_<span class="dv">1</span><span class="op">$</span>fitted.values)
+real_values &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(train_period_A<span class="op">$</span>Power_DC_W)
+
+mae_train &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(predicted_values,
+                         real_values) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                         </span><span class="kw">rename</span>(<span class="dt">predicted_values =</span> <span class="st">&#39;model_lr_1$fitted.values&#39;</span>,
+                                <span class="dt">real_values =</span> <span class="st">&#39;train_period_A$Power_DC_W&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">                         </span><span class="kw">mutate</span>(<span class="dt">abs_error =</span> <span class="kw">abs</span>(real_values <span class="op">-</span><span class="st"> </span>predicted_values)) <span class="op">%&gt;%</span>
+<span class="st">                         </span><span class="kw">summarise</span>(<span class="dt">mae =</span> <span class="kw">mean</span>(abs_error))
+mae_train</code></pre>
+<pre><code>##        mae
+## 1 2.856888</code></pre>
+<p>Utilizamos este modelo inicial para hacer las predicciones con el periodo de validación</p>
+<pre class="sourceCode r"><code class="sourceCode r">validation_predicted_values &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">predict</span>(model_lr_<span class="dv">1</span>, validation_period_A))
+validation_real_values &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(validation_period_A<span class="op">$</span>Power_DC_W)
+
+mae_validation &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(validation_predicted_values,
+                         validation_real_values) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                         </span><span class="kw">rename</span>(<span class="dt">predicted_values =</span> <span class="st">&#39;predict(model_lr_1, validation_period_A)&#39;</span>,
+                                <span class="dt">real_values =</span> <span class="st">&#39;validation_period_A$Power_DC_W&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">                         </span><span class="kw">mutate</span>(<span class="dt">abs_error =</span> <span class="kw">abs</span>(real_values <span class="op">-</span><span class="st"> </span>predicted_values)) <span class="op">%&gt;%</span>
+<span class="st">                         </span><span class="kw">summarise</span>(<span class="dt">mae =</span> <span class="kw">mean</span>(abs_error))
+mae_validation</code></pre>
+<pre><code>##        mae
+## 1 2.923732</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">rss &lt;-<span class="st"> </span><span class="kw">sum</span>((validation_predicted_values <span class="op">-</span><span class="st"> </span>validation_real_values) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## residual sum of squares</span>
+tss &lt;-<span class="st"> </span><span class="kw">sum</span>((validation_real_values <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(validation_real_values<span class="op">$</span><span class="st">`</span><span class="dt">validation_period_A$Power_DC_W</span><span class="st">`</span>)) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)  <span class="co">## total sum of squares</span>
+R_Squared &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>rss<span class="op">/</span>tss
+R_Squared</code></pre>
+<pre><code>## [1] 0.9969133</code></pre>
+<p>Al validar el modelo con el último trimestre de 2016 obtenemos resultados muy parecidos. El modelo es casi perfecto.</p>
+</div>
+</div>
+<div id="modelos-base-para-paneles-b" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Modelos base para paneles B</h3>
+</div>
+</div>
+<div id="descripcion-de-la-generacion-de-los-modelos-con-bigml." class="section level2">
+<h2><span class="header-section-number">3.5</span> Descripción de la generación de los modelos con BIGml.</h2>
+<p>¿Qué hubiese pasado si no nos hubiésemos percatado de la relación directa entre las variables de la tabla de producción y hubiésemos cruzado todas las variables y llevado la tabla resultante a BIGml para intentar crear nuestro modelo?</p>
+<p><strong>PENDIENTE</strong></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="solucion-reto-dia-del-hackathon-.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
