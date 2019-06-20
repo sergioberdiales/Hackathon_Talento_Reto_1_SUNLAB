@@ -1,6 +1,8 @@
-# Solución reto día del hackathon.
+# Solución reto día del Hackathon.
 
+En este apartado está descrito cómo nuestro equipo solucionó este reto durante el Hackathon. Se han añadido comentarios para dar más claridad al desarrollo. Aparte de estas notas no hemos añadido nada sustancial al análisis que no fuese incluido durante la competición.  
 
+Para ver un análisis hecho con más tiempo y más cercano a lo que nos hubiese gustado hacer puedes pasar directamente al apartado 3 de este notebook.
 
 ## Carga de las librerias necesarias.
 

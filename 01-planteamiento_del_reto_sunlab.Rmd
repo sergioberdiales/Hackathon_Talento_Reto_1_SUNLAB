@@ -2,6 +2,25 @@
 
 En esta sección simplemente trasladamos el reto SUNLAB tal y como fue planteado durante el Hackathon. 
 
-"SUNLAB es un laboratorio..."
+"SUNLAB es un laboratorio experimental de EDP, ubicado en Faro (Portugal) y diseñado para testar el rendimiento de varios módulos fotovoltaicos en distintas condiciones.    
+Dispone de dos tipos de paneles solares (A y B) que funcionan con tecnologías distintas. Todos están orientados al sur pero de tres formas distintas: En horizontal al suelo, en vertical y con una inclinación óptima. De estos paneles se recogen datos a lo largo de varios años.   
+
+__Vuestro reto consiste en predecir la producción eléctrica en Watios que pueden generar los paneles A y B en su orientación óptima durante los siete primeros días del año 2017.__    
+
+Dispondréis de los datos de producción de los dos años anteriores del panel A en las tres posiciones y lo mismo con el panel B. También disponéis de los datos de las condiciones meteorológicas.     
+
+Podéis utilizar información de otras fuentes, siempre que sean públicas y libres y expliquéis cómo las habéis utilizado.    
+
+Cada equipo dispone de __3 horas__ para realizar el reto y __10 minutos__ para presentarlo al tribunal y al resto de participantes.  
+
+El jurado tendrá en cuenta la explicación del proceso, la selección de modelos, la metodología usada y, por supuesto, los datos ﬁnales. Compararemos vuestros resultados con la medición real.    
+
+El equipo cuyas predicciones se aproximen mas a estos datos obtendrá una mayor puntuación.   
+
+Recordad, __vuestro objetivo es predecir la generación de energía eléctrica en W de los paneles de tipo A y B en su posición optima para los 7 primeros días del año 2017.__    
+También podéis obtener puntos extra si planteáis una aplicación que realice las predicciones de forma continua en el SunLab de EDP.  
+ 
+__¡BUENA SUERTE A TODOS!__
+"
 
 

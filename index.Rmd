@@ -10,7 +10,7 @@ output:
 
 # Introducción {-}
 
-Este notebook nace de nuestra participación el 4 de junio de 2019 como equipo en el [Hackathon de Machine Learning](https://hackathontalento.com/) organizado por [Talento Corporativo](https://www.talentocorporativo.com/) y patrocinado por [EDP](https://www.edpenergia.es/es/) y [BIGml](https://bigml.com/). 
+Este notebook nace de nuestra participación el 4 de junio de 2019 como equipo en el [Hackathon de Machine Learning](https://hackathontalento.com/) organizado por [Talento Corporativo](https://www.talentocorporativo.com/) y patrocinado por [EDP](https://www.edpenergia.es/es/), [El Comercio](https://www.elcomercio.es/), [Clustertic](https://www.clustertic.net/) y [BigML](https://bigml.com/).  
 
 ![](imgs/hackathon_talento.png)
 
