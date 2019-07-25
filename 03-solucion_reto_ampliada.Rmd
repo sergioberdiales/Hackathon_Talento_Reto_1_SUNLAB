@@ -29,6 +29,7 @@ library(GGally)
 library(caret)
 library(knitr)
 library(gridExtra)
+library(kableExtra)
 ```
 
 ## Importación de los datos.
@@ -85,7 +86,7 @@ glimpse(prod_2015_2016)
 
 Vemos también los primeros 10 registros.
 ```{r , warning= FALSE, message= FALSE}
-head(prod_2015_2016, 10)
+kable(head(prod_2015_2016, 10), booktab = TRUE)
 ```
 
 Ejecutamos un summary() para observar los principales estadísticos de cada variable, NAs, etc.
@@ -154,7 +155,7 @@ En el Hackathon fuimos directamente a cruzar las tablas de producción e informa
 
 ##### Completitud de los datos.
 
-En este apartado vamos a revisar el número de registros que tenemos, si varían con el tiempo y vamos a determinar la frecuencia de registros de los datos.
+En este apartado vamos a revisar el número de registros que tenemos, si varían con el tiempo y vamos a determinar la frecuencia de registros de los mismos.
 
 ##### Número y frecuencia de registros.
 
@@ -181,9 +182,10 @@ registers_by_year_month <- prod_2015_2016 %>%
                                month = month(prod_2015_2016$Datetime)) %>%
                       summarise(registers = n())
 
-kable(registers_by_year_month)
+kable(registers_by_year_month) %>% kable_styling()
 
 ```
+
 A destacar que en diciembre de 2015 y en abril y mayo de 2016 no hay ni un solo dato. Además en marzo de 2016 apenas hay registros. El resto de variaciones entre meses parecen estar simplemente relacionadas con las horas de sol, menos en invierno, más en verano.
 
 Visualizamos los datos de la tabla en un gráfico. Pero antes añadimos los registros de año-meses que no aparecen con el valor '0'.
@@ -290,6 +292,9 @@ data_nas <- prod_2015_2016 %>%
   group_by(year = year(Datetime), month(Datetime)) %>%
   summarise_all(funs(round(sum(!is.na(.))/n(), 2))) # We obtain the proportion of 'not NAs'
  
+kable(data_nas) %>%
+                  kable_styling() %>%
+                  scroll_box()
 ```
 
 ##### Transformaciones de la tabla.
@@ -407,7 +412,7 @@ grid.arrange(minute_evolution_W_A,
              ncol = 1) 
 ```
 
-En esta otra visualización también es evidente la similitud del comportamiento de las variables Current_DC_A y Power_DC_W. Así que antes de seguir explorando los datos, lo que tendríamos que hacer es pararnos a hacer algo que tendríamos que haber hecho nada más empezar el análisis:  Definir las variables y consultar las posibles relaciones que pudiesen existir entre ellas.
+En esta otra visualización también es evidente la similitud del comportamiento de las variables Current_DC_A y Power_DC_W. Así que antes de seguir explorando los datos, lo que tendríamos que hacer es a hacer algo que __tendríamos que haber hecho nada más empezar el análisis:  Definir las variables y consultar las posibles relaciones que pudiesen existir entre ellas.__
 
 Temperature_DC_C: Temperatura en grados centígrados del panel solar.  
 Current_DC_A: Corriente continua. Medida en amperios. Nos indica la intensidad de la corriente eléctrica.  
@@ -415,9 +420,9 @@ Voltage_DC_V: Voltaje, también denominado como tensión eléctrica o diferencia
 Power_DC_W: La potencia eléctrica. Medida en vatios. Es la proporción por unidad de tiempo, o ritmo, con la cual la energía eléctrica es transferida por un circuito eléctrico.
 
 La potencia eléctrica, o los vatios, es la variable target de este problema. Es decir, la variable que tenemos que predecir. Ya hemos visto que se relaciona de forma directa con la variable Current_DC_A (amperios).
-Y con una sencilla búsqueda en Google podemos ver, por ejemplo [aquí](https://www.endesaclientes.com/blog/voltios-vatios-amperios), cuál es la naturaleza de esa relación: Voltios (V) x Amperios (A) = Vatios (W)  
+Y con una sencilla búsqueda en Google podemos ver, por ejemplo [aquí](https://www.endesaclientes.com/blog/voltios-vatios-amperios), cuál es la naturaleza de esa relación:   __Voltios (V) x Amperios (A) = Vatios (W)__
 
-Es decir, que ya tendríamos nuestro modelo. Y en este caso perfecto. 
+Es decir, que __ya tendríamos nuestro modelo__. Y en este caso perfecto. 
 
 Realizamos a continuación una sencilla comprobación. 
 
@@ -474,7 +479,6 @@ Ahora simplemente restaría hacer la predicción para los 7 primeros días de 20
 # pendiente
 
 ```
-
 
 Resuelto el problema exploramos los datos un poco más. Y generamos tres conjuntos de gráficos donde enfrentamos a la variable target a cada una de las otras tres, pero introduciendo además las variables panel_type y set_type. Las imágenes obtenidas son muy similares a las vistas anteriormente. Como elemento destacable vemos que esa "irregularidad" que veíamos entre la variable Power_DC_W y Current_DC_A proviene principalmente de la configuración horizontal del panel tipo A.
 ```{r , warning= FALSE, message= FALSE}
@@ -602,6 +606,7 @@ mae_validation <- bind_cols(validation_predicted_values,
 mae_validation
 
 ```
+
 ```{r , warning= FALSE, message= FALSE}
 rss <- sum((validation_predicted_values - validation_real_values) ^ 2)  ## residual sum of squares
 tss <- sum((validation_real_values - mean(validation_real_values$`validation_period_A$Power_DC_W`)) ^ 2)  ## total sum of squares
@@ -612,6 +617,8 @@ R_Squared
 Al validar el modelo con el último trimestre de 2016 obtenemos resultados muy parecidos. El modelo es casi perfecto. 
 
 ### Modelos base para paneles B
+
+__PENDIENTE__
 
 ```{r , warning= FALSE, message= FALSE}
 

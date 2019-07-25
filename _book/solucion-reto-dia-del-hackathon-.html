@@ -46,6 +46,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -130,7 +131,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#carga-de-las-librerias-necesarias."><i class="fa fa-check"></i><b>2.1</b> Carga de las librerias necesarias.</a></li>
 <li class="chapter" data-level="2.2" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-train."><i class="fa fa-check"></i><b>2.2</b> Preparación datos “train”.</a></li>
 <li class="chapter" data-level="2.3" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-test."><i class="fa fa-check"></i><b>2.3</b> Preparación datos “test”.</a></li>
-<li class="chapter" data-level="2.4" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelizacion-en-bigml"><i class="fa fa-check"></i><b>2.4</b> Modelización en BIGml</a></li>
+<li class="chapter" data-level="2.4" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelo-base-panel-a"><i class="fa fa-check"></i><b>2.4</b> Modelo base panel A</a></li>
+<li class="chapter" data-level="2.5" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelizacion-en-bigml"><i class="fa fa-check"></i><b>2.5</b> Modelización en BigML</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html"><i class="fa fa-check"></i><b>3</b> Solución reto ampliada.</a><ul>
 <li class="chapter" data-level="3.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#carga-de-las-librerias-necesarias.-1"><i class="fa fa-check"></i><b>3.1</b> Carga de las librerias necesarias.</a></li>
@@ -180,10 +182,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="preparacion-datos-train." class="section level2">
 <h2><span class="header-section-number">2.2</span> Preparación datos “train”.</h2>
 <p>Los datasets originales de train estaban en formato ‘xls’ y al abrirlos daban un error de formato. No pudimos importarlos en R directamente, ya que nos daba un error con la importación también. Así que los guardamos como ‘csv’ para posteriormente importarlos en R. En este proceso también tuvimos algún problema, así que la importación de los datos nos llevó mucho más tiempo de lo esperado.</p>
-<p>Archivos orginales “train”:</p>
-<p>‘sunlab-faro_meteo_2015.xls’
-‘sunlab-faro_meteo_2016.xls’
-‘sunlab-faro-pv-2015.xls’
+<p>Archivos originales “train”:</p>
+<p>‘sunlab-faro_meteo_2015.xls’<br />
+‘sunlab-faro_meteo_2016.xls’<br />
+‘sunlab-faro-pv-2015.xls’<br />
 ‘sunlab-faro-pv-2016.xls’</p>
 <p>Importamos los archivos ya convertidos a formato ‘csv’.</p>
 <pre class="sourceCode r"><code class="sourceCode r">meteo_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/train/sunlab-faro_meteo_2015.csv&quot;</span>)
@@ -381,80 +383,135 @@ prod_<span class="dv">2015</span>_<span class="dv">2016</span> &lt;-<span class=
                                <span class="st">&#39;Ultraviolet [W/m2]&#39;</span>,
                                <span class="st">&#39;Global Radiation [W/m2]&#39;</span>)</code></pre>
 <p>Cruzamos las tablas por Datetime y comprobamos que no se duplican registros, ya que la tabla final tiene el mismo número de registros que la tabla de producción: 420.507.</p>
-<pre class="sourceCode r"><code class="sourceCode r">tabla_final &lt;-<span class="st"> </span>meteo_<span class="dv">2015</span>_<span class="dv">2016</span>_final <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">left_join</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_final, <span class="dt">by =</span> <span class="st">&#39;Datetime&#39;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">tabla_final &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_final <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">left_join</span>(meteo_<span class="dv">2015</span>_<span class="dv">2016</span>_final, <span class="dt">by =</span> <span class="st">&#39;Datetime&#39;</span>)</code></pre>
 <p>Inspeccionamos las variables.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(tabla_final) </code></pre>
-<pre><code>##     Datetime                   Ambient Temperature [ºC]
-##  Min.   :2015-01-01 00:00:00   Min.   :-1.500e+09      
-##  1st Qu.:2015-05-26 11:06:30   1st Qu.: 1.400e+01      
-##  Median :2015-10-18 23:12:00   Median : 1.800e+01      
-##  Mean   :2015-11-27 03:00:27   Mean   :-5.358e+03      
-##  3rd Qu.:2016-05-17 18:32:30   3rd Qu.: 2.300e+01      
-##  Max.   :2016-12-31 23:00:00   Max.   : 3.800e+01      
-##                                                        
+<pre><code>##     Datetime                   A_Optimal - Power DC [W]
+##  Min.   :2015-01-01 07:40:00   Min.   :  0.00          
+##  1st Qu.:2015-05-28 18:54:45   1st Qu.: 30.74          
+##  Median :2015-10-08 17:38:30   Median : 99.79          
+##  Mean   :2015-12-04 18:28:55   Mean   :100.48          
+##  3rd Qu.:2016-07-19 14:47:15   3rd Qu.:165.06          
+##  Max.   :2016-12-29 17:31:00   Max.   :307.64          
+##                                NA&#39;s   :8342            
+##  B_Optimal - Power DC [W] Ambient Temperature [ºC]
+##  Min.   :  0.00           Min.   :-1.500e+09      
+##  1st Qu.: 27.08           1st Qu.: 1.700e+01      
+##  Median : 96.81           Median : 2.100e+01      
+##  Mean   : 99.69           Mean   :-4.093e+03      
+##  3rd Qu.:170.25           3rd Qu.: 2.600e+01      
+##  Max.   :302.01           Max.   : 3.800e+01      
+##  NA&#39;s   :6730             NA&#39;s   :55918           
 ##  Diffuse Radiation [W/m2] Ultraviolet [W/m2] Global Radiation [W/m2]
-##  Min.   :  1.6            Min.   : 0.4954    Min.   :   0.7285      
-##  1st Qu.:  1.7            1st Qu.: 0.5106    1st Qu.:   1.5693      
-##  Median : 16.5            Median : 1.5008    Median :  13.0063      
-##  Mean   : 68.2            Mean   :14.5440    Mean   : 237.1203      
-##  3rd Qu.:103.7            3rd Qu.:26.0017    3rd Qu.: 452.7272      
-##  Max.   :720.4            Max.   :84.2660    Max.   :1421.3282      
-##  NA&#39;s   :399744                                                     
-##  A_Optimal - Power DC [W] B_Optimal - Power DC [W]
-##  Min.   :  0.0            Min.   :  0.0           
-##  1st Qu.: 29.8            1st Qu.: 26.1           
-##  Median : 97.8            Median : 94.9           
-##  Mean   : 99.4            Mean   : 98.7           
-##  3rd Qu.:163.1            3rd Qu.:169.3           
-##  Max.   :307.6            Max.   :302.0           
-##  NA&#39;s   :479354           NA&#39;s   :477901</code></pre>
-<p>Aquí vemos que
-filter(<code>Ambient Temperature [ºC]</code> &lt;1000)</p>
+##  Min.   :  1.61           Min.   : 0.56      Min.   :   1.34        
+##  1st Qu.: 60.12           1st Qu.: 9.75      1st Qu.: 155.74        
+##  Median : 99.84           Median :24.27      Median : 426.75        
+##  Mean   :127.92           Mean   :27.30      Mean   : 452.57        
+##  3rd Qu.:159.23           3rd Qu.:43.45      3rd Qu.: 727.82        
+##  Max.   :720.35           Max.   :84.27      Max.   :1421.33        
+##  NA&#39;s   :194998           NA&#39;s   :55918      NA&#39;s   :55918</code></pre>
+<p>Aquí vemos que la variable <code>Ambient Temperature [ºC]</code> tiene como dato mínimo un posible error. Así que filtramos esta variable para corregirlo.</p>
 <pre class="sourceCode r"><code class="sourceCode r">tabla_final &lt;-<span class="st"> </span>tabla_final <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">                </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Ambient Temperature [ºC]</span><span class="st">`</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">-100</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(tabla_final)</code></pre>
-<pre><code>##     Datetime                   Ambient Temperature [ºC]
-##  Min.   :2015-01-01 00:00:00   Min.   : 2.90           
-##  1st Qu.:2015-05-26 11:07:45   1st Qu.:14.40           
-##  Median :2015-10-18 23:12:30   Median :18.30           
-##  Mean   :2015-11-27 03:01:13   Mean   :18.81           
-##  3rd Qu.:2016-05-17 18:33:15   3rd Qu.:23.30           
-##  Max.   :2016-12-31 23:00:00   Max.   :38.30           
-##                                                        
-##  Diffuse Radiation [W/m2] Ultraviolet [W/m2] Global Radiation [W/m2]
-##  Min.   :  1.6            Min.   : 0.4954    Min.   :   0.7285      
-##  1st Qu.:  1.7            1st Qu.: 0.5106    1st Qu.:   1.5693      
-##  Median : 16.5            Median : 1.5007    Median :  13.0062      
-##  Mean   : 68.2            Mean   :14.5441    Mean   : 237.1209      
-##  3rd Qu.:103.7            3rd Qu.:26.0018    3rd Qu.: 452.7310      
-##  Max.   :720.4            Max.   :84.2660    Max.   :1421.3282      
-##  NA&#39;s   :399743                                                     
-##  A_Optimal - Power DC [W] B_Optimal - Power DC [W]
-##  Min.   :  0.0            Min.   :  0.0           
-##  1st Qu.: 29.8            1st Qu.: 26.1           
-##  Median : 97.8            Median : 94.9           
-##  Mean   : 99.4            Mean   : 98.7           
-##  3rd Qu.:163.1            3rd Qu.:169.3           
-##  Max.   :307.6            Max.   :302.0           
-##  NA&#39;s   :479352           NA&#39;s   :477899</code></pre>
+<p>Comprobamos que hemos resuelto el problema.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(tabla_final<span class="op">$</span><span class="st">`</span><span class="dt">Ambient Temperature [ºC]</span><span class="st">`</span>)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.167  16.900  21.483  21.432  26.100  38.300</code></pre>
+<p>Y exportamos el archivo final en formato csv para cargarlo en la herramienta de modelización BigML.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(tabla_final, <span class="st">&quot;meteo_prod_2015_2016.csv&quot;</span>)</code></pre>
 </div>
 <div id="preparacion-datos-test." class="section level2">
 <h2><span class="header-section-number">2.3</span> Preparación datos “test”.</h2>
 <p>Importaciones</p>
-<pre class="sourceCode r"><code class="sourceCode r">test_meteo_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/test/test-sunlab-meteo-2017.csv&quot;</span>)
-test_prod_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/test/test-sunlab-pv-2017.csv&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">test_prod_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/test/test-sunlab-pv-2017.csv&quot;</span>)
+test_meteo_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/hackathon_data/test/test-sunlab-meteo-2017.csv&quot;</span>)</code></pre>
 <p>Cruzamos las tablas por Datetime</p>
-<pre class="sourceCode r"><code class="sourceCode r">tabla_final_test &lt;-<span class="st"> </span>test_meteo_<span class="dv">2017</span> <span class="op">%&gt;%</span>
-<span class="st">              </span><span class="kw">left_join</span>(test_prod_<span class="dv">2017</span>, <span class="dt">by =</span> <span class="st">&quot;Datetime&quot;</span>) <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">tabla_final_test &lt;-<span class="st"> </span>test_prod_<span class="dv">2017</span> <span class="op">%&gt;%</span>
+<span class="st">              </span><span class="kw">left_join</span>(test_meteo_<span class="dv">2017</span>, <span class="dt">by =</span> <span class="st">&quot;Datetime&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">                        </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">A_Optimal - Power DC [W]</span><span class="st">`</span>, 
                                <span class="st">`</span><span class="dt">Global Radiation [W/m2]</span><span class="st">`</span>,
                                <span class="st">`</span><span class="dt">Ultraviolet [W/m2]</span><span class="st">`</span>)</code></pre>
+<p>Exportamos el archivo final en formato csv para cargarlo en la herramienta de modelización BigML.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(tabla_final_test, <span class="st">&quot;test_meteo_prod_2017.csv&quot;</span>)</code></pre>
 </div>
+<div id="modelo-base-panel-a" class="section level2">
+<h2><span class="header-section-number">2.4</span> Modelo base panel A</h2>
+<p>Una vez creadas y exportadas la tablas para crear los modelos en BigML y mientras se ejecutan los modelos en esa plataforma creamos un modelo base (o de partida) en R para el tipo de panel A.</p>
+<p>Creamos un modelo con una regresión lineal para predecir los valores de Power DC [W] en función de dos únicas variables <code>Global Radiation [W/m2]</code> y <code>Ultraviolet [W/m2]</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Eliminamos los registros del panel tipo B y eliminamos también los registros con NAs</span>
+tabla_final_A &lt;-<span class="st"> </span>tabla_final <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">               </span><span class="kw">select</span>(<span class="op">-</span><span class="st">`</span><span class="dt">B_Optimal - Power DC [W]</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">                </span><span class="kw">na.omit</span>()
+
+<span class="co"># Y creamos el modelo</span>
+modelo_A_<span class="dv">1</span>=<span class="kw">lm</span>(<span class="st">`</span><span class="dt">A_Optimal - Power DC [W]</span><span class="st">`</span> <span class="op">~</span><span class="st"> `</span><span class="dt">Global Radiation [W/m2]</span><span class="st">`</span> <span class="op">+</span><span class="st"> `</span><span class="dt">Ultraviolet [W/m2]</span><span class="st">`</span> , <span class="dt">data =</span>  tabla_final_A)</code></pre>
+<p>Inspeccionamos el modelo creado.</p>
+<pre class="sourceCode r"><code class="sourceCode r">modelo_A_<span class="dv">1</span></code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = `A_Optimal - Power DC [W]` ~ `Global Radiation [W/m2]` + 
+##     `Ultraviolet [W/m2]`, data = tabla_final_A)
+## 
+## Coefficients:
+##               (Intercept)  `Global Radiation [W/m2]`  
+##                    4.8996                     0.2692  
+##      `Ultraviolet [W/m2]`  
+##                   -0.9980</code></pre>
+<p>Obtenemos el resumen del mismo.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelo_A_<span class="dv">1</span>)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = `A_Optimal - Power DC [W]` ~ `Global Radiation [W/m2]` + 
+##     `Ultraviolet [W/m2]`, data = tabla_final_A)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -217.181  -18.974   -5.129   13.335  228.712 
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                4.899640   0.115664   42.36   &lt;2e-16 ***
+## `Global Radiation [W/m2]`  0.269219   0.001342  200.54   &lt;2e-16 ***
+## `Ultraviolet [W/m2]`      -0.997964   0.022165  -45.02   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 30.48 on 221113 degrees of freedom
+## Multiple R-squared:  0.8266, Adjusted R-squared:  0.8266 
+## F-statistic: 5.269e+05 on 2 and 221113 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Y obtenemos un modelo base significativo (p-value mucho menor que 0,05) y con un R cuadrado ajustado de 0,83. Bastante bien para empezar.</p>
+<p>Extraemos del modelo los valores predecidos y seleccionamos también de la tabla los valores reales para posteriormente obtener los errores y el MAE (Mean Absolute Error).</p>
+<pre class="sourceCode r"><code class="sourceCode r">fitted_values &lt;-<span class="st"> </span>modelo_A_<span class="dv">1</span><span class="op">$</span>fitted.values
+real_values &lt;-<span class="st"> </span>tabla_final_A<span class="op">$</span><span class="st">`</span><span class="dt">A_Optimal - Power DC [W]</span><span class="st">`</span></code></pre>
+<p>Obtenemos el MAE para tenerlo como referencia de comparación con los modelos que estamos desarrollando en BigML.</p>
+<pre class="sourceCode r"><code class="sourceCode r">real_values_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(real_values)
+fitted_values_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(fitted_values)
+
+
+real_vs_fitted &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(real_values_df, fitted_values_df)
+
+errors &lt;-<span class="st"> </span>real_vs_fitted <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">abs_error =</span> <span class="kw">abs</span>(fitted_values <span class="op">-</span><span class="st"> </span>real_values))
+
+MAE &lt;-<span class="st"> </span><span class="kw">mean</span>(errors<span class="op">$</span>abs_error)
+MAE</code></pre>
+<pre><code>## [1] 22.53593</code></pre>
+<p>El MAE que tendremos como referencia a mejorar es 22,54.</p>
+<p>Para hacer la predicción para los 7 primeros días de 2017 seleccionamos de la tabla de test los campos utilizados en el modelo.</p>
+<pre class="sourceCode r"><code class="sourceCode r">tabla_final_test_A &lt;-<span class="st"> </span>tabla_final_test <span class="op">%&gt;%</span>
+<span class="st">                        </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">A_Optimal - Power DC [W]</span><span class="st">`</span>, 
+                               <span class="st">`</span><span class="dt">Global Radiation [W/m2]</span><span class="st">`</span>,
+                               <span class="st">`</span><span class="dt">Ultraviolet [W/m2]</span><span class="st">`</span>)</code></pre>
+<p>Hacemos la prediccion para los paneles A con nuestro modelo.</p>
+<pre class="sourceCode r"><code class="sourceCode r">prediccion_test &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo_A_<span class="dv">1</span>, tabla_final_test_A)</code></pre>
+<p>Y exportamos nuestras predicciones para enviarlas también, junto a las obtenidas con BigML, al jurado del Hackathon.</p>
+<pre class="sourceCode r"><code class="sourceCode r">prediccion_test &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(prediccion_test)
+<span class="kw">write_csv</span>(prediccion_test, <span class="st">&quot;predicciones_panel_A.csv&quot;</span>)</code></pre>
+<p>El modelo base para los datos del tipo de panel B no nos dio tiempo a hacerlo.</p>
+</div>
 <div id="modelizacion-en-bigml" class="section level2">
-<h2><span class="header-section-number">2.4</span> Modelización en BIGml</h2>
+<h2><span class="header-section-number">2.5</span> Modelización en BigML</h2>
 <p>Aquí se ven las fuente de datos creadas para este reto. “meteo_prod_2015_2016.csv” es la fuente a partir de los datos procesados en R para el
 entrenamiento del modelo. Y “test_meteo_prod_2017.csv” es la fuente, también procesada en R, con los datos para hacer la predicción.</p>
 <p><img src="imgs/IMG_0441.jpg" /></p>
@@ -467,19 +524,20 @@ temperatura que era erroneo y nos descuadraba el resultado.
 También está el dataset “test_meteo_prod_2017” que creamos a partir de los datos de test para hacer luego la predicción con el modelo.
 <img src="imgs/IMG_0443.jpg" /></p>
 <p>Detalle de uno de los datasets con los campos que eliminamos para que no influyesen en la predicción.
-<img src="imgs/IMG_0444.jpg" />
-Detalle de uno de los datasets con los campos que eliminamos para que no influyesen en la predicción.
+<img src="imgs/IMG_0444.jpg" /></p>
+<p>Detalle de uno de los datasets con los campos que eliminamos para que no influyesen en la predicción.
 <img src="imgs/IMG_0445.jpg" /></p>
 <p>Regresiones lineales creadas a partir de los datasets, una para cada modelo de panel solar.
 <img src="imgs/IMG_0446.jpg" /></p>
 <p>Detalle de la grafica de predicción de una de las regresiones en función de la radiación.
 <img src="imgs/IMG_0447.jpg" /></p>
 <p>Detalle de regresiones para uno de los paneles.
-<img src="imgs/IMG_0448.jpg" />
-Predicciones batch para cada modelo creadas con el dataset de prueba.
-<img src="imgs/IMG_0449.jpg" />
-Detalle de una de las predicciones.
+<img src="imgs/IMG_0448.jpg" /></p>
+<p>Predicciones batch para cada modelo creadas con el dataset de prueba.
+<img src="imgs/IMG_0449.jpg" /></p>
+<p>Detalle de una de las predicciones.
 <img src="imgs/IMG_0450.jpg" /></p>
+<p>Con las prisas y la falta de experiencia con la herramienta BigML no nos dio tiempo tampoco a comprobar la bondad del ajuste y calidad de los modelos generados. Nos dio el tiempo justo para simplemente enviar las predicciones de los primeros modelos que obtuvimos.</p>
 
 </div>
 </div>

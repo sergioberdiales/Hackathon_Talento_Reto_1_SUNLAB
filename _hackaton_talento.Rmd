@@ -1,0 +1,168 @@
+---
+title: "hackathon_talento"
+author: "Sergio Berdiales"
+date: "6/4/2019"
+output: html_document
+---
+
+```{r , warning= FALSE, message= FALSE}
+library(tidyverse)
+library(readxl)
+library(VIM)
+library(GGally)
+```
+
+
+Importaciones
+```{r , warning= FALSE, message= FALSE}
+meteo_2015 <- read_csv("sunlab-faro_meteo_2015.csv")
+meteo_2016 <- read_csv("sunlab-faro_meteo_2016.csv")
+prod_2015 <- read_csv("sunlab-faro-pv-2015.csv")
+prod_2016 <- read_csv("sunlab-faro-pv-2016.csv")
+```
+
+```{r , warning= FALSE, message= FALSE}
+meteo_2015_2016 <- bind_rows(meteo_2015, meteo_2016)
+prod_2015_2016 <- bind_rows(prod_2015, prod_2016)
+
+rm(meteo_2015)
+rm(meteo_2016)
+rm(prod_2015)
+rm(prod_2016)
+```
+Echamos un vistazo a los datos de produccion
+```{r , warning= FALSE, message= FALSE}
+summary(prod_2015_2016)
+```
+```{r , warning= FALSE, message= FALSE}
+glimpse(prod_2015_2016)
+```
+
+```{r , warning= FALSE, message= FALSE}
+prod_2015_2016_final <- prod_2015_2016 %>%
+                        select(Datetime, 
+                               'A_Optimal - Power DC [W]',
+                               'B_Optimal - Power DC [W]')
+```
+
+```{r , warning= FALSE, message= FALSE}
+summary(meteo_2015_2016)
+```
+
+```{r , warning= FALSE, message= FALSE}
+meteo_2015_2016_final <- meteo_2015_2016 %>%
+                        select(Datetime, 
+                               'Ambient Temperature [ºC]',
+                               'Diffuse Radiation [W/m2]',
+                               'Ultraviolet [W/m2]',
+                               'Global Radiation [W/m2]')
+```
+
+
+Cruzamos las tablas por Datetime
+```{r , warning= FALSE, message= FALSE}
+tabla_final <- meteo_2015_2016_final %>%
+  left_join(prod_2015_2016_final) %>% 
+  filter(`Ambient Temperature [ºC]` <1000)
+```
+```{r , warning= FALSE, message= FALSE}
+summary(tabla_final) 
+```
+
+```{r , warning= FALSE, message= FALSE}
+write_csv(tabla_final, "meteo_prod_2015_2016.csv")
+```
+
+
+Preparar datos de test
+
+Importaciones
+```{r , warning= FALSE, message= FALSE}
+test_meteo_2017 <- read_csv("test-sunlab-meteo-2017.csv")
+test_prod_2017 <- read_csv("test-sunlab-pv-2017.csv")
+
+```
+Cruzamos las tablas por Datetime
+```{r , warning= FALSE, message= FALSE}
+tabla_final_test <- test_meteo_2017 %>%
+              left_join(test_prod_2017, by = "Datetime") %>%
+                        select(`A_Optimal - Power DC [W]`, 
+                               `Global Radiation [W/m2]`,
+                               `Ultraviolet [W/m2]`)
+```
+
+```{r , warning= FALSE, message= FALSE}          
+write_csv(tabla_final_test, "test_meteo_prod_2017.csv")
+```
+
+Echamos un vistazo a la completitud de los datos
+
+```{r , warning= FALSE, message= FALSE}
+
+aggr(tabla_final)
+
+```
+
+Panel A
+```{r , warning= FALSE, message= FALSE}
+tabla_final_A <- tabla_final %>% 
+                select(-`B_Optimal - Power DC [W]`) %>%
+                na.omit()
+
+
+
+modelo_A_1=lm(`A_Optimal - Power DC [W]` ~ `Global Radiation [W/m2]` + `Ultraviolet [W/m2]` , data =  tabla_final_A)
+
+```
+
+Echamos un vistazo al modelo
+```{r , warning= FALSE, message= FALSE}
+
+
+modelo_A_1
+
+```
+```{r , warning= FALSE, message= FALSE}
+
+summary(modelo_A_1)
+
+```
+
+```{r , warning= FALSE, message= FALSE}
+
+fitted_values <- modelo_A_1$fitted.values
+real_values <- tabla_final_A$`A_Optimal - Power DC [W]`
+```
+
+
+```{r , warning= FALSE, message= FALSE}
+tabla_final_test_A <- tabla_final_test %>%
+                        select(`A_Optimal - Power DC [W]`, 
+                               `Global Radiation [W/m2]`,
+                               `Ultraviolet [W/m2]`)
+```
+
+Hacemos la prediccion para los paneles A
+```{r }
+prediccion_test <- predict(modelo_A_1, tabla_final_test_A)
+```
+
+```{r , warning= FALSE, message= FALSE}
+prediccion_test <- as.data.frame(prediccion_test)
+write_csv(prediccion_test, "predicciones_panel_A.csv")
+```
+
+```{r }
+tabla_test_predicciones_A <- bind_cols(tabla_final_test_A, prediccion_test) %>%
+          na.omit()
+```
+
+```{r , warning= FALSE, message= FALSE}
+tabla_test_predicciones_A_1 <- tabla_test_predicciones_A %>%
+                              mutate(diff = abs(`A_Optimal - Power DC [W]` - prediccion_test))
+```
+
+```{r , warning= FALSE, message= FALSE}
+mean(tabla_test_predicciones_A_1$diff, na.rm = TRUE)
+```
+

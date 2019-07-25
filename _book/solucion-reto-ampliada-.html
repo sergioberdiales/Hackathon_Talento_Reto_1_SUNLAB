@@ -46,6 +46,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -130,7 +131,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#carga-de-las-librerias-necesarias."><i class="fa fa-check"></i><b>2.1</b> Carga de las librerias necesarias.</a></li>
 <li class="chapter" data-level="2.2" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-train."><i class="fa fa-check"></i><b>2.2</b> Preparación datos “train”.</a></li>
 <li class="chapter" data-level="2.3" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#preparacion-datos-test."><i class="fa fa-check"></i><b>2.3</b> Preparación datos “test”.</a></li>
-<li class="chapter" data-level="2.4" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelizacion-en-bigml"><i class="fa fa-check"></i><b>2.4</b> Modelización en BIGml</a></li>
+<li class="chapter" data-level="2.4" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelo-base-panel-a"><i class="fa fa-check"></i><b>2.4</b> Modelo base panel A</a></li>
+<li class="chapter" data-level="2.5" data-path="solucion-reto-dia-del-hackathon-.html"><a href="solucion-reto-dia-del-hackathon-.html#modelizacion-en-bigml"><i class="fa fa-check"></i><b>2.5</b> Modelización en BigML</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html"><i class="fa fa-check"></i><b>3</b> Solución reto ampliada.</a><ul>
 <li class="chapter" data-level="3.1" data-path="solucion-reto-ampliada-.html"><a href="solucion-reto-ampliada-.html#carga-de-las-librerias-necesarias.-1"><i class="fa fa-check"></i><b>3.1</b> Carga de las librerias necesarias.</a></li>
@@ -188,7 +190,8 @@ test-sunlab-pv-2017.xlsx</p>
 <span class="kw">library</span>(GGally)
 <span class="kw">library</span>(caret)
 <span class="kw">library</span>(knitr)
-<span class="kw">library</span>(gridExtra)</code></pre>
+<span class="kw">library</span>(gridExtra)
+<span class="kw">library</span>(kableExtra)</code></pre>
 </div>
 <div id="importacion-de-los-datos." class="section level2">
 <h2><span class="header-section-number">3.2</span> Importación de los datos.</h2>
@@ -251,33 +254,860 @@ test_prod_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class
 ## $ `B_Optimal - Temperature [ºC]`    &lt;dbl&gt; 30.2, 30.0, 30.9, 29.9, 30.7...
 ## $ `B_Horizontal - Temperature [ºC]` &lt;dbl&gt; 25.3, 24.9, 25.7, 25.1, 25.6...</code></pre>
 <p>Vemos también los primeros 10 registros.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>, <span class="dv">10</span>)</code></pre>
-<pre><code>## # A tibble: 10 x 25
-##    Datetime            `A_Vertical - V~ `A_Vertical - C~ `A_Vertical - P~
-##    &lt;dttm&gt;                         &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-##  1 2015-01-09 12:52:00             29.4             6.41             188.
-##  2 2015-01-09 12:14:00             29.1             6.40             186.
-##  3 2015-01-09 13:19:00             29.1             6.33             184.
-##  4 2015-01-09 12:41:00             29.4             6.41             188.
-##  5 2015-01-09 13:07:00             29.1             6.40             186.
-##  6 2015-01-09 12:57:00             29               6.46             187.
-##  7 2015-01-09 13:04:00             29.3             6.40             187.
-##  8 2015-01-09 13:20:00             29.1             6.32             184.
-##  9 2015-01-09 13:16:00             29.1             6.38             186.
-## 10 2015-01-09 12:48:00             29.3             6.44             189.
-## # ... with 21 more variables: `A_Optimal - Voltage DC [V]` &lt;dbl&gt;,
-## #   `A_Optimal - Current DC [A]` &lt;dbl&gt;, `A_Optimal - Power DC [W]` &lt;dbl&gt;,
-## #   `A_Horizontal - Voltage DC [V]` &lt;dbl&gt;, `A_Horizontal - Current DC
-## #   [A]` &lt;dbl&gt;, `A_Horizontal - Power DC [W]` &lt;dbl&gt;, `A_Vertical -
-## #   Temperature [ºC]` &lt;dbl&gt;, `A_Optimal - Temperature [ºC]` &lt;dbl&gt;,
-## #   `A_Horizontal - Temperature [ºC]` &lt;dbl&gt;, `B_Vertical - Voltage DC
-## #   [V]` &lt;dbl&gt;, `B_Vertical - Current DC [A]` &lt;dbl&gt;, `B_Vertical - Power
-## #   DC [W]` &lt;dbl&gt;, `B_Optimal - Voltage DC [V]` &lt;dbl&gt;, `B_Optimal -
-## #   Current DC [A]` &lt;dbl&gt;, `B_Optimal - Power DC [W]` &lt;dbl&gt;, `B_Horizontal
-## #   - Voltage DC [V]` &lt;dbl&gt;, `B_Horizontal - Current DC [A]` &lt;dbl&gt;,
-## #   `B_Horizontal - Power DC [W]` &lt;dbl&gt;, `B_Vertical - Temperature
-## #   [ºC]` &lt;dbl&gt;, `B_Optimal - Temperature [ºC]` &lt;dbl&gt;, `B_Horizontal -
-## #   Temperature [ºC]` &lt;dbl&gt;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">head</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>, <span class="dv">10</span>), <span class="dt">booktab =</span> <span class="ot">TRUE</span>)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Datetime
+</th>
+<th style="text-align:right;">
+A_Vertical - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+A_Vertical - Current DC [A]
+</th>
+<th style="text-align:right;">
+A_Vertical - Power DC [W]
+</th>
+<th style="text-align:right;">
+A_Optimal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+A_Optimal - Current DC [A]
+</th>
+<th style="text-align:right;">
+A_Optimal - Power DC [W]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Current DC [A]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Power DC [W]
+</th>
+<th style="text-align:right;">
+A_Vertical - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+A_Optimal - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+B_Vertical - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+B_Vertical - Current DC [A]
+</th>
+<th style="text-align:right;">
+B_Vertical - Power DC [W]
+</th>
+<th style="text-align:right;">
+B_Optimal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+B_Optimal - Current DC [A]
+</th>
+<th style="text-align:right;">
+B_Optimal - Power DC [W]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Current DC [A]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Power DC [W]
+</th>
+<th style="text-align:right;">
+B_Vertical - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+B_Optimal - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Temperature [ºC]
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:52:00
+</td>
+<td style="text-align:right;">
+29.35
+</td>
+<td style="text-align:right;">
+6.4125
+</td>
+<td style="text-align:right;">
+188.2069
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+7.1700
+</td>
+<td style="text-align:right;">
+206.1375
+</td>
+<td style="text-align:right;">
+29.25
+</td>
+<td style="text-align:right;">
+4.3225
+</td>
+<td style="text-align:right;">
+126.4331
+</td>
+<td style="text-align:right;">
+32.6
+</td>
+<td style="text-align:right;">
+28.8
+</td>
+<td style="text-align:right;">
+26.5
+</td>
+<td style="text-align:right;">
+27.55
+</td>
+<td style="text-align:right;">
+7.0925
+</td>
+<td style="text-align:right;">
+195.3984
+</td>
+<td style="text-align:right;">
+27.85
+</td>
+<td style="text-align:right;">
+7.2225
+</td>
+<td style="text-align:right;">
+201.1466
+</td>
+<td style="text-align:right;">
+29.05
+</td>
+<td style="text-align:right;">
+4.1775
+</td>
+<td style="text-align:right;">
+121.3564
+</td>
+<td style="text-align:right;">
+31.2
+</td>
+<td style="text-align:right;">
+30.2
+</td>
+<td style="text-align:right;">
+25.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:14:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:right;">
+6.3975
+</td>
+<td style="text-align:right;">
+186.1672
+</td>
+<td style="text-align:right;">
+28.45
+</td>
+<td style="text-align:right;">
+7.1925
+</td>
+<td style="text-align:right;">
+204.6266
+</td>
+<td style="text-align:right;">
+29.50
+</td>
+<td style="text-align:right;">
+4.2525
+</td>
+<td style="text-align:right;">
+125.4488
+</td>
+<td style="text-align:right;">
+32.4
+</td>
+<td style="text-align:right;">
+28.6
+</td>
+<td style="text-align:right;">
+26.1
+</td>
+<td style="text-align:right;">
+27.60
+</td>
+<td style="text-align:right;">
+7.0475
+</td>
+<td style="text-align:right;">
+194.5110
+</td>
+<td style="text-align:right;">
+28.05
+</td>
+<td style="text-align:right;">
+7.1125
+</td>
+<td style="text-align:right;">
+199.5056
+</td>
+<td style="text-align:right;">
+29.05
+</td>
+<td style="text-align:right;">
+4.1275
+</td>
+<td style="text-align:right;">
+119.9039
+</td>
+<td style="text-align:right;">
+31.5
+</td>
+<td style="text-align:right;">
+30.0
+</td>
+<td style="text-align:right;">
+24.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:19:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:right;">
+6.3325
+</td>
+<td style="text-align:right;">
+184.2757
+</td>
+<td style="text-align:right;">
+28.45
+</td>
+<td style="text-align:right;">
+7.0925
+</td>
+<td style="text-align:right;">
+201.7816
+</td>
+<td style="text-align:right;">
+29.45
+</td>
+<td style="text-align:right;">
+4.1825
+</td>
+<td style="text-align:right;">
+123.1746
+</td>
+<td style="text-align:right;">
+33.2
+</td>
+<td style="text-align:right;">
+29.4
+</td>
+<td style="text-align:right;">
+26.8
+</td>
+<td style="text-align:right;">
+27.40
+</td>
+<td style="text-align:right;">
+7.0100
+</td>
+<td style="text-align:right;">
+192.0740
+</td>
+<td style="text-align:right;">
+27.85
+</td>
+<td style="text-align:right;">
+7.0450
+</td>
+<td style="text-align:right;">
+196.2032
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+4.1125
+</td>
+<td style="text-align:right;">
+118.2344
+</td>
+<td style="text-align:right;">
+31.9
+</td>
+<td style="text-align:right;">
+30.9
+</td>
+<td style="text-align:right;">
+25.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:41:00
+</td>
+<td style="text-align:right;">
+29.35
+</td>
+<td style="text-align:right;">
+6.4125
+</td>
+<td style="text-align:right;">
+188.2069
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+7.2150
+</td>
+<td style="text-align:right;">
+207.4313
+</td>
+<td style="text-align:right;">
+29.50
+</td>
+<td style="text-align:right;">
+4.3050
+</td>
+<td style="text-align:right;">
+126.9975
+</td>
+<td style="text-align:right;">
+32.2
+</td>
+<td style="text-align:right;">
+28.2
+</td>
+<td style="text-align:right;">
+26.4
+</td>
+<td style="text-align:right;">
+27.40
+</td>
+<td style="text-align:right;">
+7.1425
+</td>
+<td style="text-align:right;">
+195.7045
+</td>
+<td style="text-align:right;">
+28.05
+</td>
+<td style="text-align:right;">
+7.1775
+</td>
+<td style="text-align:right;">
+201.3289
+</td>
+<td style="text-align:right;">
+28.95
+</td>
+<td style="text-align:right;">
+4.1975
+</td>
+<td style="text-align:right;">
+121.5176
+</td>
+<td style="text-align:right;">
+31.7
+</td>
+<td style="text-align:right;">
+29.9
+</td>
+<td style="text-align:right;">
+25.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:07:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:right;">
+6.4050
+</td>
+<td style="text-align:right;">
+186.3855
+</td>
+<td style="text-align:right;">
+28.45
+</td>
+<td style="text-align:right;">
+7.1975
+</td>
+<td style="text-align:right;">
+204.7689
+</td>
+<td style="text-align:right;">
+29.50
+</td>
+<td style="text-align:right;">
+4.2600
+</td>
+<td style="text-align:right;">
+125.6700
+</td>
+<td style="text-align:right;">
+32.8
+</td>
+<td style="text-align:right;">
+27.8
+</td>
+<td style="text-align:right;">
+26.1
+</td>
+<td style="text-align:right;">
+27.65
+</td>
+<td style="text-align:right;">
+7.0300
+</td>
+<td style="text-align:right;">
+194.3795
+</td>
+<td style="text-align:right;">
+27.85
+</td>
+<td style="text-align:right;">
+7.1550
+</td>
+<td style="text-align:right;">
+199.2668
+</td>
+<td style="text-align:right;">
+28.95
+</td>
+<td style="text-align:right;">
+4.1625
+</td>
+<td style="text-align:right;">
+120.5044
+</td>
+<td style="text-align:right;">
+32.2
+</td>
+<td style="text-align:right;">
+30.7
+</td>
+<td style="text-align:right;">
+25.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:57:00
+</td>
+<td style="text-align:right;">
+29.00
+</td>
+<td style="text-align:right;">
+6.4550
+</td>
+<td style="text-align:right;">
+187.1950
+</td>
+<td style="text-align:right;">
+28.45
+</td>
+<td style="text-align:right;">
+7.2475
+</td>
+<td style="text-align:right;">
+206.1914
+</td>
+<td style="text-align:right;">
+29.25
+</td>
+<td style="text-align:right;">
+4.3200
+</td>
+<td style="text-align:right;">
+126.3600
+</td>
+<td style="text-align:right;">
+33.3
+</td>
+<td style="text-align:right;">
+29.6
+</td>
+<td style="text-align:right;">
+26.8
+</td>
+<td style="text-align:right;">
+27.40
+</td>
+<td style="text-align:right;">
+7.1375
+</td>
+<td style="text-align:right;">
+195.5675
+</td>
+<td style="text-align:right;">
+27.85
+</td>
+<td style="text-align:right;">
+7.2175
+</td>
+<td style="text-align:right;">
+201.0074
+</td>
+<td style="text-align:right;">
+28.80
+</td>
+<td style="text-align:right;">
+4.2175
+</td>
+<td style="text-align:right;">
+121.4640
+</td>
+<td style="text-align:right;">
+31.7
+</td>
+<td style="text-align:right;">
+30.9
+</td>
+<td style="text-align:right;">
+25.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:04:00
+</td>
+<td style="text-align:right;">
+29.30
+</td>
+<td style="text-align:right;">
+6.3950
+</td>
+<td style="text-align:right;">
+187.3735
+</td>
+<td style="text-align:right;">
+28.45
+</td>
+<td style="text-align:right;">
+7.2275
+</td>
+<td style="text-align:right;">
+205.6224
+</td>
+<td style="text-align:right;">
+29.50
+</td>
+<td style="text-align:right;">
+4.2800
+</td>
+<td style="text-align:right;">
+126.2600
+</td>
+<td style="text-align:right;">
+32.4
+</td>
+<td style="text-align:right;">
+27.7
+</td>
+<td style="text-align:right;">
+25.9
+</td>
+<td style="text-align:right;">
+27.40
+</td>
+<td style="text-align:right;">
+7.1225
+</td>
+<td style="text-align:right;">
+195.1565
+</td>
+<td style="text-align:right;">
+27.85
+</td>
+<td style="text-align:right;">
+7.1750
+</td>
+<td style="text-align:right;">
+199.8237
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+4.2050
+</td>
+<td style="text-align:right;">
+120.8937
+</td>
+<td style="text-align:right;">
+31.7
+</td>
+<td style="text-align:right;">
+30.3
+</td>
+<td style="text-align:right;">
+25.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:20:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:right;">
+6.3200
+</td>
+<td style="text-align:right;">
+183.9120
+</td>
+<td style="text-align:right;">
+28.45
+</td>
+<td style="text-align:right;">
+7.0900
+</td>
+<td style="text-align:right;">
+201.7105
+</td>
+<td style="text-align:right;">
+29.25
+</td>
+<td style="text-align:right;">
+4.2050
+</td>
+<td style="text-align:right;">
+122.9963
+</td>
+<td style="text-align:right;">
+33.1
+</td>
+<td style="text-align:right;">
+29.1
+</td>
+<td style="text-align:right;">
+26.7
+</td>
+<td style="text-align:right;">
+27.15
+</td>
+<td style="text-align:right;">
+7.0475
+</td>
+<td style="text-align:right;">
+191.3396
+</td>
+<td style="text-align:right;">
+27.85
+</td>
+<td style="text-align:right;">
+7.0350
+</td>
+<td style="text-align:right;">
+195.9247
+</td>
+<td style="text-align:right;">
+27.75
+</td>
+<td style="text-align:right;">
+4.2025
+</td>
+<td style="text-align:right;">
+116.6194
+</td>
+<td style="text-align:right;">
+32.0
+</td>
+<td style="text-align:right;">
+31.0
+</td>
+<td style="text-align:right;">
+25.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:16:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:right;">
+6.3750
+</td>
+<td style="text-align:right;">
+185.5125
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+7.0700
+</td>
+<td style="text-align:right;">
+203.2625
+</td>
+<td style="text-align:right;">
+29.45
+</td>
+<td style="text-align:right;">
+4.2025
+</td>
+<td style="text-align:right;">
+123.7636
+</td>
+<td style="text-align:right;">
+32.4
+</td>
+<td style="text-align:right;">
+28.7
+</td>
+<td style="text-align:right;">
+26.3
+</td>
+<td style="text-align:right;">
+27.70
+</td>
+<td style="text-align:right;">
+6.9725
+</td>
+<td style="text-align:right;">
+193.1382
+</td>
+<td style="text-align:right;">
+28.10
+</td>
+<td style="text-align:right;">
+7.0425
+</td>
+<td style="text-align:right;">
+197.8942
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+4.1475
+</td>
+<td style="text-align:right;">
+119.2406
+</td>
+<td style="text-align:right;">
+31.2
+</td>
+<td style="text-align:right;">
+29.9
+</td>
+<td style="text-align:right;">
+25.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:48:00
+</td>
+<td style="text-align:right;">
+29.30
+</td>
+<td style="text-align:right;">
+6.4375
+</td>
+<td style="text-align:right;">
+188.6188
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+7.2050
+</td>
+<td style="text-align:right;">
+207.1438
+</td>
+<td style="text-align:right;">
+29.50
+</td>
+<td style="text-align:right;">
+4.3100
+</td>
+<td style="text-align:right;">
+127.1450
+</td>
+<td style="text-align:right;">
+32.1
+</td>
+<td style="text-align:right;">
+28.4
+</td>
+<td style="text-align:right;">
+26.4
+</td>
+<td style="text-align:right;">
+27.60
+</td>
+<td style="text-align:right;">
+7.1250
+</td>
+<td style="text-align:right;">
+196.6500
+</td>
+<td style="text-align:right;">
+28.05
+</td>
+<td style="text-align:right;">
+7.2000
+</td>
+<td style="text-align:right;">
+201.9600
+</td>
+<td style="text-align:right;">
+29.05
+</td>
+<td style="text-align:right;">
+4.1950
+</td>
+<td style="text-align:right;">
+121.8648
+</td>
+<td style="text-align:right;">
+30.8
+</td>
+<td style="text-align:right;">
+29.5
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+</tr>
+</tbody>
+</table>
 <p>Ejecutamos un summary() para observar los principales estadísticos de cada variable, NAs, etc.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>)</code></pre>
 <pre><code>##     Datetime                   A_Vertical - Voltage DC [V]
@@ -395,7 +1225,7 @@ test_prod_<span class="dv">2017</span> &lt;-<span class="st"> </span><span class
 ## $ `A_Vertical - Power DC [W]`       &lt;dbl&gt; 1.44375, 1.63625, 2.25600, 5...
 ## $ `A_Optimal - Voltage DC [V]`      &lt;dbl&gt; 21.60, 32.15, 32.75, 32.95, ...
 ## $ `A_Optimal - Current DC [A]`      &lt;dbl&gt; 0.1075, 0.0450, 0.0450, 0.16...
-## $ `A_Optimal - Power DC [W]`        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, ...
+## $ `A_Optimal - Power DC [W]`        &lt;chr&gt; &quot;=E2*F2&quot;, NA, NA, NA, NA, NA...
 ## $ `A_Horizontal - Voltage DC [V]`   &lt;dbl&gt; 18.80, 18.80, 18.75, 18.75, ...
 ## $ `A_Horizontal - Current DC [A]`   &lt;dbl&gt; 0.0650, 0.0725, 0.0800, 0.10...
 ## $ `A_Horizontal - Power DC [W]`     &lt;dbl&gt; 1.22200, 1.36300, 1.50000, 1...
@@ -514,7 +1344,7 @@ meteo_test_var &lt;-<span class="st"> </span><span class="kw">names</span>(test_
 <h4><span class="header-section-number">3.3.2.1</span> Dataset de producción “prod_2015_2016”.</h4>
 <div id="completitud-de-los-datos." class="section level5">
 <h5><span class="header-section-number">3.3.2.1.1</span> Completitud de los datos.</h5>
-<p>En este apartado vamos a revisar el número de registros que tenemos, si varían con el tiempo y vamos a determinar la frecuencia de registros de los datos.</p>
+<p>En este apartado vamos a revisar el número de registros que tenemos, si varían con el tiempo y vamos a determinar la frecuencia de registros de los mismos.</p>
 </div>
 <div id="numero-y-frecuencia-de-registros." class="section level5">
 <h5><span class="header-section-number">3.3.2.1.2</span> Número y frecuencia de registros.</h5>
@@ -538,128 +1368,256 @@ registers_by_year</code></pre>
                                <span class="dt">month =</span> <span class="kw">month</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span><span class="op">$</span>Datetime)) <span class="op">%&gt;%</span>
 <span class="st">                      </span><span class="kw">summarise</span>(<span class="dt">registers =</span> <span class="kw">n</span>())
 
-<span class="kw">kable</span>(registers_by_year_month)</code></pre>
-<table>
+<span class="kw">kable</span>(registers_by_year_month) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable_styling</span>()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th align="right">year</th>
-<th align="right">month</th>
-<th align="right">registers</th>
+<tr>
+<th style="text-align:right;">
+year
+</th>
+<th style="text-align:right;">
+month
+</th>
+<th style="text-align:right;">
+registers
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">2015</td>
-<td align="right">1</td>
-<td align="right">18730</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+18730
+</td>
 </tr>
-<tr class="even">
-<td align="right">2015</td>
-<td align="right">2</td>
-<td align="right">18297</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+18297
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2015</td>
-<td align="right">3</td>
-<td align="right">21094</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+21094
+</td>
 </tr>
-<tr class="even">
-<td align="right">2015</td>
-<td align="right">4</td>
-<td align="right">23460</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+23460
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2015</td>
-<td align="right">5</td>
-<td align="right">26183</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+26183
+</td>
 </tr>
-<tr class="even">
-<td align="right">2015</td>
-<td align="right">6</td>
-<td align="right">25146</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+25146
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2015</td>
-<td align="right">7</td>
-<td align="right">25908</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+25908
+</td>
 </tr>
-<tr class="even">
-<td align="right">2015</td>
-<td align="right">8</td>
-<td align="right">25252</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+25252
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2015</td>
-<td align="right">9</td>
-<td align="right">22380</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+22380
+</td>
 </tr>
-<tr class="even">
-<td align="right">2015</td>
-<td align="right">10</td>
-<td align="right">19067</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+19067
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2015</td>
-<td align="right">11</td>
-<td align="right">17218</td>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+17218
+</td>
 </tr>
-<tr class="even">
-<td align="right">2016</td>
-<td align="right">1</td>
-<td align="right">18492</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+18492
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2016</td>
-<td align="right">2</td>
-<td align="right">18250</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+18250
+</td>
 </tr>
-<tr class="even">
-<td align="right">2016</td>
-<td align="right">3</td>
-<td align="right">342</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+342
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2016</td>
-<td align="right">6</td>
-<td align="right">19413</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+19413
+</td>
 </tr>
-<tr class="even">
-<td align="right">2016</td>
-<td align="right">7</td>
-<td align="right">26682</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+26682
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2016</td>
-<td align="right">8</td>
-<td align="right">25243</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+25243
+</td>
 </tr>
-<tr class="even">
-<td align="right">2016</td>
-<td align="right">9</td>
-<td align="right">17067</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+17067
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2016</td>
-<td align="right">10</td>
-<td align="right">17133</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+17133
+</td>
 </tr>
-<tr class="even">
-<td align="right">2016</td>
-<td align="right">11</td>
-<td align="right">18313</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+18313
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2016</td>
-<td align="right">12</td>
-<td align="right">16837</td>
-</tr>
-<tr class="even">
-<td align="right">A desta</td>
-<td align="right">car que</td>
-<td align="right">en diciembre de 2015 y en abril y mayo de 2016 no hay ni un solo dato. Además en marzo de 2016 apenas hay registros. El resto de variaciones entre meses parecen estar simplemente relacionadas con las horas de sol, menos en invierno, más en verano.</td>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+16837
+</td>
 </tr>
 </tbody>
 </table>
+<p>A destacar que en diciembre de 2015 y en abril y mayo de 2016 no hay ni un solo dato. Además en marzo de 2016 apenas hay registros. El resto de variaciones entre meses parecen estar simplemente relacionadas con las horas de sol, menos en invierno, más en verano.</p>
 <p>Visualizamos los datos de la tabla en un gráfico. Pero antes añadimos los registros de año-meses que no aparecen con el valor ‘0’.</p>
 <pre class="sourceCode r"><code class="sourceCode r">registers_by_year_month &lt;-<span class="st"> </span>registers_by_year_month <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">                                  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
@@ -680,7 +1638,7 @@ registers_by_year_month_<span class="dv">1</span> &lt;-<span class="st"> </span>
 <span class="st">          </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">          </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="dv">1</span>,<span class="dt">vjust=</span><span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">10</span>)) <span class="op">+</span>
 <span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Year-Month&#39;</span>)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(registers_by_year_month)</code></pre>
 <p>Ejecutamos la función summary() para observar mejor la distribución de los datos.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(registers_by_year_month_<span class="dv">1</span>) </code></pre>
@@ -694,7 +1652,7 @@ registers_by_year_month_<span class="dv">1</span> &lt;-<span class="st"> </span>
 <p>Y lo representamos en un histograma.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> registers_by_year_month_<span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">x =</span> registers)) <span class="op">+</span>
 <span class="st">          </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">23</span>) </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(registers_by_year_month_<span class="dv">1</span>)</code></pre>
 <p>Todos los meses, excepto 4 (los mencionados anteriormente), se encuentran entre los 18.000 y 27.000 registros.</p>
 <p>Vamos a estimar la frecuencia de generación de los registros. Para ello restaremos a cada Datetime de cada registro su correspondiente Datetime anterior (Datetime_lagged) creando la variable time_diff, que nos dirá los minutos trascurridos entre cada registro.
@@ -715,91 +1673,175 @@ intervals_count &lt;-<span class="st"> </span>register_frequency <span class="op
 <span class="kw">kable</span>(<span class="kw">head</span>(intervals_count, <span class="dv">20</span>))</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="left">time_diff</th>
-<th align="right">n</th>
+<tr>
+<th style="text-align:left;">
+time_diff
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">1 mins</td>
-<td align="right">419840</td>
+<tr>
+<td style="text-align:left;">
+1 mins
+</td>
+<td style="text-align:right;">
+419840
+</td>
 </tr>
-<tr class="even">
-<td align="left">2 mins</td>
-<td align="right">29</td>
+<tr>
+<td style="text-align:left;">
+2 mins
+</td>
+<td style="text-align:right;">
+29
+</td>
 </tr>
-<tr class="odd">
-<td align="left">6 mins</td>
-<td align="right">11</td>
+<tr>
+<td style="text-align:left;">
+6 mins
+</td>
+<td style="text-align:right;">
+11
+</td>
 </tr>
-<tr class="even">
-<td align="left">7 mins</td>
-<td align="right">11</td>
+<tr>
+<td style="text-align:left;">
+7 mins
+</td>
+<td style="text-align:right;">
+11
+</td>
 </tr>
-<tr class="odd">
-<td align="left">579 mins</td>
-<td align="right">10</td>
+<tr>
+<td style="text-align:left;">
+579 mins
+</td>
+<td style="text-align:right;">
+10
+</td>
 </tr>
-<tr class="even">
-<td align="left">8 mins</td>
-<td align="right">9</td>
+<tr>
+<td style="text-align:left;">
+8 mins
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
-<tr class="odd">
-<td align="left">566 mins</td>
-<td align="right">9</td>
+<tr>
+<td style="text-align:left;">
+566 mins
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
-<tr class="even">
-<td align="left">565 mins</td>
-<td align="right">8</td>
+<tr>
+<td style="text-align:left;">
+565 mins
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
-<tr class="odd">
-<td align="left">572 mins</td>
-<td align="right">8</td>
+<tr>
+<td style="text-align:left;">
+572 mins
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
-<tr class="even">
-<td align="left">855 mins</td>
-<td align="right">8</td>
+<tr>
+<td style="text-align:left;">
+855 mins
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
-<tr class="odd">
-<td align="left">569 mins</td>
-<td align="right">7</td>
+<tr>
+<td style="text-align:left;">
+569 mins
+</td>
+<td style="text-align:right;">
+7
+</td>
 </tr>
-<tr class="even">
-<td align="left">854 mins</td>
-<td align="right">7</td>
+<tr>
+<td style="text-align:left;">
+854 mins
+</td>
+<td style="text-align:right;">
+7
+</td>
 </tr>
-<tr class="odd">
-<td align="left">570 mins</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+570 mins
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="even">
-<td align="left">587 mins</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+587 mins
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="odd">
-<td align="left">777 mins</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+777 mins
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="even">
-<td align="left">809 mins</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+809 mins
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="odd">
-<td align="left">833 mins</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+833 mins
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="even">
-<td align="left">563 mins</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:left;">
+563 mins
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="odd">
-<td align="left">568 mins</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:left;">
+568 mins
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="even">
-<td align="left">577 mins</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:left;">
+577 mins
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
 </tbody>
 </table>
@@ -819,7 +1861,7 @@ intervals_count &lt;-<span class="st"> </span>register_frequency <span class="op
 <p>Lo vemos también en un histograma.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> stops, <span class="kw">aes</span>(<span class="dt">x =</span> time_diff)) <span class="op">+</span>
 <span class="st">          </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">23</span>) </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" />
 El número total de paradas con duración compatible con paradas por falta de luz cuadra con los datos vistos hasta ahora.</p>
 <pre class="sourceCode r"><code class="sourceCode r">night_stops &lt;-<span class="st"> </span>intervals_count <span class="op">%&gt;%</span>
 <span class="st">               </span><span class="kw">mutate</span>(<span class="dt">time_diff =</span> <span class="kw">as.numeric</span>(time_diff)) <span class="op">%&gt;%</span>
@@ -838,7 +1880,1845 @@ night_stops</code></pre>
 <p>Generamos una tabla donde vemos hasta que punto cada variable del dataset está “completo” (un valor de 0.97 significa que la variable en cuestión tiene un 3% de NAs). Vemos que en general los registros presentes en la tabla tienen una alta completitud de datos.</p>
 <pre class="sourceCode r"><code class="sourceCode r">data_nas &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span> <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(<span class="dt">year =</span> <span class="kw">year</span>(Datetime), <span class="kw">month</span>(Datetime)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise_all</span>(<span class="kw">funs</span>(<span class="kw">round</span>(<span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(.))<span class="op">/</span><span class="kw">n</span>(), <span class="dv">2</span>))) <span class="co"># We obtain the proportion of &#39;not NAs&#39;</span></code></pre>
+<span class="st">  </span><span class="kw">summarise_all</span>(<span class="kw">funs</span>(<span class="kw">round</span>(<span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(.))<span class="op">/</span><span class="kw">n</span>(), <span class="dv">2</span>))) <span class="co"># We obtain the proportion of &#39;not NAs&#39;</span>
+ 
+<span class="kw">kable</span>(data_nas) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">scroll_box</span>()</code></pre>
+<div style="border: 1px solid #ddd; padding: 5px; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+year
+</th>
+<th style="text-align:right;">
+month(Datetime)
+</th>
+<th style="text-align:right;">
+Datetime
+</th>
+<th style="text-align:right;">
+A_Vertical - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+A_Vertical - Current DC [A]
+</th>
+<th style="text-align:right;">
+A_Vertical - Power DC [W]
+</th>
+<th style="text-align:right;">
+A_Optimal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+A_Optimal - Current DC [A]
+</th>
+<th style="text-align:right;">
+A_Optimal - Power DC [W]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Current DC [A]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Power DC [W]
+</th>
+<th style="text-align:right;">
+A_Vertical - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+A_Optimal - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+A_Horizontal - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+B_Vertical - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+B_Vertical - Current DC [A]
+</th>
+<th style="text-align:right;">
+B_Vertical - Power DC [W]
+</th>
+<th style="text-align:right;">
+B_Optimal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+B_Optimal - Current DC [A]
+</th>
+<th style="text-align:right;">
+B_Optimal - Power DC [W]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Voltage DC [V]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Current DC [A]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Power DC [W]
+</th>
+<th style="text-align:right;">
+B_Vertical - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+B_Optimal - Temperature [ºC]
+</th>
+<th style="text-align:right;">
+B_Horizontal - Temperature [ºC]
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="transformaciones-de-la-tabla." class="section level5">
 <h5><span class="header-section-number">3.3.2.1.4</span> Transformaciones de la tabla.</h5>
@@ -887,84 +3767,194 @@ night_stops</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">head</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long, <span class="dv">10</span>))                           </code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="left">datetime</th>
-<th align="right">value</th>
-<th align="left">panel_type</th>
-<th align="left">set_type</th>
-<th align="left">measure</th>
+<tr>
+<th style="text-align:left;">
+datetime
+</th>
+<th style="text-align:right;">
+value
+</th>
+<th style="text-align:left;">
+panel_type
+</th>
+<th style="text-align:left;">
+set_type
+</th>
+<th style="text-align:left;">
+measure
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">2015-01-09 12:52:00</td>
-<td align="right">29.35</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:52:00
+</td>
+<td style="text-align:right;">
+29.35
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-09 12:14:00</td>
-<td align="right">29.10</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:14:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="odd">
-<td align="left">2015-01-09 13:19:00</td>
-<td align="right">29.10</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:19:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-09 12:41:00</td>
-<td align="right">29.35</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:41:00
+</td>
+<td style="text-align:right;">
+29.35
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="odd">
-<td align="left">2015-01-09 13:07:00</td>
-<td align="right">29.10</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:07:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-09 12:57:00</td>
-<td align="right">29.00</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:57:00
+</td>
+<td style="text-align:right;">
+29.00
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="odd">
-<td align="left">2015-01-09 13:04:00</td>
-<td align="right">29.30</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:04:00
+</td>
+<td style="text-align:right;">
+29.30
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-09 13:20:00</td>
-<td align="right">29.10</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:20:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="odd">
-<td align="left">2015-01-09 13:16:00</td>
-<td align="right">29.10</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 13:16:00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-09 12:48:00</td>
-<td align="right">29.30</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="left">Voltage_DC_V</td>
+<tr>
+<td style="text-align:left;">
+2015-01-09 12:48:00
+</td>
+<td style="text-align:right;">
+29.30
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:left;">
+Voltage_DC_V
+</td>
 </tr>
 </tbody>
 </table>
@@ -993,70 +3983,168 @@ night_stops</code></pre>
 <span class="kw">kable</span>(<span class="kw">head</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long))</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="left">datetime</th>
-<th align="left">panel_type</th>
-<th align="left">set_type</th>
-<th align="right">Current_DC_A</th>
-<th align="right">Power_DC_W</th>
-<th align="right">Temperature_DC_C</th>
-<th align="right">Voltage_DC_V</th>
+<tr>
+<th style="text-align:left;">
+datetime
+</th>
+<th style="text-align:left;">
+panel_type
+</th>
+<th style="text-align:left;">
+set_type
+</th>
+<th style="text-align:right;">
+Current_DC_A
+</th>
+<th style="text-align:right;">
+Power_DC_W
+</th>
+<th style="text-align:right;">
+Temperature_DC_C
+</th>
+<th style="text-align:right;">
+Voltage_DC_V
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">2015-01-01 07:40:00</td>
-<td align="left">A</td>
-<td align="left">Horizontal</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">5.4</td>
-<td align="right">NA</td>
+<tr>
+<td style="text-align:left;">
+2015-01-01 07:40:00
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Horizontal
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+5.4
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-01 07:40:00</td>
-<td align="left">A</td>
-<td align="left">Optimal</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">6.0</td>
-<td align="right">NA</td>
+<tr>
+<td style="text-align:left;">
+2015-01-01 07:40:00
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Optimal
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="odd">
-<td align="left">2015-01-01 07:40:00</td>
-<td align="left">A</td>
-<td align="left">Vertical</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">5.8</td>
-<td align="right">NA</td>
+<tr>
+<td style="text-align:left;">
+2015-01-01 07:40:00
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-01 07:40:00</td>
-<td align="left">B</td>
-<td align="left">Horizontal</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">5.2</td>
-<td align="right">NA</td>
+<tr>
+<td style="text-align:left;">
+2015-01-01 07:40:00
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Horizontal
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="odd">
-<td align="left">2015-01-01 07:40:00</td>
-<td align="left">B</td>
-<td align="left">Optimal</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">6.2</td>
-<td align="right">NA</td>
+<tr>
+<td style="text-align:left;">
+2015-01-01 07:40:00
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Optimal
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+6.2
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
-<tr class="even">
-<td align="left">2015-01-01 07:40:00</td>
-<td align="left">B</td>
-<td align="left">Vertical</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">6.5</td>
-<td align="right">NA</td>
+<tr>
+<td style="text-align:left;">
+2015-01-01 07:40:00
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+Vertical
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
 </tbody>
 </table>
@@ -1088,7 +4176,7 @@ night_stops</code></pre>
 sample_prod &lt;-<span class="st"> </span><span class="kw">sample_n</span>(prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long, <span class="dv">10000</span>)</code></pre>
 <p>Generamos primero un cuadro donde podemos observar las distribuciones de cada variable (diagonal principal) y las relaciones entre pares de variables con gráficos de dispersión y sus correspondientes coeficientes de correlación lineal.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggpairs</span>(<span class="dt">data =</span> sample_prod, <span class="dt">columns =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 <p>Lo que más salta a la vista es la fortísima correlación lineal entre la variable Power_DC_W y Current_DC_A, 0.997, que también se observa muy claramente en el gráfico de dispersión correspondiente (también se ve lo que parece una pequeña anomalía de la tendencia general, la nube de puntos con una pendiente menor que se aparta un poquito del grupo general) y en sus correspondientes histogramas, que aunque en muy diferentes escalas son practicamente iguales.</p>
 <p>El resto de pares de variables también presentan evidentes relaciones entre sí.</p>
 <p>Vemos también en los siguientes gráficos cómo se comportan las cuatros variables a lo largo del tiempo. En este caso sólo utilizamos datos procedentes del tipo de panel A y orientación Optimal. Como los datos están limitados a un periodo muy corto (10 días) no es necesario muestrear.</p>
@@ -1114,15 +4202,15 @@ minute_evolution_C_A &lt;-<span class="st"> </span><span class="kw">ggplot</span
              minute_evolution_V_A,
              minute_evolution_C_A,
              <span class="dt">ncol =</span> <span class="dv">1</span>) </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
-<p>En esta otra visualización también es evidente la similitud del comportamiento de las variables Current_DC_A y Power_DC_W. Así que antes de seguir explorando los datos, lo que tendríamos que hacer es pararnos a hacer algo que tendríamos que haber hecho nada más empezar el análisis: Definir las variables y consultar las posibles relaciones que pudiesen existir entre ellas.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p>En esta otra visualización también es evidente la similitud del comportamiento de las variables Current_DC_A y Power_DC_W. Así que antes de seguir explorando los datos, lo que tendríamos que hacer es a hacer algo que <strong>tendríamos que haber hecho nada más empezar el análisis: Definir las variables y consultar las posibles relaciones que pudiesen existir entre ellas.</strong></p>
 <p>Temperature_DC_C: Temperatura en grados centígrados del panel solar.<br />
 Current_DC_A: Corriente continua. Medida en amperios. Nos indica la intensidad de la corriente eléctrica.<br />
 Voltage_DC_V: Voltaje, también denominado como tensión eléctrica o diferencia de potencial, cuantifica la diferencia de potencial eléctrico entre dos puntos.<br />
 Power_DC_W: La potencia eléctrica. Medida en vatios. Es la proporción por unidad de tiempo, o ritmo, con la cual la energía eléctrica es transferida por un circuito eléctrico.</p>
 <p>La potencia eléctrica, o los vatios, es la variable target de este problema. Es decir, la variable que tenemos que predecir. Ya hemos visto que se relaciona de forma directa con la variable Current_DC_A (amperios).
-Y con una sencilla búsqueda en Google podemos ver, por ejemplo <a href="https://www.endesaclientes.com/blog/voltios-vatios-amperios">aquí</a>, cuál es la naturaleza de esa relación: Voltios (V) x Amperios (A) = Vatios (W)</p>
-<p>Es decir, que ya tendríamos nuestro modelo. Y en este caso perfecto.</p>
+Y con una sencilla búsqueda en Google podemos ver, por ejemplo <a href="https://www.endesaclientes.com/blog/voltios-vatios-amperios">aquí</a>, cuál es la naturaleza de esa relación: <strong>Voltios (V) x Amperios (A) = Vatios (W)</strong></p>
+<p>Es decir, que <strong>ya tendríamos nuestro modelo</strong>. Y en este caso perfecto.</p>
 <p>Realizamos a continuación una sencilla comprobación.</p>
 <p>Primero hacemos la predicción de la potencia para el panel de tipo A y orientación Optimal y obtenemos su MAE (Mean Absolute Error).</p>
 <pre class="sourceCode r"><code class="sourceCode r">prod_optimal_A &lt;-<span class="st"> </span>prod_<span class="dv">2015</span>_<span class="dv">2016</span>_long <span class="op">%&gt;%</span><span class="st"> </span>
@@ -1166,28 +4254,28 @@ MAE</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_prod, <span class="kw">aes</span>(<span class="dt">x =</span> Current_DC_A, <span class="dt">y =</span> Power_DC_W, <span class="dt">color =</span> set_type)) <span class="op">+</span>
 <span class="st">         </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">         </span><span class="kw">facet_grid</span>(panel_type <span class="op">~</span><span class="st"> </span>set_type)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_prod, <span class="kw">aes</span>(<span class="dt">x =</span> Voltage_DC_V, <span class="dt">y =</span> Power_DC_W, <span class="dt">color =</span> set_type)) <span class="op">+</span>
 <span class="st">         </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">         </span><span class="kw">facet_grid</span>(panel_type <span class="op">~</span><span class="st"> </span>set_type)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_prod, <span class="kw">aes</span>(<span class="dt">x =</span> Temperature_DC_C, <span class="dt">y =</span> Power_DC_W, <span class="dt">color =</span> set_type)) <span class="op">+</span>
 <span class="st">         </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">         </span><span class="kw">facet_grid</span>(panel_type <span class="op">~</span><span class="st"> </span>set_type)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <p>Y generamos de nuevo la tabla de correlaciones y distribuciones, pero en esta ocasión únicamente para los dos conjuntos a predecir Configuración ‘Optimal’ y tipo de panel ‘A’ y ‘B’.</p>
 <pre class="sourceCode r"><code class="sourceCode r">prod_optimal_A &lt;-<span class="st"> </span>sample_prod <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">                  </span><span class="kw">filter</span>(set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>, 
                          panel_type <span class="op">==</span><span class="st"> &quot;A&quot;</span>)
 
 <span class="kw">ggpairs</span>(<span class="dt">data =</span> prod_optimal_A, <span class="dt">columns =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">prod_optimal_B &lt;-<span class="st"> </span>sample_prod <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">                  </span><span class="kw">filter</span>(set_type <span class="op">==</span><span class="st"> &quot;Optimal&quot;</span>, 
                          panel_type <span class="op">==</span><span class="st"> &quot;B&quot;</span>)
                          
 <span class="kw">ggpairs</span>(<span class="dt">data =</span> prod_optimal_B, <span class="dt">columns =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -1296,6 +4384,7 @@ R_Squared</code></pre>
 </div>
 <div id="modelos-base-para-paneles-b" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Modelos base para paneles B</h3>
+<p><strong>PENDIENTE</strong></p>
 </div>
 </div>
 <div id="descripcion-de-la-generacion-de-los-modelos-con-bigml." class="section level2">
